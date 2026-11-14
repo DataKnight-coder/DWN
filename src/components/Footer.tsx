@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
               <li><a href="#expertise" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Expertise</a></li>
               <li><a href="#cybersecurity" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Cybersecurity</a></li>
               <li><a href="#real-estate" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Real Estate</a></li>
-              <li><a href="#insights" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Insights</a></li>
+              <li><a href="/blog/" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Blog</a></li>
             </ul>
           </div>
 

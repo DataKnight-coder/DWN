@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node scripts/build-blog.mjs && vite",
+    "build": "node scripts/build-blog.mjs && vite build",
+    "test:blog": "node scripts/check-blog.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

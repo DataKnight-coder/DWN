@@ -10,13 +10,13 @@ interface MobileNavProps {
 const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, onOpenQuiz }) => {
   const menuVars = {
     initial: { scaleY: 0 },
-    animate: { scaleY: 1, transition: { duration: 0.5, ease: [0.12, 0, 0.39, 0] } },
-    exit: { scaleY: 0, transition: { delay: 0.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
+    animate: { scaleY: 1, transition: { duration: 0.5, ease: [0.12, 0, 0.39, 0] as const } },
+    exit: { scaleY: 0, transition: { delay: 0.3, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const } }
   };
   
   const linkVars = {
-    initial: { y: "30vh", transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] } },
-    open: { y: 0, transition: { duration: 0.5, ease: [0], staggerChildren: 0.05 } }
+    initial: { y: "30vh", transition: { duration: 0.5, ease: [0.37, 0, 0.63, 1] as const } },
+    open: { y: 0, transition: { duration: 0.5, ease: 'linear' as const, staggerChildren: 0.05 } }
   };
 
   const links = [
@@ -24,7 +24,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, onOpenQuiz }) =>
     { name: "Expertise", href: "#expertise" },
     { name: "Diaspora Wealth Network", href: "#dwn" },
     { name: "Programs", href: "#programs" },
-    { name: "Insights", href: "#insights" }
+    { name: "Blog", href: "/blog/" }
   ];
 
   return (

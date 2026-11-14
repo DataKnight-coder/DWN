@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenMobileNav, onOpenQuiz }) => {
           <a href="#cybersecurity" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Cybersecurity</a>
           <a href="#real-estate" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Real Estate</a>
           <a href="#dwn" className="text-ivory hover:text-accent font-medium text-sm transition-colors">DWN</a>
-          <a href="#insights" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Insights</a>
+          <a href="/blog/" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Blog</a>
         </nav>
 
         {/* Desktop CTA & Mobile Hamburger */}

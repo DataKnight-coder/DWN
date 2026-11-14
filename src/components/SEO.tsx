@@ -4,12 +4,11 @@ import { Helmet } from 'react-helmet-async';
 const SEO: React.FC = () => {
   const title = "Dr. Hauwa | Diaspora Wealth Network";
   const description = "Helping immigrants and diaspora professionals build careers, income, influence and lasting wealth through strategy and meaningful connections.";
-  const url = "https://drhauwaphd.com";
+  const url = "https://drhauwaphd.ca/";
   
   return (
     <Helmet>
       <title>{title}</title>
-      <meta name="description" content={description} />
       
       {/* OpenGraph */}
       <meta property="og:type" content="website" />
@@ -17,14 +16,14 @@ const SEO: React.FC = () => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       {/* Assuming a generated OG image path */}
-      <meta property="og:image" content={`${url}/dr-hauwa.jpg`} />
+      <meta property="og:image" content={`${url}dr-hauwa.jpg`} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={url} />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={description} />
-      <meta property="twitter:image" content={`${url}/dr-hauwa.jpg`} />
+      <meta property="twitter:image" content={`${url}dr-hauwa.jpg`} />
 
       {/* Structured Data (Schema.org) */}
       <script type="application/ld+json">
@@ -33,7 +32,7 @@ const SEO: React.FC = () => {
           "@type": "Person",
           "name": "Dr. Hauwa",
           "url": url,
-          "image": `${url}/dr-hauwa.jpg`,
+          "image": `${url}dr-hauwa.jpg`,
           "jobTitle": "Founder",
           "worksFor": {
             "@type": "Organization",

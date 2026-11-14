@@ -75,7 +75,7 @@ const App: React.FC = () => {
         <MediaContent />
         <EmailCTA />
         <FAQ />
-        <FinalCTA onOpenQuiz={() => setIsQuizOpen(true)} />
+        <FinalCTA />
       </main>
       <Footer />
     </div>

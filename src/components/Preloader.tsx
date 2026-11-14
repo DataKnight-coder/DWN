@@ -2,9 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Preloader: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => !window.location.hash);
 
   useEffect(() => {
+    if (window.location.hash) {
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      const frame = requestAnimationFrame(() => document.getElementById(targetId)?.scrollIntoView());
+      return () => cancelAnimationFrame(frame);
+    }
     // Wait for 2 seconds to simulate loading and show the brand animation
     const timer = setTimeout(() => {
       setIsLoading(false);
