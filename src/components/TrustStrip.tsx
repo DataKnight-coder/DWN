@@ -2,11 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const TrustStrip: React.FC = () => {
-  // Placeholder logos representing media/partners/associations
+  // Topics, not endorsements or partner logos.
   const logos = [
-    "CYBERSECURITY", "REAL ESTATE INVESTORS", "GLOBAL DIASPORA", "TECH LEADERS", "FORBES", "ENTREPRENEUR", "WEALTH NETWORK", "INNOVATORS",
+    "CAREER", "REAL ESTATE", "GLOBAL DIASPORA", "TECHNOLOGY", "ENTREPRENEURSHIP", "DIGITAL BUSINESS", "COMMUNITY", "PERSONAL BRAND",
     // Duplicate for seamless loop
-    "CYBERSECURITY", "REAL ESTATE INVESTORS", "GLOBAL DIASPORA", "TECH LEADERS", "FORBES", "ENTREPRENEUR", "WEALTH NETWORK", "INNOVATORS"
+    "CAREER", "REAL ESTATE", "GLOBAL DIASPORA", "TECHNOLOGY", "ENTREPRENEURSHIP", "DIGITAL BUSINESS", "COMMUNITY", "PERSONAL BRAND"
   ];
 
   return (

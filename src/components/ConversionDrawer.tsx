@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackEvent } from '../utils/tracking';
+import { submitLead } from '../utils/leads';
+import { useLeadIntake } from '../utils/useLeadIntake';
+import TurnstileField from './TurnstileField';
 
 const ConversionDrawer: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [status, setStatus] = useState('');
+  const { available, turnstile } = useLeadIntake();
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [resetNonce, setResetNonce] = useState(0);
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -26,13 +34,20 @@ const ConversionDrawer: React.FC = () => {
     };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Fire the Meta Pixel and Google Ads Conversion event
-    trackEvent('Lead', { content_name: 'Community Join' });
-    
-    alert("Thank you! Your information has been received.");
-    setIsOpen(false);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setBusy(true);
+    setStatus('');
+    try {
+      await submitLead({ firstName: String(data.get('firstName') || ''), email: String(data.get('email') || ''),
+        source: 'community', marketingConsent: data.get('consent') === 'on', turnstileToken });
+      trackEvent('Lead', { content_name: 'DWN Enquiry' });
+      setStatus('Thanks. Your enquiry was saved.');
+      form.reset();
+    } catch (error) { setStatus((error as Error).message); }
+    finally { setBusy(false); if (turnstile) { setTurnstileToken(''); setResetNonce(value => value + 1); } }
   };
 
   return (
@@ -62,29 +77,39 @@ const ConversionDrawer: React.FC = () => {
               </div>
 
               <h2 className="text-4xl font-black mb-4 tracking-tight leading-tight">
-                Join the <span className="text-accent italic font-serif">Network.</span>
+                Explore the <span className="text-accent italic font-serif">Network.</span>
               </h2>
               <p className="text-ivory/60 font-medium mb-12 leading-relaxed">
-                Connect with ambitious professionals, entrepreneurs, and investors building unshakeable wealth.
+                Tell us how to reach you about Diaspora Wealth Network. Paid membership is managed on Selfany.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              {available ? <form onSubmit={handleSubmit} className="space-y-4">
                 <input 
                   type="text" 
+                  name="firstName"
+                  aria-label="First name"
                   required
                   placeholder="First Name" 
                   className="w-full bg-ivory/5 border border-ivory/10 p-5 rounded-2xl text-ivory placeholder:text-ivory/30 focus:outline-none focus:border-accent transition-colors" 
                 />
                 <input 
                   type="email" 
+                  name="email"
+                  aria-label="Email address"
                   required
                   placeholder="Email Address" 
                   className="w-full bg-ivory/5 border border-ivory/10 p-5 rounded-2xl text-ivory placeholder:text-ivory/30 focus:outline-none focus:border-accent transition-colors" 
                 />
-                <button type="submit" className="w-full bg-accent text-primary font-bold py-5 rounded-2xl uppercase tracking-widest hover:scale-[1.02] hover:shadow-lg transition-all mt-6">
-                  Join the Community
+                <label className="flex items-start gap-2 text-sm text-ivory/80"><input type="checkbox" name="consent" className="mt-1" /> Send me DWN news and offers by email. I can unsubscribe at any time.</label>
+                {turnstile && <TurnstileField onToken={setTurnstileToken} resetNonce={resetNonce} />}
+                <button type="submit" disabled={busy || (turnstile && !turnstileToken)} className="w-full bg-accent text-primary font-bold py-5 rounded-2xl uppercase tracking-widest hover:scale-[1.02] hover:shadow-lg transition-all mt-6">
+                  {busy ? 'Saving…' : 'Send Enquiry'}
                 </button>
-              </form>
+                <p role="status" aria-live="polite" className="text-sm">{status}</p>
+              </form> : <p className="text-ivory/80">The enquiry form is currently unavailable. You can explore the free webinar or membership directly on Selfany.</p>}
+
+              <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" className="block mt-6 text-center text-accent underline">Explore the free webinar</a>
+              <a href="https://selfany.com/thedwn" target="_blank" rel="noreferrer" className="block mt-6 text-center text-accent underline">View DWN membership on Selfany</a>
 
               {/* WhatsApp Direct Integration */}
               <div className="mt-10 pt-8 border-t border-ivory/10 text-center">

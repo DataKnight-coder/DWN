@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { submitLead } from '../utils/leads';
+import { trackEvent } from '../utils/tracking';
+import { useLeadIntake } from '../utils/useLeadIntake';
+import TurnstileField from './TurnstileField';
 
 interface PathwayQuizProps {
   isOpen: boolean;
@@ -16,7 +20,7 @@ const steps = [
     options: ["Lack of clear direction", "Need specialized skills", "Limited capital/credit", "No strong community"]
   },
   {
-    question: "Where should we send your custom 12-month roadmap?",
+    question: "Where can we follow up about your interests?",
     options: [] // Email input handled customly
   }
 ];
@@ -25,18 +29,41 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [interest, setInterest] = useState('');
+  const [obstacle, setObstacle] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
+  const { available, turnstile } = useLeadIntake();
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [resetNonce, setResetNonce] = useState(0);
 
-  const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(prev => prev + 1);
-    } else {
+  const handleChoice = (option: string) => {
+    if (currentStep === 0) setInterest(option);
+    if (currentStep === 1) setObstacle(option);
+    setCurrentStep(prev => prev + 1);
+  };
+
+  const handleSubmit = async () => {
+    setBusy(true);
+    setError('');
+    try {
+      await submitLead({ email, source: 'pathway_quiz', interest, obstacle, marketingConsent: consent, turnstileToken });
+      trackEvent('Lead', { content_name: 'Pathway Enquiry' });
       setSubmitted(true);
-    }
+    } catch (cause) { setError((cause as Error).message); }
+    finally { setBusy(false); if (turnstile) { setTurnstileToken(''); setResetNonce(value => value + 1); } }
   };
 
   const handleReset = () => {
     setCurrentStep(0);
     setEmail("");
+    setInterest('');
+    setObstacle('');
+    setConsent(false);
+    setError('');
+    setTurnstileToken('');
+    setResetNonce(value => value + 1);
     setSubmitted(false);
     onClose();
   };
@@ -88,7 +115,7 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
                     {steps[currentStep].options.map((opt, i) => (
                       <button 
                         key={i}
-                        onClick={handleNext}
+                        onClick={() => handleChoice(opt)}
                         className="w-full text-left p-6 rounded-2xl border-2 border-primary/10 hover:border-accent hover:bg-accent/5 text-primary font-bold text-lg transition-all"
                       >
                         {opt}
@@ -97,20 +124,23 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
                   </div>
                 ) : (
                   <div className="flex flex-col gap-4">
-                    <input 
+                    {available ? <><input
                       type="email" 
                       placeholder="Enter your email address" 
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full p-6 rounded-2xl border-2 border-primary/10 focus:outline-none focus:border-accent bg-transparent text-primary text-xl"
                     />
-                    <button 
-                      onClick={handleNext}
-                      disabled={!email.includes('@')}
+                    <label className="flex items-start gap-2 text-sm text-primary/80"><input type="checkbox" checked={consent} onChange={event => setConsent(event.target.checked)} className="mt-1" /> Send me DWN news and offers by email. I can unsubscribe at any time.</label></> : <p className="text-primary/70">The follow-up form is unavailable right now. You can still explore the free webinar.</p>}
+                    {available && turnstile && <TurnstileField onToken={setTurnstileToken} resetNonce={resetNonce} />}
+                    {available ? <button
+                      onClick={handleSubmit}
+                      disabled={!email.includes('@') || busy || (turnstile && !turnstileToken)}
                       className="w-full bg-primary text-ivory font-bold py-6 rounded-2xl hover:bg-dark disabled:opacity-50 transition-colors uppercase tracking-widest mt-4"
                     >
-                      Generate My Roadmap
-                    </button>
+                      {busy ? 'Saving…' : 'Send My Interests'}
+                    </button> : <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" className="w-full bg-primary text-ivory font-bold py-6 rounded-2xl text-center">Explore the Free Webinar</a>}
+                    <p role="alert" className="text-red-700">{error}</p>
                   </div>
                 )}
               </motion.div>
@@ -123,10 +153,11 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
                 <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-4xl">✓</span>
                 </div>
-                <h2 className="text-3xl font-extrabold text-primary mb-4">Your Roadmap is Ready.</h2>
+                <h2 className="text-3xl font-extrabold text-primary mb-4">Your interests were saved.</h2>
                 <p className="text-primary/70 mb-8">
-                  We've analyzed your profile. Check your inbox for the exact strategy to execute your next phase in the diaspora.
+                  Thank you for sharing what you are working on. Explore the free webinar for practical next steps.
                 </p>
+                <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" className="inline-block mb-6 text-primary font-bold underline">View the free webinar</a>
                 <button 
                   onClick={handleReset}
                   className="bg-primary text-ivory font-bold py-4 px-10 rounded-full hover:bg-dark transition-colors uppercase tracking-widest"

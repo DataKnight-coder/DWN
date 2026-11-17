@@ -4,10 +4,8 @@ export const trackEvent = (eventName: string, params?: Record<string, any>) => {
     (window as any).fbq('track', eventName, params);
   }
   
-  // Safely trigger Google Analytics / Google Ads
+  // Only send to a configured Google tag, if one is added later.
   if (typeof window !== 'undefined' && (window as any).gtag) {
-    // If it's a Meta 'Lead' event, map it to Google's standard 'conversion' event
-    const gtagEventName = eventName === 'Lead' ? 'conversion' : eventName;
-    (window as any).gtag('event', gtagEventName, params);
+    (window as any).gtag('event', eventName, params);
   }
 };

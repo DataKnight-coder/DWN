@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import TestimonialProof from './TestimonialProof';
+import { proofVariant, recordProofEvent } from '../utils/testimonialExperiments';
 
 const props = [
   { id: "01", title: "CAREER", desc: "Develop stronger professional opportunities." },
@@ -36,13 +38,19 @@ const DWNSection: React.FC = () => {
           <p className="text-base sm:text-xl font-medium opacity-80 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
             Diaspora Wealth Network connects ambitious professionals, entrepreneurs and investors who want to develop careers, businesses, brands, income opportunities and long-term assets.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#join-dwn" className="bg-accent text-primary font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-all shadow-xl">
-              Join Diaspora Wealth Network
-            </a>
-            <a href="https://wa.me/18253655299" target="_blank" rel="noreferrer" className="bg-transparent border-2 border-ivory text-ivory font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:bg-ivory hover:text-primary transition-all">
-              Chat on WhatsApp
-            </a>
+          <div className="grid gap-6 sm:grid-cols-2 text-center">
+            <div>
+              <TestimonialProof placement="webinar" />
+              <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('webinar'); recordProofEvent('webinar', variant, 'click', variant === 'quote' ? 'dwn-pdf-16' : undefined); }} className="inline-block bg-accent text-primary font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-all shadow-xl">
+                Explore the Free Webinar
+              </a>
+            </div>
+            <div>
+              <TestimonialProof placement="membership" />
+              <a href="https://selfany.com/thedwn" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('membership'); recordProofEvent('membership', variant, 'click', variant === 'quote' ? 'dwn-pdf-13' : undefined); }} className="inline-block bg-transparent border-2 border-ivory text-ivory font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:bg-ivory hover:text-primary transition-all">
+                View DWN Membership
+              </a>
+            </div>
           </div>
         </div>
 

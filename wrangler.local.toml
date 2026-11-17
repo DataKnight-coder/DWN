@@ -1,0 +1,11 @@
+name = "dwn-growth-local"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-17"
+
+[vars]
+RATE_LIMIT_SALT = "local-development-only"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dwn-growth-local"
+database_id = "00000000-0000-0000-0000-000000000001"

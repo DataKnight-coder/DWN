@@ -1,0 +1,33 @@
+import { authorize } from '../../../server/access.mjs';
+import { json } from '../../../server/crm.mjs';
+
+export async function onRequestGet(context) {
+  const auth = await authorize(context);
+  if (auth.response) return auth.response;
+  const db = context.env.DB;
+  try {
+    const [contacts, leads, registrations, members, consultations, revenue, consultationRevenue, testimonials] = await Promise.all([
+      db.prepare('SELECT COUNT(*) AS n FROM contacts').first(),
+      db.prepare("SELECT COUNT(*) AS n FROM crm_events WHERE kind='lead_submitted'").first(),
+      db.prepare('SELECT COUNT(*) AS n FROM webinar_registrations').first(),
+      db.prepare(`SELECT COUNT(*) AS n FROM (
+        SELECT contact_id,status,ROW_NUMBER() OVER (PARTITION BY contact_id ORDER BY occurred_at DESC,created_at DESC) AS rn
+        FROM memberships) WHERE rn=1 AND status IN ('active','renewed')`).first(),
+      db.prepare('SELECT COUNT(*) AS n FROM consultations').first(),
+      db.prepare(`SELECT currency,SUM(CASE WHEN status='refunded' THEN -amount_minor ELSE amount_minor END) AS amount_minor
+        FROM memberships WHERE status IN ('active','renewed','refunded') AND amount_minor IS NOT NULL GROUP BY currency`).all(),
+      db.prepare(`SELECT currency,SUM(confirmed_revenue_minor) AS amount_minor FROM consultations
+        WHERE stage='won' AND confirmed_revenue_minor IS NOT NULL AND revenue_evidence IS NOT NULL GROUP BY currency`).all(),
+      db.prepare("SELECT status, COUNT(*) AS n FROM testimonials GROUP BY status").all(),
+    ]);
+    return json({ contacts: contacts.n, leadSubmissions: leads.n, verifiedWebinarRegistrations: registrations.n,
+      members: members.n, consultations: consultations.n, confirmedRevenue: revenue.results,
+      confirmedConsultationRevenue: consultationRevenue.results,
+      testimonials: testimonials.results,
+      integrations: { selfany: 'manual_import_only', resend: 'not_connected', ga4: 'not_connected',
+        searchConsole: 'not_connected', metaAds: 'not_connected', cloudflareAnalytics: 'not_connected' } });
+  } catch (error) {
+    console.error('Overview query failed', error);
+    return json({ error: 'Overview unavailable.' }, 503);
+  }
+}
