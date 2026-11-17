@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import catalog from '../../content/testimonials.json';
 
-type Testimonial = { id: string; quote: string; attribution: string; category: string; achievement?: string };
+type Testimonial = { id: string; quote: string; attribution: string; category: string; achievement?: string; publicEvidence?: boolean };
 
 const Testimonials: React.FC = () => {
   const [items, setItems] = useState<Testimonial[]>([]);
@@ -30,7 +30,7 @@ const Testimonials: React.FC = () => {
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {visible.map(item => <blockquote key={item.id} className="bg-white border border-primary/10 rounded-3xl p-8 shadow-sm">
-          {imagesAvailable && <a href={`/api/testimonial-images/${encodeURIComponent(item.id)}`} target="_blank" rel="noreferrer" className="block mb-5 text-sm font-bold underline">View original screenshot</a>}
+          {imagesAvailable && item.publicEvidence && <a href={`/api/testimonial-images/${encodeURIComponent(item.id)}`} target="_blank" rel="noreferrer" className="block mb-5 text-sm font-bold underline">View original screenshot</a>}
           <p className="text-lg leading-relaxed text-primary">“{item.quote}”</p>
           <footer className="mt-6 text-sm font-bold text-primary/70">{item.attribution} · {item.achievement || item.category}</footer>
         </blockquote>)}

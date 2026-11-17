@@ -11,6 +11,7 @@ import { onRequestPost as postImport } from '../functions/api/admin/import.js';
 import { onRequestGet as getOverview } from '../functions/api/admin/overview.js';
 import { onRequestGet as getContacts } from '../functions/api/admin/contacts.js';
 import { onRequestGet as getTestimonials } from '../functions/api/testimonials.js';
+import { onRequestGet as getTestimonialImage } from '../functions/api/testimonial-images/[id].js';
 import { onRequestPost as postTestimonialEvent } from '../functions/api/testimonial-experiment.js';
 
 const requestId = '54ed12cb-8507-46f2-ad0d-a039144ce021';
@@ -92,6 +93,17 @@ test('approved PDF excerpts seed once and proof events deduplicate by session', 
   assert.equal((await send()).status, 200);
   assert.equal((await send()).status, 200);
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM testimonial_experiment_events').get().n, 1);
+  sqlite.close();
+});
+
+test('public source images exclude screenshots with unrelated private details', async () => {
+  const { sqlite, db } = database();
+  const env = { DB: db, TESTIMONIAL_IMAGES: { get: async () => ({ body: 'image' }) } };
+  const testimonials = (await (await getTestimonials({ env })).json()).testimonials;
+  assert.equal(testimonials.find(row => row.id === 'dwn-pdf-08').publicEvidence, false);
+  assert.equal(testimonials.find(row => row.id === 'dwn-pdf-13').publicEvidence, true);
+  assert.equal((await getTestimonialImage({ params: { id: 'dwn-pdf-08' }, env })).status, 404);
+  assert.equal((await getTestimonialImage({ params: { id: 'dwn-pdf-13' }, env })).status, 200);
   sqlite.close();
 });
 
