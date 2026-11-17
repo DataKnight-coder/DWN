@@ -17,15 +17,15 @@ The Pages project is `dwn` in Cloudflare account `519906a985c9857f844edee4c785db
 
 The local Wrangler configuration contains no production database ID or secret. Do not use it for production deployment.
 
-## Cloudflare setup before any live lead form is enabled
+## Cloudflare deployment status
 
 1. **Done:** Separate `dwn-growth-staging` and `dwn-growth-production` D1 databases were created. `migrations/0001_crm.sql` and `migrations/0002_testimonials.sql` ran on both. The Pages `DB` binding points to the matching database in each environment. Separate private `dwn-testimonials-staging` and `dwn-testimonials-production` R2 buckets are bound as `TESTIMONIAL_IMAGES`.
 2. **Done in preview:** `/api/health` reports `leadIntake:true`; a consented test lead persisted once after retry, and testimonial exposure/click events deduplicated. The public testimonial API returned 21 records and an R2 image endpoint returned HTTP 200.
 3. **Pending:** Protect `/admin/*` and `/api/admin/*` with Cloudflare Access. Configure `ACCESS_ISSUER`, `ACCESS_AUD`, `ADMIN_EMAILS`, and optionally `REVIEWER_EMAILS`. The API verifies Access JWT signatures and role allowlists. The current Wrangler OAuth token receives `auth.forbidden` on Access app creation, so admin APIs fail closed. A Pages route protection rule is also needed for the static dashboard shell.
-4. **Pending:** Create separate Turnstile site keys for preview and production. Set public `VITE_TURNSTILE_SITE_KEY` at build time and secret `TURNSTILE_SECRET` in Pages environment secrets. Verify valid and invalid tokens on the live domains.
-5. After production publication, confirm `/api/health`, testimonial API/image, a test lead, and a consultation enquiry against production D1. Retain the prior Pages deployment for rollback.
+4. **Preview tested:** Separate Turnstile widgets were created for preview and production. Each Pages environment has its own public `VITE_TURNSTILE_SITE_KEY` and secret `TURNSTILE_SECRET`. The preview was rebuilt with its site key; `/api/health` reports `turnstile:true`, the compiled client contains the matching site key, and a lead without a challenge token is rejected. A valid solved challenge still needs browser verification.
+5. **Done:** The production Git release returned 21 approved testimonials, a source image, and connected lead intake. A test lead and proof events persisted with deduplication; synthetic records were removed from production D1 afterward. Retain the prior Pages deployment for rollback. After the Turnstile build variable reaches production, verify the compiled client and challenge rejection; a solved browser challenge still needs testing.
 
-The preview branch is `codex/growth-automation-preview`; its D1 and R2 bindings are live. The production domains remain on the previously published site until this branch is pushed and released.
+The preview branch is `codex/growth-automation-preview`; its D1 and R2 bindings are live. The production domain was released from Git commit `16fbe90`. The next Git deployment activates the production Turnstile build variable.
 
 ## Testimonial review
 
@@ -46,13 +46,7 @@ The site assigns visitors consistently to a no-quote or quote variant at the web
 
 Keep the last production Pages deployment available. If a verified production release fails, roll back in Pages and investigate the API logs before restoring form traffic. D1 data should be backed up before migrations or imports; do not roll back schema changes by deleting live records.
 
-1. Obtain D1 capacity without deleting or changing an existing database. Create separate DWN staging and production databases.
-2. Apply `migrations/0001_crm.sql` to staging and test. Then apply to production.
-3. Bind the staging D1 to the Pages preview environment as `DB`, and the production D1 to the Pages production environment as `DB`. Cloudflare requires redeployment after a binding change.
-4. Set a different high-entropy `RATE_LIMIT_SALT` secret in each environment. Configure Turnstile `TURNSTILE_SECRET` and `VITE_TURNSTILE_SITE_KEY` together before enabling the challenge; the website currently falls back to Selfany when the server challenge is configured without a site key.
-5. Create a Cloudflare Access application for the admin page and admin API. Set `ACCESS_ISSUER` to its `https://<team>.cloudflareaccess.com` issuer, `ACCESS_AUD` to its audience tag, and `ADMIN_EMAILS` to an explicit comma-separated allowlist. Optional `REVIEWER_EMAILS` may read/create testimonial drafts. The API verifies the Access JWT signature, issuer, audience, expiry, and email allowlist. A missing setting fails closed.
-6. Deploy a preview build, submit a test lead, confirm the D1 row and event, repeat the same request ID to confirm deduplication, test an unauthorized admin request, and inspect the site on mobile and desktop.
-7. Review the exact customer-facing changes and approve production deployment. Deploy and confirm the live `/api/health`, one consensual test lead, and the Selfany links.
+To activate the admin dashboard, create a Cloudflare Access application covering `/admin/*` and `/api/admin/*`, allow the approved administrator email, and set `ACCESS_ISSUER` to its `https://<team>.cloudflareaccess.com` issuer and `ACCESS_AUD` to the API application's audience tag. Redeploy Pages after setting the environment variables. The admin API verifies the Access JWT signature, issuer, audience, expiry, and email allowlist. A missing setting fails closed.
 
 ## Selfany import contract
 

@@ -10,7 +10,7 @@
 - The 34-page testimonial PDF was received and reviewed on 2026-11-17. The project owner subsequently confirmed that all items are authenticated and authorized for marketing use. Twenty-one distinct excerpts are cataloged; page 29 repeats page 4. All 34 source page images were uploaded to the private `dwn-testimonials-production` R2 bucket. The catalog preserves exact source excerpts and page references.
 - The owner authorized retirement of the three Sagesse databases and dependent Workers. SQL exports and Worker-content/settings backups were saved under ignored `tmp/backups/`, validated, then those resources were removed. Separate `dwn-growth-staging` and `dwn-growth-production` D1 databases were created and migrated.
 - The preview Pages environment is bound to staging D1 and R2; live API smoke checks confirmed 21 testimonials, an R2 image, lead deduplication, and proof-event deduplication. Production Pages is bound to the separate production D1 and R2 bucket.
-- Cloudflare Access app creation was rejected for the current OAuth token. The admin API remains fail closed until an Access application and `ACCESS_ISSUER`/`ACCESS_AUD` are configured.
+- Production deployment from Git commit `16fbe90` passed live API checks and deduplicated lead/proof-event smoke tests; test records were removed. Separate Turnstile widgets and Pages variables are configured; preview rejects a lead without a challenge token. A production Git rebuild and solved browser challenge test remain. Cloudflare Access app creation was rejected for the current OAuth token; the admin API remains fail closed until an Access application and `ACCESS_ISSUER`/`ACCESS_AUD` are configured.
 
 ## Delivery order
 
