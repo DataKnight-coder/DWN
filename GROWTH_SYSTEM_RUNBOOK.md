@@ -65,9 +65,9 @@ Supported kinds: `webinar_registration`, `webinar_attendance`, `membership_purch
 
 Before a real-time connector is added, obtain account-level Selfany documentation and sample signed payloads or an authorized export. Verify event signatures and replay protection. Do not send webinar reminders without a trusted event schedule and approved template.
 
-## Testimonials
+## Testimonial administration
 
-The referenced 34-page PDF and consent records have not yet been supplied. Drafts can be added privately; publication requires a nonempty evidence reference and consent reference, followed by admin approval. Only approved records are returned by the public testimonials endpoint. Never show an image containing personal contact details, private messages, or unverified earnings. R2 image ingestion is pending receipt and review of the source file.
+The supplied 34-page PDF has been reviewed, its 21 distinct approved excerpts are live in D1, and the source images are in private R2. The public endpoint returns only approved records. An administrator can add a private draft with evidence and approval references, then approve or revoke it in the dashboard. The public evidence allowlist limits screenshot links to reviewed pages; new images remain private until explicitly added to that list.
 
 ## Other disconnected services
 

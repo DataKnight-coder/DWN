@@ -22,12 +22,11 @@
 6. Add measured funnel and referral experiments after trustworthy registration and purchase event data exists. Connect analytics and ad spend through authorized credentials. Never launch or change ads automatically.
 7. Complete audit trails, access controls, operational checks, staging tests, and a reviewed production deployment.
 
-## External setup needed
+## External setup still needed
 
-- Cloudflare Pages project identification and authenticated Wrangler or dashboard access; a D1 database bound as `DB` in both staging and production.
+- A signed-in browser check of Cloudflare Access and the admin dashboard.
 - Selfany account-level integration/export documentation or authorized exports with stable record IDs.
-- Resend verified sender, API key, and approved email templates.
-- Testimonial PDF, publication consent, and evidence review.
+- Resend verified sender, API key, approved email templates, and a tested unsubscribe flow.
 - GA4, Search Console, Meta, and Cloudflare Analytics read access for external reporting.
 
 All disconnected metrics remain unavailable. Revenue is recorded only from verified transactions.
