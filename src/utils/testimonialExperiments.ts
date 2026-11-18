@@ -12,6 +12,8 @@ export function proofVariant(placement: ProofPlacement): ProofVariant {
 
 export function recordProofEvent(placement: ProofPlacement, variant: ProofVariant,
   action: 'impression' | 'click', testimonialId?: string) {
+  try { if (localStorage.getItem('dwn-marketing-tracking-consent-v1') !== 'accepted') return; }
+  catch { return; }
   const sessionKey = 'dwn-proof-session';
   let sessionId = sessionStorage.getItem(sessionKey);
   if (!sessionId) { sessionId = crypto.randomUUID(); sessionStorage.setItem(sessionKey, sessionId); }

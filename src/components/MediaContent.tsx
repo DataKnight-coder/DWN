@@ -28,7 +28,7 @@ const MediaContent: React.FC = () => {
             Insights & Media
           </div>
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter mb-4 leading-[1.05]">
-            Watch & <span className="font-serif italic font-light text-accent drop-shadow-sm">Learn.</span>
+            Watch & <span className="font-serif italic font-light text-[#45620a]">Learn.</span>
           </h2>
           <p className="text-base sm:text-xl text-primary/70 font-medium max-w-2xl leading-relaxed">
             Direct insights from Dr. Hauwa on strategy, career transitions, and the mindset required for unshakeable wealth.
@@ -51,8 +51,8 @@ const MediaContent: React.FC = () => {
                 )}
               </div>
               <div className="min-w-0">
-                <h4 className="font-bold text-primary text-sm sm:text-base leading-tight mb-0.5 line-clamp-2">{video.title}</h4>
-                <p className="text-[11px] sm:text-xs font-medium text-primary/50 line-clamp-1">{video.desc}</p>
+                <span className="block font-bold text-primary text-sm sm:text-base leading-tight mb-0.5 line-clamp-2">{video.title}</span>
+                <p className="text-[11px] sm:text-xs font-medium text-primary/80 line-clamp-1">{video.desc}</p>
               </div>
             </button>
           ))}
@@ -73,6 +73,7 @@ const MediaContent: React.FC = () => {
                 key={videos[activeIdx].src}
                 controls
                 playsInline
+                preload="none"
                 className="w-full h-full object-contain"
                 poster="/dr-hauwa.jpg"
               >

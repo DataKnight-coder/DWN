@@ -1,18 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { cleanLead } from '../server/crm.mjs';
-import { validateImport } from '../server/import.mjs';
 import { onRequestPost } from '../functions/api/leads.js';
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync } from 'node:fs';
 import { saveLead } from '../server/crm.mjs';
-import { importSelfanyRow } from '../server/import.mjs';
 import { onRequestPost as postImport } from '../functions/api/admin/import.js';
 import { onRequestGet as getOverview } from '../functions/api/admin/overview.js';
 import { onRequestGet as getContacts } from '../functions/api/admin/contacts.js';
 import { onRequestGet as getTestimonials } from '../functions/api/testimonials.js';
 import { onRequestGet as getTestimonialImage } from '../functions/api/testimonial-images/[id].js';
 import { onRequestPost as postTestimonialEvent } from '../functions/api/testimonial-experiment.js';
+import { onRequestPost as postOutbound } from '../functions/api/outbound.js';
+import { onRequestGet as getFunnel } from '../functions/api/admin/funnel.js';
+import { onRequestGet as getContactDetail, onRequestPatch as patchContact } from '../functions/api/admin/contacts/[id].js';
+import { onRequestGet as getTasks, onRequestPost as postTask } from '../functions/api/admin/tasks.js';
+import { onRequestPost as postUnsubscribe } from '../functions/api/unsubscribe.js';
+import { onRequestPost as postAiSuggestion } from '../functions/api/admin/ai-suggestion.js';
 
 const requestId = '54ed12cb-8507-46f2-ad0d-a039144ce021';
 
@@ -28,15 +32,6 @@ test('lead validation normalizes identity and preserves explicit consent', () =>
 test('invalid email and unknown source are rejected', () => {
   assert.throws(() => cleanLead({ email: 'bad', source: 'newsletter', requestId }), /valid email/);
   assert.throws(() => cleanLead({ email: 'a@b.com', source: 'purchase', requestId }), /source/);
-});
-
-test('purchase import requires a stable ID, amount, currency, and time', () => {
-  const base = { kind: 'membership_purchase', externalId: 'selfany-001', email: 'jane@example.com',
-    occurredAt: '2026-11-17T10:00:00Z' };
-  assert.throws(() => validateImport(base), /amount and currency/);
-  const row = validateImport({ ...base, amountMinor: 15000, currency: 'cad' });
-  assert.equal(row.amountMinor, 15000);
-  assert.equal(row.currency, 'CAD');
 });
 
 test('lead endpoint fails closed without a configured database', async () => {
@@ -61,6 +56,7 @@ function database() {
   const sqlite = new DatabaseSync(':memory:');
   sqlite.exec(readFileSync(new URL('../migrations/0001_crm.sql', import.meta.url), 'utf8'));
   sqlite.exec(readFileSync(new URL('../migrations/0002_testimonials.sql', import.meta.url), 'utf8'));
+  sqlite.exec(readFileSync(new URL('../migrations/0003_growth.sql', import.meta.url), 'utf8'));
   const db = {
     prepare(sql) {
       let args = [];
@@ -107,7 +103,7 @@ test('public source images exclude screenshots with unrelated private details', 
   sqlite.close();
 });
 
-test('lead, consultation, and import events persist once in SQLite', async () => {
+test('lead and consultation persist once in SQLite', async () => {
   const { sqlite, db } = database();
   const lead = cleanLead({ email: 'member@example.com', firstName: 'Member', source: 'consultation', requestId,
     message: 'Please contact me', marketingConsent: true });
@@ -115,14 +111,10 @@ test('lead, consultation, and import events persist once in SQLite', async () =>
   assert.deepEqual(await saveLead(db, lead), { duplicate: true });
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM contacts').get().n, 1);
   assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM consultations').get().n, 1);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM followup_tasks').get().n, 1);
+  assert.equal(sqlite.prepare('SELECT segment FROM lead_profiles').get().segment, 'consulting');
   assert.equal(sqlite.prepare('SELECT marketing_consent FROM contacts').get().marketing_consent, 1);
 
-  const purchase = validateImport({ kind: 'membership_purchase', externalId: 'order-1', email: lead.email,
-    occurredAt: '2026-11-17T10:00:00Z', amountMinor: 15000, currency: 'CAD' });
-  assert.deepEqual(await importSelfanyRow(db, purchase, 'admin@example.com'), { duplicate: false });
-  assert.deepEqual(await importSelfanyRow(db, purchase, 'admin@example.com'), { duplicate: true });
-  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM memberships').get().n, 1);
-  assert.equal(sqlite.prepare('SELECT amount_minor FROM memberships').get().amount_minor, 15000);
   sqlite.close();
 });
 
@@ -135,7 +127,26 @@ test('suppressed contacts cannot silently opt back into marketing', async () => 
   sqlite.close();
 });
 
-test('referral attribution excludes self-referrals and counts verified imports', async () => {
+test('self-service unsubscribe needs Turnstile and suppresses marketing consent', async () => {
+  const { sqlite, db } = database();
+  const lead = cleanLead({ email: 'optout@example.com', source: 'newsletter', requestId, marketingConsent: true });
+  await saveLead(db, lead);
+  const url = 'https://drhauwaphd.ca/api/unsubscribe';
+  const makeRequest = token => new Request(url, { method: 'POST',
+    headers: { Origin: 'https://drhauwaphd.ca', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: lead.email, turnstileToken: token }) });
+  const env = { DB: db, RATE_LIMIT_SALT: 'test', TURNSTILE_SECRET: 'test' };
+  assert.equal((await postUnsubscribe({ request: makeRequest(''), env })).status, 400);
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => Response.json({ success: true, hostname: 'drhauwaphd.ca' });
+  try { assert.equal((await postUnsubscribe({ request: makeRequest('valid'), env })).status, 200); }
+  finally { globalThis.fetch = originalFetch; }
+  assert.equal(sqlite.prepare('SELECT marketing_consent FROM contacts').get().marketing_consent, 0);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM suppressions').get().n, 1);
+  sqlite.close();
+});
+
+test('referral attribution counts website leads and excludes self-referrals', async () => {
   const { sqlite, db } = database();
   const owner = cleanLead({ email: 'owner@example.com', source: 'community', requestId });
   await saveLead(db, owner);
@@ -144,14 +155,11 @@ test('referral attribution excludes self-referrals and counts verified imports',
   const referred = cleanLead({ email: 'referred@example.com', source: 'newsletter',
     requestId: '8e58caf3-a678-4120-a421-95ed5214bc71', referralCode: 'REF12345' });
   await saveLead(db, referred);
-  const registration = validateImport({ kind: 'webinar_registration', externalId: 'reg-1', email: referred.email,
-    occurredAt: '2026-11-17T10:00:00Z' });
-  await importSelfanyRow(db, registration, 'admin@example.com');
-  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM referral_conversions').get().n, 2);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM referral_conversions').get().n, 1);
   sqlite.close();
 });
 
-test('Access-signed admin import powers real overview and filtered contacts', async () => {
+test('Access-signed admin blocks Selfany imports and reports website leads', async () => {
   const { sqlite, db } = database();
   const keys = await crypto.subtle.generateKey({ name: 'RSASSA-PKCS1-v1_5', modulusLength: 2048,
     publicExponent: new Uint8Array([1, 0, 1]), hash: 'SHA-256' }, true, ['sign', 'verify']);
@@ -168,20 +176,58 @@ test('Access-signed admin import powers real overview and filtered contacts', as
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async () => Response.json({ keys: [publicKey] });
   try {
-    const rows = [{ kind: 'webinar_registration', externalId: 'webinar-1', email: 'attendee@example.com',
-      occurredAt: '2026-11-17T10:00:00Z' }];
+    const lead = cleanLead({ email: 'attendee@example.com', source: 'community', requestId });
+    await saveLead(db, lead);
     const request = new Request('https://drhauwaphd.ca/api/admin/import', { method: 'POST',
       headers: { 'Cf-Access-Jwt-Assertion': jwt, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ source: 'selfany_admin_export', verified: true, rows }) });
+      body: '{}' });
     const imported = await postImport({ request, env });
-    assert.equal(imported.status, 200);
-    assert.deepEqual(await imported.json(), { imported: 1, duplicates: 0 });
+    assert.equal(imported.status, 410);
+    assert.match((await imported.json()).error, /disabled/);
     const overview = await getOverview({ request: new Request('https://drhauwaphd.ca/api/admin/overview',
       { headers: { 'Cf-Access-Jwt-Assertion': jwt } }), env });
     const metrics = await overview.json();
-    assert.equal(metrics.verifiedWebinarRegistrations, 1);
-    const contacts = await getContacts({ request: new Request('https://drhauwaphd.ca/api/admin/contacts?q=attendee&from=2026-11-17&to=2026-11-17',
+    assert.equal(metrics.leadSubmissions, 1);
+    assert.equal(metrics.integrations.selfany, 'external_links_only');
+    const today = new Date().toISOString().slice(0, 10);
+    const contacts = await getContacts({ request: new Request(`https://drhauwaphd.ca/api/admin/contacts?q=attendee&from=${today}&to=${today}`,
       { headers: { 'Cf-Access-Jwt-Assertion': jwt } }), env });
-    assert.equal((await contacts.json()).contacts.length, 1);
+    const rows = (await contacts.json()).contacts;
+    assert.equal(rows.length, 1);
+    assert.equal(rows[0].segment, 'community');
+    const detailRequest = new Request(`https://drhauwaphd.ca/api/admin/contacts/${rows[0].id}`,
+      { headers: { 'Cf-Access-Jwt-Assertion': jwt } });
+    const detail = await getContactDetail({ request: detailRequest, env, params: { id: rows[0].id } });
+    assert.equal((await detail.json()).events.length, 1);
+    const updated = await patchContact({ request: new Request(detailRequest.url, { method: 'PATCH',
+      headers: { 'Cf-Access-Jwt-Assertion': jwt, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stage: 'qualified', ownerEmail: 'admin@example.com', nextAction: 'Call lead' }) }),
+      env, params: { id: rows[0].id } });
+    assert.equal(updated.status, 200);
+    assert.equal(sqlite.prepare('SELECT stage FROM lead_profiles').get().stage, 'qualified');
+    const task = await postTask({ request: new Request('https://drhauwaphd.ca/api/admin/tasks', { method: 'POST',
+      headers: { 'Cf-Access-Jwt-Assertion': jwt, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contactId: rows[0].id, title: 'Call lead' }) }), env });
+    assert.equal(task.status, 201);
+    assert.equal((await (await getTasks({ request: detailRequest, env })).json()).tasks.length, 2);
+    const outboundPayload = { id: crypto.randomUUID(), destination: 'webinar', placement: 'dwn_webinar',
+      path: '/', utm_source: 'instagram' };
+    const click = await postOutbound({ request: new Request('https://drhauwaphd.ca/api/outbound', { method: 'POST',
+      headers: { Origin: 'https://drhauwaphd.ca', 'Content-Type': 'application/json' },
+      body: JSON.stringify(outboundPayload) }), env: { DB: db, RATE_LIMIT_SALT: 'test' } });
+    assert.equal(click.status, 201);
+    const funnel = await getFunnel({ request: detailRequest, env });
+    assert.equal((await funnel.json()).outboundClicks[0].clicks, 1);
+    let promptText = '';
+    env.AI = { run: async (_model, input) => {
+      promptText = input.messages[1].content;
+      return { response: 'Summary: DWN enquiry. Next action: review interests.' };
+    } };
+    const suggestion = await postAiSuggestion({ request: new Request('https://drhauwaphd.ca/api/admin/ai-suggestion', {
+      method: 'POST', headers: { 'Cf-Access-Jwt-Assertion': jwt, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contactId: rows[0].id }) }), env });
+    assert.equal(suggestion.status, 200);
+    assert.equal((await suggestion.json()).status, 'draft_for_human_review');
+    assert.equal(promptText.includes('attendee@example.com'), false);
   } finally { globalThis.fetch = originalFetch; sqlite.close(); }
 });

@@ -1,3 +1,5 @@
+import { currentAttribution } from './attribution';
+
 export type LeadSource = 'community' | 'newsletter' | 'pathway_quiz' | 'consultation';
 
 export async function submitLead(input: {
@@ -10,7 +12,7 @@ export async function submitLead(input: {
   message?: string;
   turnstileToken?: string;
 }) {
-  const search = new URLSearchParams(window.location.search);
+  const attribution = currentAttribution();
   const storageKey = `dwn-lead:${input.source}:${input.email.trim().toLowerCase()}`;
   let requestId = crypto.randomUUID();
   try {
@@ -24,10 +26,10 @@ export async function submitLead(input: {
     body: JSON.stringify({
       ...input,
       requestId,
-      utm_source: search.get('utm_source') || '',
-      utm_medium: search.get('utm_medium') || '',
-      utm_campaign: search.get('utm_campaign') || '',
-      referralCode: search.get('ref') || '',
+      utm_source: attribution.utm_source,
+      utm_medium: attribution.utm_medium,
+      utm_campaign: attribution.utm_campaign,
+      referralCode: attribution.ref,
     }),
   });
   const result = await response.json().catch(() => ({}));

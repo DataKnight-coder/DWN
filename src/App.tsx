@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import SEO from './components/SEO';
-import CustomCursor from './components/CustomCursor';
 import MobileNav from './components/MobileNav';
 import PathwayQuiz from './components/PathwayQuiz';
-import SmoothScroll from './components/SmoothScroll';
-import Preloader from './components/Preloader';
+import UnsubscribePanel from './components/UnsubscribePanel';
 import ConversionDrawer from './components/ConversionDrawer';
 import TrackingConsent from './components/TrackingConsent';
+import OutboundTracking from './components/OutboundTracking';
 
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -17,7 +15,6 @@ import FeatureRealEstate from './components/FeatureRealEstate';
 import FeatureCyber from './components/FeatureCyber';
 import DWNSection from './components/DWNSection';
 import Testimonials from './components/Testimonials';
-import Ecosystem from './components/Ecosystem';
 import Programs from './components/Programs';
 import Story from './components/Story';
 import Process from './components/Process';
@@ -31,14 +28,13 @@ const App: React.FC = () => {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
 
   return (
-    <SmoothScroll>
-      <Preloader />
+    <>
       <ConversionDrawer />
       <TrackingConsent />
+      <OutboundTracking />
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[1000] focus:bg-accent focus:text-primary focus:p-3">Skip to content</a>
       <div className="noise-bg mix-blend-overlay"></div>
       <div className="flex flex-col min-h-screen bg-ivory font-sans pt-24 selection:bg-accent selection:text-dark relative z-0">
-        <SEO />
-        <CustomCursor />
       
       <MobileNav 
         isOpen={isMobileNavOpen} 
@@ -52,7 +48,7 @@ const App: React.FC = () => {
       />
 
       <Header onOpenMobileNav={() => setIsMobileNavOpen(true)} onOpenQuiz={() => setIsQuizOpen(true)} />
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         <Hero />
         <TrustStrip />
         <Journey />
@@ -61,7 +57,6 @@ const App: React.FC = () => {
         <FeatureCyber />
         <DWNSection />
         <Testimonials />
-        <Ecosystem />
         <Programs />
         <Story />
         <Process />
@@ -69,9 +64,10 @@ const App: React.FC = () => {
         <EmailCTA />
         <FinalCTA />
       </main>
+      <UnsubscribePanel />
       <Footer />
     </div>
-    </SmoothScroll>
+    </>
   );
 };
 

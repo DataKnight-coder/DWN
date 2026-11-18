@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll } from 'framer-motion';
 import { Menu } from 'lucide-react';
 
-import MagneticElement from './MagneticElement';
 
 interface HeaderProps {
   onOpenMobileNav: () => void;
@@ -43,18 +42,19 @@ const Header: React.FC<HeaderProps> = ({ onOpenMobileNav, onOpenQuiz }) => {
 
         {/* Desktop CTA & Mobile Hamburger */}
         <div className="flex items-center gap-4 flex-shrink-0">
-          <MagneticElement className="hidden md:block">
+          <div className="hidden md:block">
             <a 
               href="#join-dwn" 
               className="bg-accent text-primary font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform text-sm shadow-lg block"
             >
-              Join DWN
+              Ask About DWN
             </a>
-          </MagneticElement>
+          </div>
           
           {/* Mobile Menu Toggle */}
           <button 
             onClick={onOpenMobileNav}
+            aria-label="Open navigation"
             className="lg:hidden text-primary p-2 hover:bg-primary/5 rounded-full transition-colors"
           >
             <Menu size={28} />

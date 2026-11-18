@@ -23,7 +23,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, onOpenQuiz }) =>
     { name: "About", href: "#about" },
     { name: "Expertise", href: "#expertise" },
     { name: "Diaspora Wealth Network", href: "#dwn" },
-    { name: "Programs", href: "#programs" },
+    { name: "Programs", href: "#all-programs" },
     { name: "Blog", href: "/blog/" }
   ];
 
@@ -71,7 +71,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, onOpenQuiz }) =>
               onClick={onClose}
               className="w-full bg-accent text-dark py-4 rounded-full font-bold text-lg uppercase tracking-widest text-center"
             >
-              Join DWN
+              Ask About DWN
             </a>
           </div>
         </motion.div>

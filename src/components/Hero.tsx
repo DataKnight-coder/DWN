@@ -6,10 +6,10 @@ const Hero: React.FC = () => {
   const y = useTransform(scrollY, [0, 600], [0, 100]);
 
   return (
-    <section className="relative bg-ivory text-primary min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+    <section className="relative bg-ivory text-primary flex items-center pt-14 sm:pt-20 pb-16 overflow-hidden">
       <div className="container mx-auto px-5 sm:px-6">
 
-        {/* Mobile: Stack vertically, image on top */}
+          {/* Mobile: lead with the offer and actions before the portrait. */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 lg:gap-24 items-center gap-10">
 
           {/* Image — shown first on mobile */}
@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-lg mx-auto aspect-[4/5] order-first lg:order-none"
+            className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-lg mx-auto aspect-[4/5] order-last lg:order-none"
           >
             {/* Organic pill mask */}
             <div className="w-full h-full rounded-[120px_120px_0_120px] lg:rounded-[200px_200px_0_200px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(14,51,40,0.4)] relative bg-primary z-10">
@@ -61,35 +61,38 @@ const Hero: React.FC = () => {
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="w-full text-center lg:text-left"
           >
-            <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem] font-black leading-[0.95] tracking-tighter mb-6 sm:mb-8 text-primary">
-              Building Careers.<br />
-              Brands.<br />
-              Businesses.<br />
-              Assets.<br />
-              <span className="font-serif italic font-light text-accent drop-shadow-sm">Wealth.</span>
+            <h1 className="text-[2.6rem] sm:text-5xl md:text-6xl lg:text-[4.7rem] xl:text-[5rem] font-black leading-[0.98] tracking-tighter mb-6 sm:mb-8 text-primary">
+              Build More Than<br />
+              a <span className="font-serif italic font-light text-[#45620a]">Career.</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-primary/80 mb-8 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-              Dr. Hauwa brings together expertise across cybersecurity, real estate, digital marketing, personal branding, and entrepreneurship to help professionals create stronger careers, income opportunities, and long-term assets.
+              Explore career growth, business, technology, and long-term asset opportunities with Dr. Hauwa and Diaspora Wealth Network.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
               <a
-                href="#expertise"
+                href="https://selfany.com/w/DrHauwaPhD1"
+                data-cta="hero_webinar"
+                target="_blank"
+                rel="noreferrer"
                 className="bg-primary text-ivory font-bold text-base py-4 px-8 rounded-full hover:bg-dark transition-colors shadow-xl text-center"
               >
-                Explore Dr. Hauwa
+                Explore the Free Webinar
               </a>
               <a
-                href="#join-dwn"
+                href="https://selfany.com/thedwn"
+                data-cta="hero_membership"
+                target="_blank"
+                rel="noreferrer"
                 className="bg-accent text-primary font-bold text-base py-4 px-8 rounded-full shadow-xl hover:scale-105 transition-transform text-center"
               >
-                Join Diaspora Wealth Network
+                View DWN Membership
               </a>
             </div>
 
             {/* Expertise strip */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-3 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-primary/60">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-3 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-primary/80">
               <span>Cybersecurity</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
               <span>Real Estate</span>

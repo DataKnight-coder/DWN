@@ -43,7 +43,7 @@ const Journey: React.FC = () => {
               className="fixed pointer-events-none z-[100] w-56 h-72 rounded-2xl overflow-hidden shadow-2xl border-4 border-ivory/20"
               style={{ left: mousePos.x, top: mousePos.y, transform: 'translate(-50%, -50%)' }}
             >
-              <img src={steps[hoveredIdx].image} alt={steps[hoveredIdx].title} className="w-full h-full object-cover" />
+              <img src={steps[hoveredIdx].image} alt={steps[hoveredIdx].title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
             </motion.div>
           )}
@@ -98,7 +98,7 @@ const Journey: React.FC = () => {
               transition={{ delay: idx * 0.07 }}
               className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl"
             >
-              <img src={step.image} alt={step.title} className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
+              <img src={step.image} alt={step.title} loading="lazy" decoding="async" className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
               <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent" />
               <div className="absolute bottom-0 left-0 p-5">
                 <div className="text-accent font-bold text-[10px] uppercase tracking-widest mb-1">{String(idx + 1).padStart(2, '0')}</div>

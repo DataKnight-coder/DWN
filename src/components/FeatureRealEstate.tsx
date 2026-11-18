@@ -24,21 +24,21 @@ const FeatureRealEstate: React.FC = () => {
               <div className="flex gap-4 items-start">
                 <div className="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center font-black flex-shrink-0">01</div>
                 <div>
-                  <h4 className="text-2xl font-bold text-ivory mb-2">Property</h4>
+                  <h3 className="text-2xl font-bold text-ivory mb-2">Property</h3>
                   <p className="text-ivory/70 font-medium">Understanding property as a strategic, leverageable asset.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
                 <div className="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center font-black flex-shrink-0">02</div>
                 <div>
-                  <h4 className="text-2xl font-bold text-ivory mb-2">Investment</h4>
+                  <h3 className="text-2xl font-bold text-ivory mb-2">Investment</h3>
                   <p className="text-ivory/70 font-medium">Learning how investment opportunities work in the modern market.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
                 <div className="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center font-black flex-shrink-0">03</div>
                 <div>
-                  <h4 className="text-2xl font-bold text-ivory mb-2">Ownership</h4>
+                  <h3 className="text-2xl font-bold text-ivory mb-2">Ownership</h3>
                   <p className="text-ivory/70 font-medium">Transitioning your mindset from earning a salary toward building true assets.</p>
                 </div>
               </div>
@@ -59,6 +59,8 @@ const FeatureRealEstate: React.FC = () => {
               className="w-full h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-ivory/10"
             >
               <img 
+                loading="lazy"
+                decoding="async"
                 src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" 
                 alt="Premium Property Investment" 
                 className="w-full h-full object-cover"

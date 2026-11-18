@@ -18,8 +18,10 @@ export async function onRequestGet(context) {
   const end = to ? new Date(Date.parse(`${to}T00:00:00Z`) + 86400000).toISOString() : '9999';
   const rows = await context.env.DB.prepare(`SELECT c.id,c.email,c.first_name,c.marketing_consent,c.first_source,
     c.first_utm_source,c.first_utm_medium,c.first_utm_campaign,c.created_at,
+    p.segment,p.score,p.stage,p.owner_email,p.next_action,
     (SELECT COUNT(*) FROM crm_events e WHERE e.contact_id=c.id) AS event_count
-    FROM contacts c WHERE (c.email LIKE ? ESCAPE '\\' OR c.first_name LIKE ? ESCAPE '\\')
+    FROM contacts c LEFT JOIN lead_profiles p ON p.contact_id=c.id
+    WHERE (c.email LIKE ? ESCAPE '\\' OR c.first_name LIKE ? ESCAPE '\\')
     AND c.created_at>=? AND c.created_at<? AND (?='' OR c.first_source=?)
     AND (?='' OR c.marketing_consent=?)
     ORDER BY c.created_at DESC LIMIT 100`).bind(pattern, pattern, from ? `${from}T00:00:00.000Z` : '0000', end,

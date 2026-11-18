@@ -27,7 +27,7 @@ const EmailCTA: React.FC = () => {
     finally { setBusy(false); if (turnstile) { setTurnstileToken(''); setResetNonce(value => value + 1); } }
   };
   return (
-    <section className="bg-sage text-primary py-32 overflow-hidden relative">
+    <section id="updates" className="bg-sage text-primary py-32 overflow-hidden relative">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-ivory/20 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2" />
       
@@ -75,7 +75,7 @@ const EmailCTA: React.FC = () => {
             <label className="flex items-start gap-2 text-left text-sm"><input type="checkbox" name="consent" required className="mt-1" /> I agree to receive emails from Diaspora Wealth Network. I can unsubscribe at any time.</label>
             {turnstile && <TurnstileField onToken={setTurnstileToken} resetNonce={resetNonce} />}
             <p role="status" aria-live="polite" className="text-sm">{status}</p>
-          </form> : <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" className="inline-block bg-primary text-ivory font-bold px-8 py-4 rounded-full">Explore the Free Webinar</a>}
+          </form> : <a href="https://selfany.com/w/DrHauwaPhD1" data-cta="updates_fallback_webinar" target="_blank" rel="noreferrer" className="inline-block bg-primary text-ivory font-bold px-8 py-4 rounded-full">Explore the Free Webinar</a>}
         </motion.div>
       </div>
     </section>

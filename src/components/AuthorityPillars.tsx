@@ -57,7 +57,7 @@ const AuthorityPillars: React.FC = () => {
       <div className="container mx-auto px-5 sm:px-6 max-w-[1400px]">
         <div className="mb-12 sm:mb-16 max-w-4xl">
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-primary tracking-tighter mb-4 sm:mb-6">
-            Core <span className="font-serif italic font-light text-accent">Expertise.</span>
+            Core <span className="font-serif italic font-light text-[#45620a]">Expertise.</span>
           </h2>
           <p className="text-lg sm:text-xl text-primary/80 font-medium">
             Building expertise, ownership, visibility, income and long-term opportunity.

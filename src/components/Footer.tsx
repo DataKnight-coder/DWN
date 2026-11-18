@@ -36,6 +36,8 @@ const Footer: React.FC = () => {
                 <img
                   src="/dr-hauwa.jpg"
                   alt="Dr. Hauwa"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-top grayscale contrast-125 sepia-[0.3] group-hover:grayscale-0 group-hover:sepia-0 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-accent/20 mix-blend-multiply group-hover:opacity-0 transition-opacity duration-700 pointer-events-none" />
@@ -57,7 +59,7 @@ const Footer: React.FC = () => {
 
           {/* Explore links */}
           <div className="col-span-1 lg:col-span-2">
-            <h4 className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Explore</h4>
+            <p className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Explore</p>
             <ul className="space-y-3 font-medium text-ivory/70 text-sm">
               <li><a href="#about" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">About</a></li>
               <li><a href="#expertise" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Expertise</a></li>
@@ -69,25 +71,24 @@ const Footer: React.FC = () => {
 
           {/* Business links */}
           <div className="col-span-1 lg:col-span-3">
-            <h4 className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Business</h4>
+            <p className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Business</p>
             <ul className="space-y-3 font-medium text-ivory/70 text-sm">
-              <li><a href="#join-dwn" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Diaspora Wealth Network</a></li>
-              <li><a href="#join-dwn" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Work With Dr. Hauwa</a></li>
-              <li><a href="#join-dwn" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Partnerships</a></li>
-              <li><a href="#join-dwn" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Consulting</a></li>
+              <li><a href="https://selfany.com/thedwn" target="_blank" rel="noreferrer" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">DWN Membership on Selfany</a></li>
+              <li><a href="#join-dwn" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Ask About DWN</a></li>
+              <li><a href="#contact" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Consulting Enquiry</a></li>
             </ul>
           </div>
 
           {/* Connect – desktop only (mobile social moved above) */}
           <div className="hidden lg:block lg:col-span-2">
-            <h4 className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Connect</h4>
+            <p className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Connect</p>
             <ul className="flex gap-3 mb-6">
               <li><a href="https://www.facebook.com/drhauwaphd" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-ivory/20 flex items-center justify-center hover:bg-accent hover:text-dark hover:border-accent transition-all font-bold text-sm">FB</a></li>
               <li><a href="https://www.instagram.com/drhauwaphd?igsh=MTViejdrcXl1bXVtcA==" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-ivory/20 flex items-center justify-center hover:bg-accent hover:text-dark hover:border-accent transition-all font-bold text-sm">IG</a></li>
               <li><a href="https://vt.tiktok.com/ZSQhPTGCW/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full border border-ivory/20 flex items-center justify-center hover:bg-accent hover:text-dark hover:border-accent transition-all font-bold text-sm">TT</a></li>
             </ul>
-            <a href="#join-dwn" className="inline-block w-full text-center bg-ivory text-dark font-black tracking-widest uppercase text-xs py-4 rounded-xl hover:bg-accent transition-colors">
-              Join Newsletter
+            <a href="#updates" className="inline-block w-full text-center bg-ivory text-dark font-black tracking-widest uppercase text-xs py-4 rounded-xl hover:bg-accent transition-colors">
+              Get Updates
             </a>
           </div>
 
@@ -98,6 +99,7 @@ const Footer: React.FC = () => {
           <p className="text-ivory/60 text-sm font-medium text-center sm:text-left">Prefer a direct conversation? Send Dr. Hauwa a WhatsApp message.</p>
           <a
             href="https://wa.me/18253655299"
+            data-cta="footer_whatsapp"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-3 bg-accent text-primary font-black text-sm px-6 py-3 rounded-full shrink-0 hover:scale-105 transition-transform"
@@ -110,11 +112,7 @@ const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-ivory/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ivory/30">
           <div>&copy; {new Date().getFullYear()} DR. HAUWA. ALL RIGHTS RESERVED.</div>
-          <div className="flex gap-5">
-            <a href="#" className="hover:text-accent transition-colors">Privacy</a>
-            <a href="#" className="hover:text-accent transition-colors">Terms</a>
-            <a href="#" className="hover:text-accent transition-colors">Cookies</a>
-          </div>
+          <div className="flex items-center gap-3"><a href="#unsubscribe" className="hover:text-accent transition-colors">Stop DWN emails</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
         </div>
       </div>
     </footer>

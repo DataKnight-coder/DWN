@@ -41,11 +41,12 @@ const Programs: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
             <h2 className="text-5xl md:text-6xl font-black text-primary tracking-tighter mb-4">
-              Frameworks for <span className="font-serif italic font-light text-accent drop-shadow-sm">Success.</span>
+              Frameworks for <span className="font-serif italic font-light text-[#45620a]">Success.</span>
             </h2>
           </div>
           <a 
             href={`https://wa.me/${waNumber}?text=Hi%20Dr.%20Hauwa,%20I%20want%20to%20know%20more%20about%20your%20programs.`}
+            data-cta="programs_whatsapp"
             target="_blank"
             rel="noreferrer"
             className="text-primary font-bold uppercase tracking-widest text-sm hover:text-accent transition-colors flex items-center gap-2"
@@ -66,6 +67,7 @@ const Programs: React.FC = () => {
             >
               <a 
                 href={`https://wa.me/${waNumber}?text=${encodeURIComponent(prog.whatsappMessage)}`}
+                data-cta={`program_${idx}_whatsapp`}
                 target="_blank"
                 rel="noreferrer"
                 className="block relative w-full aspect-[4/5] md:aspect-square rounded-[2rem] overflow-hidden mb-6 bg-primary shadow-lg"
@@ -73,17 +75,20 @@ const Programs: React.FC = () => {
                 <img 
                   src={prog.image} 
                   alt={prog.title} 
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 mix-blend-luminosity group-hover:mix-blend-normal"
                 />
                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity" />
               </a>
               
-              <div className="text-accent font-bold uppercase tracking-widest text-[10px] mb-3">{prog.category}</div>
+              <div className="text-[#45620a] font-bold uppercase tracking-widest text-[10px] mb-3">{prog.category}</div>
               <h3 className="text-2xl font-bold text-primary mb-3 leading-tight tracking-tight">{prog.title}</h3>
               <p className="text-primary/70 font-medium text-sm mb-8 flex-grow leading-relaxed">{prog.desc}</p>
               
               <a 
                 href={`https://wa.me/${waNumber}?text=${encodeURIComponent(prog.whatsappMessage)}`}
+                data-cta={`program_${idx}_whatsapp`}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-between w-full p-4 rounded-xl border border-primary/10 text-primary font-black uppercase tracking-widest text-xs hover:bg-accent hover:border-accent transition-all mt-auto"

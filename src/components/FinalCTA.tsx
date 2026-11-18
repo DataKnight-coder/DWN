@@ -14,11 +14,11 @@ const FinalCTA: React.FC = () => {
           </p>
           
           <div className="flex flex-wrap gap-4">
-            <a href="#join-dwn" className="bg-accent text-dark font-semibold py-4 px-8 rounded-full hover:bg-ivory transition-colors">
-              Join Diaspora Wealth Network
+            <a href="https://selfany.com/thedwn" data-cta="final_membership" target="_blank" rel="noreferrer" className="bg-accent text-dark font-semibold py-4 px-8 rounded-full hover:bg-ivory transition-colors">
+              View DWN Membership on Selfany
             </a>
             <a href="#contact" className="bg-transparent border border-ivory/30 font-semibold py-4 px-8 rounded-full hover:bg-ivory/10 transition-colors">
-              Connect With Dr. Hauwa
+              Request a Consultation
             </a>
           </div>
         </div>
@@ -26,6 +26,8 @@ const FinalCTA: React.FC = () => {
         {/* Right: Portrait / Image Placeholder */}
         <div className="relative bg-primary overflow-hidden min-h-[400px]">
           <img 
+            loading="lazy"
+            decoding="async"
             src="/dr-hauwa.jpg" 
             alt="Dr. Hauwa" 
             className="absolute inset-0 w-full h-full object-cover object-top opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-1000 hover:scale-105"

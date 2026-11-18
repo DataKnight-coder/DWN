@@ -1,5 +1,16 @@
 export const leadSources = new Set(['community', 'newsletter', 'pathway_quiz', 'consultation']);
 
+export function classifyLead(lead) {
+  if (lead.source === 'consultation') return { segment: 'consulting', score: 80, nextAction: 'Review consultation enquiry' };
+  const focus = `${lead.interest} ${lead.obstacle}`.toLowerCase();
+  if (/real estate|property/.test(focus)) return { segment: 'real_estate', score: 55, nextAction: 'Review property interest' };
+  if (/career|cyber|skill/.test(focus)) return { segment: 'career', score: 55, nextAction: 'Review career interest' };
+  if (/digital|income|business/.test(focus)) return { segment: 'digital_business', score: 55, nextAction: 'Review business interest' };
+  if (lead.source === 'pathway_quiz') return { segment: 'networking', score: 45, nextAction: 'Review quiz responses' };
+  return { segment: lead.source === 'newsletter' ? 'newsletter' : 'community', score: 30,
+    nextAction: lead.source === 'newsletter' ? 'Await email programme activation' : 'Review DWN enquiry' };
+}
+
 export function cleanLead(input) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw new Error('Invalid submission.');
   const email = String(input.email || '').trim().toLowerCase();
@@ -41,11 +52,18 @@ export async function saveLead(db, lead) {
       consent ? now : null, consent ? lead.source : null, lead.source,
       lead.attribution.utm_source, lead.attribution.utm_medium, lead.attribution.utm_campaign, now, now).run();
   const contact = await db.prepare('SELECT id FROM contacts WHERE email=?').bind(lead.email).first();
+  const classification = classifyLead(lead);
   const eventId = crypto.randomUUID();
   const statements = [db.prepare(`INSERT OR IGNORE INTO crm_events (id,contact_id,kind,source,external_id,details_json,created_at)
     VALUES (?,?,?,?,?,?,?)`).bind(eventId, contact.id, 'lead_submitted', lead.source,
       lead.requestId, JSON.stringify({ interest: lead.interest, obstacle: lead.obstacle,
         utm: lead.attribution, referralCode: lead.referralCode }), now)];
+  statements.push(db.prepare(`INSERT INTO lead_profiles(contact_id,segment,score,next_action,updated_at)
+    VALUES(?,?,?,?,?) ON CONFLICT(contact_id) DO UPDATE SET
+    segment=excluded.segment,score=MAX(lead_profiles.score,excluded.score),
+    next_action=CASE WHEN lead_profiles.stage='new' THEN excluded.next_action ELSE lead_profiles.next_action END,
+    updated_at=excluded.updated_at`)
+    .bind(contact.id, classification.segment, classification.score, classification.nextAction, now));
   if (lead.referralCode) {
     statements.push(db.prepare(`INSERT OR IGNORE INTO referral_conversions(id,code,referred_contact_id,event_id,kind)
       SELECT ?,r.code,?,e.id,'lead_submitted' FROM referrals r JOIN crm_events e ON e.id=?
@@ -56,6 +74,16 @@ export async function saveLead(db, lead) {
     statements.push(db.prepare(`INSERT OR IGNORE INTO consultations (id,event_id,contact_id,message,created_at,updated_at)
       SELECT ?,id,?,?,?,? FROM crm_events WHERE id=?`).bind(crypto.randomUUID(), contact.id, lead.message, now, now, eventId));
   }
+  if (lead.source !== 'newsletter') {
+    const title = lead.source === 'consultation' ? 'Review consultation enquiry' :
+      lead.source === 'pathway_quiz' ? 'Review pathway quiz enquiry' : 'Review DWN enquiry';
+    statements.push(db.prepare(`INSERT OR IGNORE INTO followup_tasks(id,contact_id,title,due_at,source_event_id,created_at,updated_at)
+      SELECT ?,contact_id,?,?,id,?,? FROM crm_events WHERE id=?`)
+      .bind(crypto.randomUUID(), title, new Date(Date.now() + 86400000).toISOString(), now, now, eventId));
+    statements.push(db.prepare(`INSERT INTO automation_logs(id,action,status,reference_id,message,created_at)
+      SELECT ?,'create_followup_task','queued_for_human',id,?,? FROM crm_events WHERE id=?`)
+      .bind(crypto.randomUUID(), title, now, eventId));
+  }
   const results = await db.batch(statements);
   return { duplicate: !results[0].meta?.changes };
 }
@@ -64,10 +92,12 @@ export function json(data, status = 200) {
   return Response.json(data, { status, headers: {
     'Cache-Control': 'no-store',
     'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
   } });
 }
 
-export async function limitRequest(db, request, salt) {
+export async function limitRequest(db, request, salt, maxHits = 10) {
   const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
   const minuteWindow = Math.floor(Date.now() / 900000);
   const bytes = new TextEncoder().encode(`${salt}:${ip}:${minuteWindow}`);
@@ -77,5 +107,5 @@ export async function limitRequest(db, request, salt) {
     ON CONFLICT(key) DO UPDATE SET hits=hits+1`).bind(key, (minuteWindow + 1) * 900).run();
   const row = await db.prepare('SELECT hits FROM rate_limits WHERE key=?').bind(key).first();
   if (Math.random() < 0.01) await db.prepare('DELETE FROM rate_limits WHERE expires_at < ?').bind(Math.floor(Date.now() / 1000)).run();
-  return row.hits <= 10;
+  return row.hits <= maxHits;
 }

@@ -19,6 +19,8 @@ const DWNSection: React.FC = () => {
         <img
           src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80"
           alt="DWN Community"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover opacity-20 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-primary/90 mix-blend-multiply" />
@@ -41,13 +43,13 @@ const DWNSection: React.FC = () => {
           <div className="grid gap-6 sm:grid-cols-2 text-center">
             <div>
               <TestimonialProof placement="webinar" />
-              <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('webinar'); recordProofEvent('webinar', variant, 'click', variant === 'quote' ? 'dwn-pdf-16' : undefined); }} className="inline-block bg-accent text-primary font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-all shadow-xl">
+              <a href="https://selfany.com/w/DrHauwaPhD1" data-cta="dwn_webinar" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('webinar'); recordProofEvent('webinar', variant, 'click', variant === 'quote' ? 'dwn-pdf-16' : undefined); }} className="inline-block bg-accent text-primary font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-all shadow-xl">
                 Explore the Free Webinar
               </a>
             </div>
             <div>
               <TestimonialProof placement="membership" />
-              <a href="https://selfany.com/thedwn" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('membership'); recordProofEvent('membership', variant, 'click', variant === 'quote' ? 'dwn-pdf-13' : undefined); }} className="inline-block bg-transparent border-2 border-ivory text-ivory font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:bg-ivory hover:text-primary transition-all">
+              <a href="https://selfany.com/thedwn" data-cta="dwn_membership" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('membership'); recordProofEvent('membership', variant, 'click', variant === 'quote' ? 'dwn-pdf-13' : undefined); }} className="inline-block bg-transparent border-2 border-ivory text-ivory font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:bg-ivory hover:text-primary transition-all">
                 View DWN Membership
               </a>
             </div>

@@ -17,6 +17,8 @@ const Story: React.FC = () => {
           >
             <div className="w-full aspect-[3/4] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-10">
               <img 
+                loading="lazy"
+                decoding="async"
                 src="/dr-hauwa.jpg" 
                 alt="Dr. Hauwa Biography" 
                 className="w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-1000"
@@ -32,7 +34,7 @@ const Story: React.FC = () => {
           <div className="lg:w-1/2">
             <h2 className="text-5xl md:text-7xl font-black text-primary tracking-tighter mb-8 leading-[1.05]">
               Career. Business.<br />
-              Ownership. <span className="font-serif italic font-light text-accent drop-shadow-sm">Impact.</span>
+              Ownership. <span className="font-serif italic font-light text-[#45620a]">Impact.</span>
             </h2>
             
             <div className="space-y-6 text-lg text-primary/80 font-medium leading-relaxed mb-12">

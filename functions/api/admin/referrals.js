@@ -5,9 +5,7 @@ export async function onRequestGet(context) {
   const auth = await authorize(context);
   if (auth.response) return auth.response;
   const rows = await context.env.DB.prepare(`SELECT r.code,c.email AS owner_email,
-    COUNT(DISTINCT CASE WHEN v.kind='lead_submitted' THEN v.id END) AS leads,
-    COUNT(DISTINCT CASE WHEN v.kind='webinar_registration' THEN v.id END) AS registrations,
-    COUNT(DISTINCT CASE WHEN v.kind='membership_purchase' THEN v.id END) AS purchases
+    COUNT(DISTINCT CASE WHEN v.kind='lead_submitted' THEN v.id END) AS leads
     FROM referrals r JOIN contacts c ON c.id=r.owner_contact_id
     LEFT JOIN referral_conversions v ON v.code=r.code GROUP BY r.code,c.email ORDER BY leads DESC LIMIT 100`).all();
   return json({ referrals: rows.results });

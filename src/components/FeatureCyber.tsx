@@ -15,6 +15,8 @@ const FeatureCyber: React.FC = () => {
           className="relative w-full h-[500px] lg:h-[700px] rounded-[3rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(14,51,40,0.3)] bg-primary"
         >
           <img 
+            loading="lazy"
+            decoding="async"
             src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" 
             alt="Enterprise Technology Setup"
             className="w-full h-full object-cover opacity-80 mix-blend-luminosity"

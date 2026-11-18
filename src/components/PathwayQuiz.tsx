@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { submitLead } from '../utils/leads';
 import { trackEvent } from '../utils/tracking';
@@ -37,6 +37,27 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
   const { available, turnstile } = useLeadIntake();
   const [turnstileToken, setTurnstileToken] = useState('');
   const [resetNonce, setResetNonce] = useState(0);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const returnFocus = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    returnFocus.current = document.activeElement as HTMLElement;
+    const priorOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    dialogRef.current?.querySelector<HTMLElement>('button')?.focus();
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); onClose(); }
+      if (event.key !== 'Tab' || !dialogRef.current) return;
+      const controls = [...dialogRef.current.querySelectorAll<HTMLElement>('a[href],button:not([disabled]),input:not([disabled])')];
+      if (!controls.length) return;
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => { document.removeEventListener('keydown', handleKey); document.body.style.overflow = priorOverflow; returnFocus.current?.focus(); };
+  }, [isOpen, onClose]);
 
   const handleChoice = (option: string) => {
     if (currentStep === 0) setInterest(option);
@@ -72,18 +93,22 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div 
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="quiz-title"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[200] bg-dark/95 backdrop-blur-xl flex items-center justify-center p-6"
+          className="fixed inset-0 z-[200] bg-dark/95 backdrop-blur-xl flex items-center justify-center p-6 overflow-y-auto"
         >
           <div className="absolute top-8 right-8">
-            <button onClick={handleReset} className="text-ivory/50 hover:text-ivory uppercase tracking-widest text-xs font-bold transition-colors">
+            <button type="button" onClick={handleReset} className="text-ivory/50 hover:text-ivory uppercase tracking-widest text-xs font-bold transition-colors">
               Close ✕
             </button>
           </div>
 
-          <div className="w-full max-w-2xl bg-ivory rounded-3xl p-8 md:p-16 relative overflow-hidden shadow-2xl">
+          <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-ivory rounded-3xl p-8 md:p-16 relative shadow-2xl">
             {/* Progress Bar */}
             {!submitted && (
               <div className="absolute top-0 left-0 w-full h-1 bg-primary/10">
@@ -106,7 +131,7 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
                 <div className="text-sm font-bold uppercase tracking-widest text-primary/50 mb-4">
                   Step {currentStep + 1} of {steps.length}
                 </div>
-                <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-8 leading-tight">
+                <h2 id="quiz-title" className="text-3xl md:text-4xl font-extrabold text-primary mb-8 leading-tight">
                   {steps[currentStep].question}
                 </h2>
 
@@ -139,7 +164,7 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
                       className="w-full bg-primary text-ivory font-bold py-6 rounded-2xl hover:bg-dark disabled:opacity-50 transition-colors uppercase tracking-widest mt-4"
                     >
                       {busy ? 'Saving…' : 'Send My Interests'}
-                    </button> : <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" className="w-full bg-primary text-ivory font-bold py-6 rounded-2xl text-center">Explore the Free Webinar</a>}
+                    </button> : <a href="https://selfany.com/w/DrHauwaPhD1" data-cta="quiz_fallback_webinar" target="_blank" rel="noreferrer" className="w-full bg-primary text-ivory font-bold py-6 rounded-2xl text-center">Explore the Free Webinar</a>}
                     <p role="alert" className="text-red-700">{error}</p>
                   </div>
                 )}
@@ -153,11 +178,11 @@ const PathwayQuiz: React.FC<PathwayQuizProps> = ({ isOpen, onClose }) => {
                 <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-4xl">✓</span>
                 </div>
-                <h2 className="text-3xl font-extrabold text-primary mb-4">Your interests were saved.</h2>
+                <h2 id="quiz-title" className="text-3xl font-extrabold text-primary mb-4">Your interests were saved.</h2>
                 <p className="text-primary/70 mb-8">
                   Thank you for sharing what you are working on. Explore the free webinar for practical next steps.
                 </p>
-                <a href="https://selfany.com/w/DrHauwaPhD1" target="_blank" rel="noreferrer" className="inline-block mb-6 text-primary font-bold underline">View the free webinar</a>
+                <a href="https://selfany.com/w/DrHauwaPhD1" data-cta="quiz_success_webinar" target="_blank" rel="noreferrer" className="inline-block mb-6 text-primary font-bold underline">View the free webinar</a>
                 <button 
                   onClick={handleReset}
                   className="bg-primary text-ivory font-bold py-4 px-10 rounded-full hover:bg-dark transition-colors uppercase tracking-widest"
