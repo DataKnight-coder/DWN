@@ -1,6 +1,6 @@
 # Deployment report
 
-**Release:** `codex/growth-system`, 18 November 2026. Production was first released from Git commit `26421d9`; this report includes the subsequent visual polish release.
+**Release:** `codex/growth-system`, 18 November 2026. Application commits `26421d9` and `79b8ac5` were released through Git-connected Cloudflare Pages.
 
 ## Verification completed before release
 
@@ -20,7 +20,7 @@
 - Unauthenticated `/admin/`, `/api/admin/overview`, and `/api/admin/import` redirected to Cloudflare Access. A read-only production D1 query confirmed `lead_profiles`, `followup_tasks`, and `outbound_events` exist.
 - Invalid production POSTs to `/api/leads` and `/api/unsubscribe` returned HTTP 400 without writing data. A live headless-browser visit to `/#contact` visibly opened the consultation drawer; visual review led to a tracking-banner stacking and placeholder-contrast fix in the final release.
 
-The final visual-polish patch adjusts the consent banner behind an open dialog and raises form placeholder contrast. The source of truth for its deployment ID is the Cloudflare Pages production deployment list; verify the newest `main` entry is Active before relying on this report.
+The final visual-polish patch adjusts the consent banner behind an open dialog and raises form placeholder contrast. Production deployment `4f360aec-3188-462c-9bed-5ffbd3095853` from application commit `79b8ac5` became Active. The live health endpoint returned HTTP 200 with the expected bindings, and a fresh browser session showed the consultation drawer with readable placeholders and the tracking banner behind its backdrop. A production Lighthouse SEO-only run scored 100; the preview's SEO 69 was caused by its `noindex` header.
 
 ## Operational limits
 
