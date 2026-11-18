@@ -39,7 +39,7 @@ const TrackingConsent: React.FC = () => {
     setChoice(value);
   };
   if (choice) return null;
-  return <div role="region" aria-label="Marketing tracking choice" className="fixed bottom-4 left-4 right-4 z-[300] max-w-2xl mx-auto bg-dark text-ivory border border-ivory/20 shadow-2xl rounded-2xl p-5">
+  return <div role="region" aria-label="Marketing tracking choice" className="fixed bottom-4 left-4 right-4 z-[90] max-w-2xl mx-auto bg-dark text-ivory border border-ivory/20 shadow-2xl rounded-2xl p-5">
     <p className="text-sm mb-4">Allow optional Meta Pixel and website click tracking? Cloudflare may collect basic visit analytics separately. Your choice does not affect access to the site.</p>
     <div className="flex flex-wrap gap-3">
       <button type="button" onClick={() => decide('accepted')} className="bg-accent text-primary font-bold rounded-full px-5 py-2">Allow tracking</button>

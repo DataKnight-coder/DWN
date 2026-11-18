@@ -130,7 +130,7 @@ const ConversionDrawer: React.FC = () => {
                   aria-label="First name"
                   required
                   placeholder="First Name" 
-                  className="w-full bg-ivory/5 border border-ivory/10 p-5 rounded-2xl text-ivory placeholder:text-ivory/30 focus:outline-none focus:border-accent transition-colors" 
+                  className="w-full bg-ivory/5 border border-ivory/25 p-5 rounded-2xl text-ivory placeholder:text-ivory/55 focus:outline-none focus:border-accent transition-colors"
                 />
                 <input 
                   type="email" 
@@ -138,9 +138,9 @@ const ConversionDrawer: React.FC = () => {
                   aria-label="Email address"
                   required
                   placeholder="Email Address" 
-                  className="w-full bg-ivory/5 border border-ivory/10 p-5 rounded-2xl text-ivory placeholder:text-ivory/30 focus:outline-none focus:border-accent transition-colors" 
+                  className="w-full bg-ivory/5 border border-ivory/25 p-5 rounded-2xl text-ivory placeholder:text-ivory/55 focus:outline-none focus:border-accent transition-colors"
                 />
-                {mode === 'consultation' && <textarea name="message" aria-label="How can we help?" required minLength={10} maxLength={2000} rows={5} placeholder="What would you like to discuss?" className="w-full bg-ivory/5 border border-ivory/10 p-5 rounded-2xl text-ivory placeholder:text-ivory/50 focus:outline-none focus:border-accent" />}
+                {mode === 'consultation' && <textarea name="message" aria-label="How can we help?" required minLength={10} maxLength={2000} rows={5} placeholder="What would you like to discuss?" className="w-full bg-ivory/5 border border-ivory/25 p-5 rounded-2xl text-ivory placeholder:text-ivory/60 focus:outline-none focus:border-accent" />}
                 <label className="flex items-start gap-2 text-sm text-ivory/80"><input type="checkbox" name="consent" className="mt-1" /> Send me DWN news and offers by email. I can unsubscribe at any time.</label>
                 {turnstile && <TurnstileField onToken={setTurnstileToken} resetNonce={resetNonce} />}
                 <button type="submit" disabled={busy || (turnstile && !turnstileToken)} className="w-full bg-accent text-primary font-bold py-5 rounded-2xl uppercase tracking-widest hover:scale-[1.02] hover:shadow-lg transition-all mt-6">
