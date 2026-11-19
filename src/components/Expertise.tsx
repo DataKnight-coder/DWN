@@ -8,7 +8,7 @@ const areas = [
     guide: 'How to get into cybersecurity in Canada', href: '/blog/cybersecurity-career-canada/' },
   { id: 'real-estate', no: '02', title: 'Real Estate & Assets',
     desc: 'Property ownership, investment awareness, and long-term wealth strategy.',
-    guide: 'Build wealth as an immigrant in Canada', href: '/blog/build-wealth-as-an-immigrant-in-canada/' },
+    guide: 'Real estate investing in Canada: the basics', href: '/blog/real-estate-investing-canada/' },
   { id: 'brand-marketing', no: '03', title: 'Personal Brand & Digital Marketing',
     desc: 'Authority building, professional positioning, online visibility, content strategy and audience growth.',
     guide: 'Affiliate marketing in Canada', href: '/blog/affiliate-marketing-canada/' },

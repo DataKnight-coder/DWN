@@ -90,6 +90,59 @@
     }
   },
   {
+    "slug": "shopify-store-setup-guide",
+    "title": "How to Set Up a Shopify Store: A Practical Launch Checklist",
+    "description": "A step-by-step Shopify setup checklist covering products, shipping, taxes, payments, policies and testing, with Canadian tax and customs notes.",
+    "category": "Dropshipping",
+    "summary": "Set up a store carefully, from tax settings to policies to a test order, before your first customer arrives.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn online selling with a community.",
+      "text": "DWN members get tips and training on eBay, Amazon, Shopify, dropshipping and affiliate marketing, alongside other income paths.",
+      "href": "/diaspora-wealth-network/",
+      "label": "Explore DWN membership"
+    }
+  },
+  {
+    "slug": "ugc-creator-guide",
+    "title": "How to Become a UGC Creator: Portfolio, Pitching and Contracts",
+    "description": "What UGC creators do, how to build a portfolio, pitch brands, agree usage rights and contracts, disclose partnerships and track income.",
+    "category": "Online income",
+    "summary": "A practical path into paid content creation, with the contract and disclosure points beginners miss.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn online selling with a community.",
+      "text": "DWN members get tips and training on eBay, Amazon, Shopify, dropshipping and affiliate marketing, alongside other income paths.",
+      "href": "/diaspora-wealth-network/",
+      "label": "Explore DWN membership"
+    }
+  },
+  {
+    "slug": "remote-jobs-guide",
+    "title": "How to Find Legitimate Remote Jobs (and Avoid the Fakes)",
+    "description": "Where to look for remote jobs, how to filter and prepare, how to judge whether an offer is real, and the tax and work-authorization questions to ask.",
+    "category": "Remote work",
+    "summary": "Search smarter, spot fake offers and understand the money and legal questions of working remotely.",
+    "published": "2026-11-19"
+  },
+  {
+    "slug": "real-estate-investing-canada",
+    "title": "Real Estate Investing in Canada: A Beginner's Guide to the Basics",
+    "description": "Plain-language basics of property investing in Canada: costs, financing, rental income tax, tenant rules, risks and what newcomers should know.",
+    "category": "Real estate",
+    "summary": "Costs, financing, tax and risk explained simply, with official sources and no promised returns.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn property basics with a community.",
+      "text": "DWN shares real estate and investing education alongside other income paths. Educational only; no returns are promised.",
+      "href": "/diaspora-wealth-network/",
+      "label": "Explore DWN membership"
+    }
+  },
+  {
     "slug": "side-hustles-canada",
     "title": "Side Hustles in Canada: Online and Offline Options Compared",
     "description": "Compare online and offline side hustles in Canada by permission, cost, speed and scalability, with work-permit, licensing and tax checks.",

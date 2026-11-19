@@ -135,6 +135,9 @@ const aiCards = [
   ['Dropshipping for beginners: eBay, Shopify and Amazon', '/blog/dropshipping-beginners-guide/', 'How the models differ, plus Canadian tax and customs basics.'],
   ['eBay dropshipping: what is allowed', '/blog/ebay-dropshipping-guide/', 'Why you cannot fulfil eBay orders from Amazon.'],
   ['Amazon dropshipping rules', '/blog/amazon-dropshipping-rules/', 'The seller-of-record rule and packaging requirements.'],
+  ['How to set up a Shopify store', '/blog/shopify-store-setup-guide/', 'A launch checklist: products, shipping, taxes, payments and policies.'],
+  ['How to become a UGC creator', '/blog/ugc-creator-guide/', 'Portfolio, pitching, usage rights and contracts for brand content.'],
+  ['How to find legitimate remote jobs', '/blog/remote-jobs-guide/', 'Where to look, how to filter and how to avoid fake offers.'],
   ['Affiliate marketing in Canada', '/blog/affiliate-marketing-canada/', 'Choose programs, disclose commissions and track results.'],
   ['Best affiliate programs in Canada', '/blog/best-affiliate-programs-canada/', 'Amazon Associates, Shopify and the main networks compared.'],
 ];
