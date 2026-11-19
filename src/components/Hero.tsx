@@ -1,5 +1,9 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import offers from '../../content/offers.json';
+
+const membership = offers.find(offer => offer.id === 'dwn-membership')!;
+const guide = offers.find(offer => offer.id === 'free-guide')!;
 
 const Hero: React.FC = () => {
   const { scrollY } = useScroll();
@@ -67,29 +71,32 @@ const Hero: React.FC = () => {
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-primary/80 mb-8 leading-relaxed font-medium max-w-xl mx-auto lg:mx-0">
-              Explore career growth, business, technology, and long-term asset opportunities with Dr. Hauwa and Diaspora Wealth Network.
+              For immigrants and diaspora professionals building careers, income and long-term options in Canada and beyond. Explore education, community and practical next steps with Dr. Hauwa.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10 justify-center lg:justify-start">
               <a
-                href="https://selfany.com/w/DrHauwaPhD1"
-                data-cta="hero_webinar"
+                href={membership.url}
+                data-offer-id={membership.id}
+                data-cta="hero_membership"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-primary text-ivory font-bold text-base py-4 px-8 rounded-full hover:bg-dark transition-colors shadow-xl text-center"
               >
-                Explore the Free Webinar
+                Become a DWN Member
               </a>
               <a
-                href="https://selfany.com/thedwn"
-                data-cta="hero_membership"
+                href={guide.url}
+                data-offer-id={guide.id}
+                data-cta="hero_free-guide"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-accent text-primary font-bold text-base py-4 px-8 rounded-full shadow-xl hover:scale-105 transition-transform text-center"
               >
-                View DWN Membership
+                Download Free Guide
               </a>
             </div>
+            <a href="/opportunities/" className="inline-block mb-8 text-primary font-bold underline underline-offset-4">Compare all opportunities →</a>
 
             {/* Expertise strip */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-3 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-primary/80">

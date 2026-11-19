@@ -27,10 +27,12 @@ async function loadOverview() {
 }
 async function loadContacts() {
   const params = new URLSearchParams({ q: $('contact-search').value, from: $('contact-from').value,
-    to: $('contact-to').value, source: $('contact-source').value, consent: $('contact-consent').value });
+    to: $('contact-to').value, source: $('contact-source').value, consent: $('contact-consent').value,
+    interest: $('contact-interest').value, segment: $('contact-segment').value,
+    stage: $('contact-stage-filter').value });
   const data = await getJson(`/api/admin/contacts?${params}`);
   contacts = data.contacts;
-  $('contacts').innerHTML = contacts.map(row => `<tr><td>${esc(row.email)}</td><td>${esc(row.first_name)}</td><td>${esc(row.first_source)}</td><td>${esc(row.segment || '—')}</td><td>${esc(row.score ?? '—')}</td><td>${esc(row.stage || 'new')}</td><td>${esc(row.owner_email || '—')}</td><td>${row.marketing_consent ? 'Yes' : 'No'}</td><td>${esc(row.created_at)}</td><td><button type="button" data-contact-id="${esc(row.id)}">View</button></td></tr>`).join('');
+  $('contacts').innerHTML = contacts.map(row => `<tr><td>${esc(row.email)}</td><td>${esc(row.first_name)}</td><td>${esc(row.first_source)}</td><td>${esc(row.last_interest || '—')}</td><td>${esc(row.segment || '—')}</td><td>${esc(row.score ?? '—')}</td><td>${esc(row.stage || 'new')}</td><td>${esc(row.owner_email || '—')}</td><td>${row.marketing_consent ? 'Yes' : 'No'}</td><td>${esc(row.created_at)}</td><td><button type="button" data-contact-id="${esc(row.id)}">View</button></td></tr>`).join('');
 }
 async function loadContactDetail(id) {
   const data = await getJson(`/api/admin/contacts/${encodeURIComponent(id)}`);
@@ -43,7 +45,7 @@ async function loadContactDetail(id) {
   $('contact-events').innerHTML = data.events.map(row => {
     let details = {};
     try { details = JSON.parse(row.details_json); } catch { /* Historical event. */ }
-    return `<p><strong>${esc(row.kind)}</strong> · ${esc(row.source)} · ${esc(row.created_at)}<br>Interest: ${esc(details.interest || '—')} · Obstacle: ${esc(details.obstacle || '—')} · Referral: ${esc(details.referralCode || '—')}</p>`;
+    return `<p><strong>${esc(row.kind)}</strong> · ${esc(row.source)} · ${esc(row.created_at)}<br>Interest: ${esc(details.interest || '—')} · Country: ${esc(details.country || '—')} · Landing page: ${esc(details.landingPage || '—')} · Consent on this submission: ${details.marketingConsent ? 'Yes' : 'No'} · Obstacle: ${esc(details.obstacle || '—')} · Referral: ${esc(details.referralCode || '—')}</p>`;
   }).join('') || '<p>No activity yet.</p>';
   $('contact-consultations').innerHTML = data.consultations.map(row => `<p>${esc(row.created_at)} · ${esc(row.stage)} · ${esc(row.message)}</p>`).join('') || '<p>No consultation enquiry.</p>';
   $('contact-tasks').innerHTML = data.tasks.map(row => `<p>${esc(row.status)} · ${esc(row.title)} · due ${esc(row.due_at || 'unscheduled')}</p>`).join('') || '<p>No tasks.</p>';
@@ -56,7 +58,8 @@ async function loadTasks() {
 async function loadFunnel() {
   const data = await getJson('/api/admin/funnel');
   $('funnel-summary').textContent = data.note;
-  $('funnel-outbound').innerHTML = data.outboundClicks.map(row => `<tr><td>${esc(row.destination)}</td><td>${esc(row.placement)}</td><td>${esc(row.clicks)}</td></tr>`).join('');
+  $('popup-metrics').textContent = `${data.popup.impressions} measured impressions · ${data.popup.submissions} measured submissions · ${data.popup.conversionRate === null ? 'Rate unavailable' : (data.popup.conversionRate * 100).toFixed(1) + '% measured submission rate'}`;
+  $('funnel-outbound').innerHTML = data.outboundClicks.map(row => `<tr><td>${esc(row.offer_id)}</td><td>${esc(row.placement)}</td><td>${esc(row.path)}</td><td>${esc(row.clicks)}</td></tr>`).join('');
   $('funnel-leads').innerHTML = data.leadSubmissions.map(row => `<p>${esc(row.source)}: ${esc(row.submissions)}</p>`).join('') || '<p>No website leads in this window.</p>';
 }
 async function loadLogs() {
@@ -92,14 +95,14 @@ async function start() {
 }
 let searchTimer;
 $('contact-search').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(() => loadContacts().catch(error => $('error').textContent = error.message), 300); });
-for (const id of ['contact-from','contact-to','contact-source','contact-consent']) $(id).addEventListener('change', () => loadContacts().catch(error => $('error').textContent = error.message));
+for (const id of ['contact-from','contact-to','contact-source','contact-consent','contact-interest','contact-segment','contact-stage-filter']) $(id).addEventListener('change', () => loadContacts().catch(error => $('error').textContent = error.message));
 $('export-contacts').addEventListener('click', () => {
   const cell = value => {
     let text = String(value ?? '');
     if (/^[=+\-@]/.test(text)) text = `'${text}`;
     return `"${text.replace(/"/g, '""')}"`;
   };
-  const columns = ['email','first_name','first_source','segment','score','stage','owner_email','next_action','marketing_consent','event_count','created_at'];
+  const columns = ['email','first_name','first_source','last_interest','segment','score','stage','owner_email','next_action','marketing_consent','event_count','created_at'];
   const csv = [columns.join(','), ...contacts.map(row => columns.map(column => cell(row[column])).join(','))].join('\r\n');
   const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
   const link = document.createElement('a');

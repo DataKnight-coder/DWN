@@ -6,7 +6,7 @@ import { useLeadIntake } from '../utils/useLeadIntake';
 import TurnstileField from './TurnstileField';
 
 const ConversionDrawer: React.FC = () => {
-  const [mode, setMode] = useState<'community' | 'consultation' | null>(null);
+  const [mode, setMode] = useState<'community' | 'consultation' | 'ai_training' | null>(null);
   const isOpen = mode !== null;
   const panelRef = useRef<HTMLDivElement>(null);
   const returnFocus = useRef<HTMLElement | null>(null);
@@ -21,17 +21,18 @@ const ConversionDrawer: React.FC = () => {
     const handleHash = () => {
       if (window.location.hash === '#contact') setMode('consultation');
       else if (window.location.hash === '#join-dwn') setMode('community');
+      else if (window.location.hash === '#ai-training') setMode('ai_training');
     };
     
     const handleGlobalClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
       const href = anchor?.getAttribute('href');
-      if (href === '#join-dwn' || href === '#contact') {
+      if (href === '#join-dwn' || href === '#contact' || href === '#ai-training') {
         e.preventDefault();
         returnFocus.current = anchor;
         setStatus('');
-        setMode(href === '#contact' ? 'consultation' : 'community');
+        setMode(href === '#contact' ? 'consultation' : href === '#ai-training' ? 'ai_training' : 'community');
       }
     };
 
@@ -76,10 +77,12 @@ const ConversionDrawer: React.FC = () => {
     setStatus('');
     try {
       await submitLead({ firstName: String(data.get('firstName') || ''), email: String(data.get('email') || ''),
-        source: mode === 'consultation' ? 'consultation' : 'community',
-        message: mode === 'consultation' ? String(data.get('message') || '') : undefined,
+        source: mode === 'consultation' ? 'consultation' : mode === 'ai_training' ? 'ai_training' : 'community',
+        interest: mode === 'ai_training' ? 'AI' : undefined,
+        landingPage: window.location.pathname,
+        message: mode === 'consultation' || mode === 'ai_training' ? String(data.get('message') || '') : undefined,
         marketingConsent: data.get('consent') === 'on', turnstileToken });
-      trackEvent('Lead', { content_name: mode === 'consultation' ? 'Consultation Enquiry' : 'DWN Enquiry' });
+      trackEvent('Lead', { content_name: mode === 'consultation' ? 'Consultation Enquiry' : mode === 'ai_training' ? 'AI Training Enquiry' : 'DWN Enquiry' });
       setStatus('Thanks. Your enquiry was saved.');
       form.reset();
     } catch (error) { setStatus((error as Error).message); }
@@ -117,10 +120,10 @@ const ConversionDrawer: React.FC = () => {
               </div>
 
               <h2 id="enquiry-title" className="text-4xl font-black mb-4 tracking-tight leading-tight">
-                {mode === 'consultation' ? <>Request a <span className="text-accent italic font-serif">consultation.</span></> : <>Ask about the <span className="text-accent italic font-serif">Network.</span></>}
+                {mode === 'consultation' ? <>Request a <span className="text-accent italic font-serif">consultation.</span></> : mode === 'ai_training' ? <>Ask about <span className="text-accent italic font-serif">AI training.</span></> : <>Ask about the <span className="text-accent italic font-serif">Network.</span></>}
               </h2>
               <p className="text-ivory/60 font-medium mb-12 leading-relaxed">
-                {mode === 'consultation' ? 'Tell us what you need help with. We will review your enquiry and contact you directly.' : 'Tell us how to reach you about Diaspora Wealth Network. Paid membership is managed on Selfany.'}
+                {mode === 'consultation' ? 'Tell us what you need help with. We will review your enquiry and contact you directly.' : mode === 'ai_training' ? 'Tell us which practical AI skills you want to develop. We will review your training enquiry and follow up directly.' : 'Tell us how to reach you about Diaspora Wealth Network. Paid membership is managed on Selfany.'}
               </p>
 
               {available ? <form onSubmit={handleSubmit} className="space-y-4">
@@ -140,11 +143,11 @@ const ConversionDrawer: React.FC = () => {
                   placeholder="Email Address" 
                   className="w-full bg-ivory/5 border border-ivory/25 p-5 rounded-2xl text-ivory placeholder:text-ivory/55 focus:outline-none focus:border-accent transition-colors"
                 />
-                {mode === 'consultation' && <textarea name="message" aria-label="How can we help?" required minLength={10} maxLength={2000} rows={5} placeholder="What would you like to discuss?" className="w-full bg-ivory/5 border border-ivory/25 p-5 rounded-2xl text-ivory placeholder:text-ivory/60 focus:outline-none focus:border-accent" />}
+                {(mode === 'consultation' || mode === 'ai_training') && <textarea name="message" aria-label={mode === 'ai_training' ? 'What AI skills do you want to learn?' : 'How can we help?'} required minLength={10} maxLength={2000} rows={5} placeholder={mode === 'ai_training' ? 'What would you like to learn or apply?' : 'What would you like to discuss?'} className="w-full bg-ivory/5 border border-ivory/25 p-5 rounded-2xl text-ivory placeholder:text-ivory/60 focus:outline-none focus:border-accent" />}
                 <label className="flex items-start gap-2 text-sm text-ivory/80"><input type="checkbox" name="consent" className="mt-1" /> Send me DWN news and offers by email. I can unsubscribe at any time.</label>
                 {turnstile && <TurnstileField onToken={setTurnstileToken} resetNonce={resetNonce} />}
                 <button type="submit" disabled={busy || (turnstile && !turnstileToken)} className="w-full bg-accent text-primary font-bold py-5 rounded-2xl uppercase tracking-widest hover:scale-[1.02] hover:shadow-lg transition-all mt-6">
-                  {busy ? 'Saving…' : mode === 'consultation' ? 'Send Consultation Enquiry' : 'Send DWN Enquiry'}
+                  {busy ? 'Saving…' : mode === 'consultation' ? 'Send Consultation Enquiry' : mode === 'ai_training' ? 'Ask About AI Training' : 'Send DWN Enquiry'}
                 </button>
                 <p role="status" aria-live="polite" className="text-sm">{status}</p>
               </form> : <p className="text-ivory/80">The enquiry form is currently unavailable. You can explore the free webinar or membership directly on Selfany.</p>}

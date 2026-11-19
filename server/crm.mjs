@@ -1,7 +1,9 @@
-export const leadSources = new Set(['community', 'newsletter', 'pathway_quiz', 'consultation']);
+export const leadSources = new Set(['community', 'newsletter', 'pathway_quiz', 'consultation', 'free_guide_popup', 'ai_training']);
 
 export function classifyLead(lead) {
   if (lead.source === 'consultation') return { segment: 'consulting', score: 80, nextAction: 'Review consultation enquiry' };
+  if (lead.source === 'ai_training' || lead.interest === 'AI') return { segment: 'ai_training', score: 60, nextAction: 'Review AI training enquiry' };
+  if (lead.interest === 'DWN Membership') return { segment: 'community', score: 55, nextAction: 'Review DWN membership interest' };
   const focus = `${lead.interest} ${lead.obstacle}`.toLowerCase();
   if (/real estate|property/.test(focus)) return { segment: 'real_estate', score: 55, nextAction: 'Review property interest' };
   if (/career|cyber|skill/.test(focus)) return { segment: 'career', score: 55, nextAction: 'Review career interest' };
@@ -22,6 +24,14 @@ export function cleanLead(input) {
   if (!leadSources.has(source)) throw new Error('Invalid form source.');
   if (!/^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(requestId) || requestId.length > 64) throw new Error('Invalid submission ID.');
   const interest = String(input.interest || '').trim().slice(0, 120);
+  if (source === 'free_guide_popup' && !['Digital Income','AI','Cybersecurity','Real Estate','DWN Membership'].includes(interest))
+    throw new Error('Choose your primary interest.');
+  if ((source === 'free_guide_popup' || source === 'ai_training') && !firstName) throw new Error('Enter your first name.');
+  const country = String(input.country || '').trim();
+  if (country.length > 80 || /[<>]/.test(country)) throw new Error('Enter a valid country.');
+  const landingPage = String(input.landingPage || '').trim();
+  if (landingPage && (!/^\/[a-z0-9_/-]{0,150}$/i.test(landingPage) || landingPage.includes('//')))
+    throw new Error('Invalid landing page.');
   const obstacle = String(input.obstacle || '').trim().slice(0, 120);
   const message = String(input.message || '').trim();
   if (message.length > 2000) throw new Error('Message is too long.');
@@ -31,8 +41,8 @@ export function cleanLead(input) {
   for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
     attribution[key] = String(input[key] || '').trim().slice(0, 100);
   }
-  return { email, firstName, source, requestId, interest, obstacle, message,
-    marketingConsent: input.marketingConsent === true, attribution, referralCode };
+  return { email, firstName, source, requestId, interest, obstacle, message, country,
+    landingPage, marketingConsent: input.marketingConsent === true, attribution, referralCode };
 }
 
 export async function saveLead(db, lead) {
@@ -57,6 +67,8 @@ export async function saveLead(db, lead) {
   const statements = [db.prepare(`INSERT OR IGNORE INTO crm_events (id,contact_id,kind,source,external_id,details_json,created_at)
     VALUES (?,?,?,?,?,?,?)`).bind(eventId, contact.id, 'lead_submitted', lead.source,
       lead.requestId, JSON.stringify({ interest: lead.interest, obstacle: lead.obstacle,
+        country: lead.country, landingPage: lead.landingPage, marketingConsent: Boolean(consent),
+        consentRequested: lead.marketingConsent, submittedAt: now,
         utm: lead.attribution, referralCode: lead.referralCode }), now)];
   statements.push(db.prepare(`INSERT INTO lead_profiles(contact_id,segment,score,next_action,updated_at)
     VALUES(?,?,?,?,?) ON CONFLICT(contact_id) DO UPDATE SET
@@ -74,9 +86,11 @@ export async function saveLead(db, lead) {
     statements.push(db.prepare(`INSERT OR IGNORE INTO consultations (id,event_id,contact_id,message,created_at,updated_at)
       SELECT ?,id,?,?,?,? FROM crm_events WHERE id=?`).bind(crypto.randomUUID(), contact.id, lead.message, now, now, eventId));
   }
-  if (lead.source !== 'newsletter') {
+  if (lead.source !== 'newsletter' && (lead.source !== 'free_guide_popup' || consent)) {
     const title = lead.source === 'consultation' ? 'Review consultation enquiry' :
-      lead.source === 'pathway_quiz' ? 'Review pathway quiz enquiry' : 'Review DWN enquiry';
+      lead.source === 'pathway_quiz' ? 'Review pathway quiz enquiry' :
+      lead.source === 'ai_training' ? 'Review AI training enquiry' :
+      lead.source === 'free_guide_popup' ? `Review ${lead.interest} interest; confirm consent before any follow-up` : 'Review DWN enquiry';
     statements.push(db.prepare(`INSERT OR IGNORE INTO followup_tasks(id,contact_id,title,due_at,source_event_id,created_at,updated_at)
       SELECT ?,contact_id,?,?,id,?,? FROM crm_events WHERE id=?`)
       .bind(crypto.randomUUID(), title, new Date(Date.now() + 86400000).toISOString(), now, now, eventId));

@@ -66,6 +66,8 @@ const Footer: React.FC = () => {
               <li><a href="#cybersecurity" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Cybersecurity</a></li>
               <li><a href="#real-estate" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Real Estate</a></li>
               <li><a href="/blog/" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Blog</a></li>
+              <li><a href="/opportunities/" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Opportunities</a></li>
+              <li><a href="/ai-training/" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">AI Training</a></li>
             </ul>
           </div>
 
@@ -112,7 +114,7 @@ const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-ivory/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ivory/30">
           <div>&copy; {new Date().getFullYear()} DR. HAUWA. ALL RIGHTS RESERVED.</div>
-          <div className="flex items-center gap-3"><a href="#unsubscribe" className="hover:text-accent transition-colors">Stop DWN emails</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
+          <div className="flex items-center gap-3"><a href="#unsubscribe" className="hover:text-accent transition-colors">Stop DWN emails</a><a href="/privacy-policy/" className="hover:text-accent transition-colors">Privacy</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
         </div>
       </div>
     </footer>

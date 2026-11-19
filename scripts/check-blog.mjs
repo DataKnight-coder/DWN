@@ -56,3 +56,36 @@ for (const raw of source.split(/\r?\n/)) {
 }
 
 console.log('Blog content, metadata, structured data, local assets, and sitemap checks passed.');
+
+const offers = JSON.parse(await readFile(join(process.cwd(), 'content', 'offers.json'), 'utf8'));
+assert.equal(offers.length, 6);
+assert.equal(new Set(offers.map(offer => offer.id)).size, 6);
+const staticPaths = ['/opportunities/', '/diaspora-wealth-network/', '/ai-training/', '/privacy-policy/',
+  ...JSON.parse(await readFile(join(process.cwd(), 'content', 'guides.json'), 'utf8'))
+    .map(guide => `/blog/${guide.slug}/`)];
+for (const path of staticPaths) {
+  const html = await readFile(join(dist, path.slice(1), 'index.html'), 'utf8');
+  assert.equal((html.match(/<h1\b/g) || []).length, 1, `${path} has one H1`);
+  assert.match(html, new RegExp(`https://drhauwaphd.ca${path}`));
+  assert.match(html, /<meta name="description"/);
+  assert.match(html, /<script type="application\/ld\+json">/);
+  assert.match(html, /\/favicon.ico/);
+  assert.match(html, /\/free-guide-popup.js/);
+  assert.match(sitemap, new RegExp(`https://drhauwaphd.ca${path}`));
+}
+const opportunities = await readFile(join(dist, 'opportunities', 'index.html'), 'utf8');
+for (const offer of offers) {
+  assert.ok(opportunities.includes(`data-offer-id="${offer.id}"`), `${offer.id} is linked`);
+  assert.ok(opportunities.includes(`href="${offer.url}"`), `${offer.id} uses the verified destination`);
+}
+const ai = await readFile(join(dist, 'ai-training', 'index.html'), 'utf8');
+assert.match(ai, /href="\/#ai-training"/);
+const tracking = await readFile(join(dist, 'site-tracking.js'), 'utf8');
+assert.doesNotMatch(tracking, /connect\.facebook\.net|fbq\(/);
+const popup = await readFile(join(dist, 'free-guide-popup.js'), 'utf8');
+assert.match(popup, /free_guide_popup/);
+assert.match(popup, /\/api\/health/);
+assert.match(popup, /\/api\/leads/);
+assert.match(popup, /\/api\/engagement/);
+assert.match(await readFile(join(dist, 'index.html'), 'utf8'), /\/free-guide-popup.js/);
+console.log('Offers, AI training, privacy, new guides, metadata, sitemap and inactive Meta Pixel checks passed.');

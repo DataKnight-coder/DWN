@@ -34,9 +34,9 @@ const Header: React.FC<HeaderProps> = ({ onOpenMobileNav, onOpenQuiz }) => {
         <nav className="hidden lg:flex items-center bg-primary rounded-full px-8 py-3 gap-8 shadow-lg">
           <a href="#about" className="text-ivory hover:text-accent font-medium text-sm transition-colors">About</a>
           <a href="#expertise" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Expertise</a>
-          <a href="#cybersecurity" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Cybersecurity</a>
-          <a href="#real-estate" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Real Estate</a>
-          <a href="#dwn" className="text-ivory hover:text-accent font-medium text-sm transition-colors">DWN</a>
+          <a href="/opportunities/" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Opportunities</a>
+          <a href="/ai-training/" className="text-ivory hover:text-accent font-medium text-sm transition-colors">AI Training</a>
+          <a href="/diaspora-wealth-network/" className="text-ivory hover:text-accent font-medium text-sm transition-colors">DWN</a>
           <a href="/blog/" className="text-ivory hover:text-accent font-medium text-sm transition-colors">Blog</a>
         </nav>
 

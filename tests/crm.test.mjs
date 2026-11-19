@@ -12,6 +12,7 @@ import { onRequestGet as getTestimonials } from '../functions/api/testimonials.j
 import { onRequestGet as getTestimonialImage } from '../functions/api/testimonial-images/[id].js';
 import { onRequestPost as postTestimonialEvent } from '../functions/api/testimonial-experiment.js';
 import { onRequestPost as postOutbound } from '../functions/api/outbound.js';
+import { onRequestPost as postEngagement } from '../functions/api/engagement.js';
 import { onRequestGet as getFunnel } from '../functions/api/admin/funnel.js';
 import { onRequestGet as getContactDetail, onRequestPatch as patchContact } from '../functions/api/admin/contacts/[id].js';
 import { onRequestGet as getTasks, onRequestPost as postTask } from '../functions/api/admin/tasks.js';
@@ -34,6 +35,44 @@ test('invalid email and unknown source are rejected', () => {
   assert.throws(() => cleanLead({ email: 'a@b.com', source: 'purchase', requestId }), /source/);
 });
 
+test('free guide and AI enquiries reuse CRM records and log consent per submission', async () => {
+  const { sqlite, db } = database();
+  assert.throws(() => cleanLead({ email: 'lead@example.com', firstName: 'Lee', source: 'free_guide_popup', requestId }), /primary interest/);
+  const popup = cleanLead({ email: 'lead@example.com', firstName: 'Lee', source: 'free_guide_popup',
+    requestId, interest: 'Digital Income', country: 'Canada', landingPage: '/', marketingConsent: false });
+  await saveLead(db, popup);
+  assert.equal(sqlite.prepare('SELECT marketing_consent FROM contacts').get().marketing_consent, 0);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM followup_tasks').get().n, 0);
+  const details = JSON.parse(sqlite.prepare("SELECT details_json FROM crm_events WHERE source='free_guide_popup'").get().details_json);
+  assert.equal(details.interest, 'Digital Income');
+  assert.equal(details.landingPage, '/');
+  assert.equal(details.marketingConsent, false);
+  const ai = cleanLead({ email: 'lead@example.com', firstName: 'Lee', source: 'ai_training',
+    requestId: crypto.randomUUID(), interest: 'AI', message: 'I want to learn AI tools.', landingPage: '/ai-training/',
+    marketingConsent: true });
+  await saveLead(db, ai);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM contacts').get().n, 1);
+  assert.equal(sqlite.prepare('SELECT marketing_consent FROM contacts').get().marketing_consent, 1);
+  assert.equal(sqlite.prepare('SELECT segment FROM lead_profiles').get().segment, 'ai_training');
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM followup_tasks').get().n, 1);
+  sqlite.close();
+});
+
+test('popup measurements deduplicate a session and validate event kinds', async () => {
+  const { sqlite, db } = database();
+  const base = { id: crypto.randomUUID(), sessionId: crypto.randomUUID(), surface: 'free_guide',
+    kind: 'popup_impression', path: '/' };
+  const send = payload => postEngagement({ request: new Request('https://drhauwaphd.ca/api/engagement', {
+    method: 'POST', headers: { Origin: 'https://drhauwaphd.ca', 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload) }), env: { DB: db, RATE_LIMIT_SALT: 'test' } });
+  assert.equal((await send(base)).status, 201);
+  assert.equal((await send({ ...base, id: crypto.randomUUID() })).status, 201);
+  assert.equal(sqlite.prepare('SELECT COUNT(*) AS n FROM engagement_events').get().n, 1);
+  assert.equal((await send({ ...base, id: crypto.randomUUID(), kind: 'popup_submission' })).status, 201);
+  assert.equal((await send({ ...base, id: crypto.randomUUID(), kind: 'purchase' })).status, 400);
+  sqlite.close();
+});
+
 test('lead endpoint fails closed without a configured database', async () => {
   const request = new Request('https://drhauwaphd.ca/api/leads', { method: 'POST',
     headers: { Origin: 'https://drhauwaphd.ca', 'Content-Type': 'application/json' },
@@ -52,11 +91,32 @@ test('lead endpoint requires Turnstile token when challenge is configured', asyn
   assert.match((await response.json()).error, /security check/i);
 });
 
+test('offer migration preserves prior clicks and verified offer events reject invented destinations', async () => {
+  const sqlite = new DatabaseSync(':memory:');
+  for (const migration of ['0001_crm.sql', '0002_testimonials.sql', '0003_growth.sql'])
+    sqlite.exec(readFileSync(new URL(`../migrations/${migration}`, import.meta.url), 'utf8'));
+  sqlite.prepare(`INSERT INTO outbound_events(id,destination,placement,path) VALUES(?,?,?,?)`)
+    .run(crypto.randomUUID(), 'membership', 'old_cta', '/');
+  sqlite.exec(readFileSync(new URL('../migrations/0004_offers.sql', import.meta.url), 'utf8'));
+  sqlite.exec(readFileSync(new URL('../migrations/0005_engagement.sql', import.meta.url), 'utf8'));
+  assert.equal(sqlite.prepare('SELECT offer_id FROM outbound_events').get().offer_id, 'dwn-membership');
+  const { db } = database();
+  const send = body => postOutbound({ request: new Request('https://drhauwaphd.ca/api/outbound', {
+    method: 'POST', headers: { Origin: 'https://drhauwaphd.ca', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: crypto.randomUUID(), placement: 'guide_inline_free-guide',
+      path: '/blog/online-side-hustles-canada/', ...body }) }), env: { DB: db, RATE_LIMIT_SALT: 'test' } });
+  assert.equal((await send({ destination: 'free-guide', offerId: 'free-guide' })).status, 201);
+  assert.equal((await send({ destination: 'not-a-real-offer', offerId: 'not-a-real-offer' })).status, 400);
+  sqlite.close();
+});
+
 function database() {
   const sqlite = new DatabaseSync(':memory:');
   sqlite.exec(readFileSync(new URL('../migrations/0001_crm.sql', import.meta.url), 'utf8'));
   sqlite.exec(readFileSync(new URL('../migrations/0002_testimonials.sql', import.meta.url), 'utf8'));
   sqlite.exec(readFileSync(new URL('../migrations/0003_growth.sql', import.meta.url), 'utf8'));
+  sqlite.exec(readFileSync(new URL('../migrations/0004_offers.sql', import.meta.url), 'utf8'));
+  sqlite.exec(readFileSync(new URL('../migrations/0005_engagement.sql', import.meta.url), 'utf8'));
   const db = {
     prepare(sql) {
       let args = [];

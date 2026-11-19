@@ -44,7 +44,7 @@ const FeatureRealEstate: React.FC = () => {
               </div>
             </div>
 
-            <a href="#explore-real-estate" className="inline-block bg-accent text-primary font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform text-lg shadow-lg">
+            <a href="/opportunities/" className="inline-block bg-accent text-primary font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform text-lg shadow-lg">
               Discover Her Real Estate Journey
             </a>
           </div>

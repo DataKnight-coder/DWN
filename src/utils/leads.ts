@@ -1,6 +1,6 @@
 import { currentAttribution } from './attribution';
 
-export type LeadSource = 'community' | 'newsletter' | 'pathway_quiz' | 'consultation';
+export type LeadSource = 'community' | 'newsletter' | 'pathway_quiz' | 'consultation' | 'free_guide_popup' | 'ai_training';
 
 export async function submitLead(input: {
   email: string;
@@ -10,6 +10,9 @@ export async function submitLead(input: {
   interest?: string;
   obstacle?: string;
   message?: string;
+  country?: string;
+  landingPage?: string;
+  website?: string;
   turnstileToken?: string;
 }) {
   const attribution = currentAttribution();

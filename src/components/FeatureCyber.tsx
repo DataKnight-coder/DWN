@@ -49,7 +49,7 @@ const FeatureCyber: React.FC = () => {
             </p>
           </div>
 
-          <a href="#explore-cybersecurity" className="group inline-flex items-center gap-4 bg-transparent border-2 border-primary text-primary font-bold text-lg px-8 py-4 rounded-full hover:bg-primary hover:text-ivory transition-all">
+          <a href="/blog/cybersecurity-career-canada/" className="group inline-flex items-center gap-4 bg-transparent border-2 border-primary text-primary font-bold text-lg px-8 py-4 rounded-full hover:bg-primary hover:text-ivory transition-all">
             Explore Cybersecurity <span className="group-hover:translate-x-2 transition-transform">→</span>
           </a>
         </div>

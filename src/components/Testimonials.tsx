@@ -36,7 +36,7 @@ const Testimonials: React.FC = () => {
         </blockquote>)}
       </div>
       {!expanded && category === 'All' && filtered.length > 6 && <button type="button" onClick={() => setExpanded(true)} className="mt-8 border border-primary/20 rounded-full px-7 py-3 font-bold">View more member experiences</button>}
-      <a href="https://selfany.com/thedwn" data-cta="testimonials_membership" target="_blank" rel="noreferrer" className="inline-block mt-10 bg-primary text-ivory font-bold px-8 py-4 rounded-full">Explore DWN membership</a>
+      <a href="/diaspora-wealth-network/" className="inline-block mt-10 bg-primary text-ivory font-bold px-8 py-4 rounded-full">Explore DWN membership</a>
     </div>
   </section>;
 };

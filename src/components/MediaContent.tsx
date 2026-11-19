@@ -8,12 +8,14 @@ const MediaContent: React.FC = () => {
     {
       title: "Message to Immigrant Professionals",
       desc: "Strategic advice on building assets, authority, and leveraging your unique position in the diaspora.",
-      src: "/HAUWA VIDEO TO IMMIGRANT.mp4"
+      src: "/HAUWA VIDEO TO IMMIGRANT.mp4",
+      poster: "/immigrant-message-poster.jpg"
     },
     {
       title: "The Vision & The Brand",
       desc: "Understanding the core philosophy behind Dr. Hauwa's digital authority and business ecosystem.",
-      src: "/Hauwa Video.mp4"
+      src: "/Hauwa Video.mp4",
+      poster: "/online-opportunities-poster.jpg"
     }
   ];
 
@@ -75,7 +77,7 @@ const MediaContent: React.FC = () => {
                 playsInline
                 preload="none"
                 className="w-full h-full object-contain"
-                poster="/dr-hauwa.jpg"
+                poster={videos[activeIdx].poster}
               >
                 <source src={videos[activeIdx].src} type="video/mp4" />
                 Your browser does not support HTML video.

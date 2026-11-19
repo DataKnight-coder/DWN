@@ -4,12 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/build-blog.mjs && vite",
-    "build": "node scripts/build-blog.mjs && vite build",
+    "dev": "node scripts/build-blog.mjs && node scripts/build-opportunities.mjs && vite",
+    "build": "node scripts/build-blog.mjs && node scripts/build-opportunities.mjs && vite build",
     "test:blog": "node scripts/check-blog.mjs",
     "test:crm": "node --test tests/crm.test.mjs",
     "dev:api": "wrangler pages dev dist",
-    "db:local:migrate": "wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0001_crm.sql && wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0002_testimonials.sql && wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0003_growth.sql",
+    "db:local:migrate": "wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0001_crm.sql && wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0002_testimonials.sql && wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0003_growth.sql && wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0004_offers.sql && wrangler d1 execute dwn-growth-local --local --config wrangler.local.toml --file migrations/0005_engagement.sql",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -40,6 +40,13 @@ const DWNSection: React.FC = () => {
           <p className="text-base sm:text-xl font-medium opacity-80 mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed">
             Diaspora Wealth Network connects ambitious professionals, entrepreneurs and investors who want to develop careers, businesses, brands, income opportunities and long-term assets.
           </p>
+          <div className="max-w-[230px] mx-auto mb-10">
+            <video controls playsInline preload="none" poster="/dwn-community-intro-poster.jpg" className="w-full rounded-2xl shadow-xl bg-dark" aria-label="Dr. Hauwa introduces the Diaspora Wealth Network">
+              <source src="/dwn-community-intro.mp4" type="video/mp4" />
+              Your browser does not support video.
+            </video>
+            <p className="text-sm text-ivory/70 mt-3">A short introduction to DWN from Dr. Hauwa. The clip includes on-screen text.</p>
+          </div>
           <div className="grid gap-6 sm:grid-cols-2 text-center">
             <div>
               <TestimonialProof placement="webinar" />

@@ -16,6 +16,7 @@ import FeatureCyber from './components/FeatureCyber';
 import DWNSection from './components/DWNSection';
 import Testimonials from './components/Testimonials';
 import Programs from './components/Programs';
+import AITraining from './components/AITraining';
 import Story from './components/Story';
 import Process from './components/Process';
 import MediaContent from './components/MediaContent';
@@ -51,13 +52,14 @@ const App: React.FC = () => {
       <main id="main-content" className="flex-grow">
         <Hero />
         <TrustStrip />
+        <Programs />
         <Journey />
         <AuthorityPillars />
         <FeatureRealEstate />
         <FeatureCyber />
+        <AITraining />
         <DWNSection />
         <Testimonials />
-        <Programs />
         <Story />
         <Process />
         <MediaContent />

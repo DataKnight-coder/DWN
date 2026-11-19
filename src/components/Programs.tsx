@@ -1,106 +1,35 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import offers from '../../content/offers.json';
 
-const waNumber = "18253655299";
+type Offer = { id: string; title: string; description: string; category: string; cta: string; url: string; provider: string };
+const featured = (offers as Offer[]).filter(offer => ['free-guide', 'dwn-membership', 'strategy-session'].includes(offer.id));
 
-const programs = [
-  {
-    title: "Career Accelerator Roadmap",
-    category: "CAREER DEVELOPMENT",
-    desc: "Position your experience to land high-paying roles in the Canadian and US tech markets.",
-    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=600&q=80",
-    whatsappMessage: "Hi Dr. Hauwa, I'm interested in learning more about the Career Accelerator Roadmap."
-  },
-  {
-    title: "Real Estate & Asset Building",
-    category: "WEALTH EDUCATION",
-    desc: "Step-by-step strategies for first-time buyers and property investors.",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80",
-    whatsappMessage: "Hi Dr. Hauwa, I'm interested in the Real Estate & Asset Building program."
-  },
-  {
-    title: "Digital Income Systems",
-    category: "ENTREPRENEURSHIP",
-    desc: "Launch scalable digital products and businesses using modern tools.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
-    whatsappMessage: "Hi Dr. Hauwa, I'm interested in the Digital Income Systems program."
-  },
-  {
-    title: "Diaspora Wealth Mentorship",
-    category: "COMMUNITY PROGRAMS",
-    desc: "Direct guidance, accountability, and networking for ambitious professionals.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80",
-    whatsappMessage: "Hi Dr. Hauwa, I'm interested in joining the Diaspora Wealth Mentorship."
-  }
-];
-
-const Programs: React.FC = () => {
-  return (
-    <section id="all-programs" className="bg-ivory py-32 overflow-hidden border-t border-primary/5">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div>
-            <h2 className="text-5xl md:text-6xl font-black text-primary tracking-tighter mb-4">
-              Frameworks for <span className="font-serif italic font-light text-[#45620a]">Success.</span>
-            </h2>
-          </div>
-          <a 
-            href={`https://wa.me/${waNumber}?text=Hi%20Dr.%20Hauwa,%20I%20want%20to%20know%20more%20about%20your%20programs.`}
-            data-cta="programs_whatsapp"
-            target="_blank"
-            rel="noreferrer"
-            className="text-primary font-bold uppercase tracking-widest text-sm hover:text-accent transition-colors flex items-center gap-2"
-          >
-            Chat on WhatsApp →
-          </a>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {programs.map((prog, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group cursor-pointer flex flex-col"
-            >
-              <a 
-                href={`https://wa.me/${waNumber}?text=${encodeURIComponent(prog.whatsappMessage)}`}
-                data-cta={`program_${idx}_whatsapp`}
-                target="_blank"
-                rel="noreferrer"
-                className="block relative w-full aspect-[4/5] md:aspect-square rounded-[2rem] overflow-hidden mb-6 bg-primary shadow-lg"
-              >
-                <img 
-                  src={prog.image} 
-                  alt={prog.title} 
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 mix-blend-luminosity group-hover:mix-blend-normal"
-                />
-                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:opacity-0 transition-opacity" />
-              </a>
-              
-              <div className="text-[#45620a] font-bold uppercase tracking-widest text-[10px] mb-3">{prog.category}</div>
-              <h3 className="text-2xl font-bold text-primary mb-3 leading-tight tracking-tight">{prog.title}</h3>
-              <p className="text-primary/70 font-medium text-sm mb-8 flex-grow leading-relaxed">{prog.desc}</p>
-              
-              <a 
-                href={`https://wa.me/${waNumber}?text=${encodeURIComponent(prog.whatsappMessage)}`}
-                data-cta={`program_${idx}_whatsapp`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-between w-full p-4 rounded-xl border border-primary/10 text-primary font-black uppercase tracking-widest text-xs hover:bg-accent hover:border-accent transition-all mt-auto"
-              >
-                Explore Program <span className="text-lg leading-none">→</span>
-              </a>
-            </motion.div>
-          ))}
-        </div>
+const Programs: React.FC = () => (
+  <section id="all-programs" className="bg-ivory py-16 sm:py-24 border-t border-primary/10" aria-labelledby="next-step-heading">
+    <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
+      <div className="max-w-3xl mb-9 sm:mb-12">
+        <p className="text-xs font-black uppercase tracking-[.18em] text-[#45620a] mb-3">Explore your options</p>
+        <h2 id="next-step-heading" className="text-4xl sm:text-5xl font-black text-primary tracking-tight leading-tight mb-4">Choose Your Next Step</h2>
+        <p className="text-lg text-primary/80">Start with a free guide, explore the DWN community, or ask for individual strategy support. Each option has a different purpose.</p>
       </div>
-    </section>
-  );
-};
+      <div className="border-t border-primary/20">
+        {featured.map((offer, index) => <article key={offer.id} className="grid gap-4 lg:grid-cols-[5rem_1fr_auto] items-center py-7 border-b border-primary/20">
+          <span aria-hidden="true" className="text-[#45620a] font-serif italic text-3xl">0{index + 1}</span>
+          <div>
+            <p className="text-xs font-black uppercase tracking-widest text-[#45620a] mb-1">{offer.category}</p>
+            <h3 className="text-2xl sm:text-3xl font-black text-primary tracking-tight">{offer.title}</h3>
+            <p className="text-primary/75 mt-2 max-w-2xl">{offer.description}</p>
+            {offer.id === 'dwn-membership' && <a href="/diaspora-wealth-network/" className="inline-block mt-3 text-primary font-bold underline underline-offset-4">Read about the membership</a>}
+          </div>
+          <a href={offer.url} data-offer-id={offer.id} data-cta={`home_${offer.id}`} target="_blank" rel="noreferrer"
+            className="inline-flex justify-center items-center bg-primary text-ivory font-bold rounded-full px-6 py-3 hover:bg-dark focus-visible:outline-4 focus-visible:outline-accent whitespace-nowrap">
+            {offer.cta} <span aria-hidden="true" className="ml-2">↗</span>
+          </a>
+        </article>)}
+      </div>
+      <a href="/opportunities/" className="inline-flex mt-8 font-bold text-primary underline underline-offset-4">Compare all six opportunities →</a>
+    </div>
+  </section>
+);
 
 export default Programs;

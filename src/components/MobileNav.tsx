@@ -22,8 +22,9 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, onOpenQuiz }) =>
   const links = [
     { name: "About", href: "#about" },
     { name: "Expertise", href: "#expertise" },
-    { name: "Diaspora Wealth Network", href: "#dwn" },
-    { name: "Programs", href: "#all-programs" },
+    { name: "Diaspora Wealth Network", href: "/diaspora-wealth-network/" },
+    { name: "Opportunities", href: "/opportunities/" },
+    { name: "AI Training", href: "/ai-training/" },
     { name: "Blog", href: "/blog/" }
   ];
 

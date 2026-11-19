@@ -52,13 +52,13 @@ const Story: React.FC = () => {
               </p>
             </div>
 
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-primary text-ivory font-bold px-10 py-4 rounded-full shadow-xl hover:bg-dark transition-colors text-lg"
-            >
-              Read Dr. Hauwa's Full Story
-            </motion.button>
+            <div className="max-w-[250px] mx-auto lg:mx-0">
+              <video controls playsInline preload="none" poster="/dwn-founder-story-poster.jpg" className="w-full rounded-2xl shadow-xl bg-dark" aria-label="Dr. Hauwa introduces her story and the Diaspora Wealth Network">
+                <source src="/dwn-founder-story.mp4" type="video/mp4" />
+                Your browser does not support video.
+              </video>
+              <p className="text-sm text-primary/70 mt-3">Watch Dr. Hauwa discuss why a broader plan matters for people building a life abroad. The clip includes on-screen text.</p>
+            </div>
           </div>
 
         </div>
