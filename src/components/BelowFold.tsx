@@ -9,12 +9,11 @@ import DWNSection from './DWNSection';
 import Testimonials from './Testimonials';
 import Story from './Story';
 import Process from './Process';
-import MediaContent from './MediaContent';
 import EmailCTA from './EmailCTA';
 import FinalCTA from './FinalCTA';
 
 const sections: React.FC[] = [Programs, Journey, AuthorityPillars, FeatureRealEstate, FeatureCyber, AITraining,
-  DWNSection, Testimonials, Story, Process, MediaContent, EmailCTA, FinalCTA];
+  DWNSection, Testimonials, Story, Process, EmailCTA, FinalCTA];
 
 // Hash links that open the enquiry drawer are handled by ConversionDrawer, not by scrolling.
 const drawerHashes = new Set(['#contact', '#join-dwn', '#ai-training']);

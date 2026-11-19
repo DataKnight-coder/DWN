@@ -48,22 +48,8 @@ const DWNSection: React.FC = () => {
               </video>
               <p className="text-sm text-ivory/70 mt-3">A short introduction to DWN from Dr. Hauwa. The clip includes on-screen text.</p>
             </div>
-            <div className="w-[230px]">
-              <video controls playsInline preload="none" poster="/dwn-two-versions-poster.jpg" width={360} height={640} className="w-full h-auto rounded-2xl shadow-xl bg-dark" aria-label="Two versions of you, a short story clip from Dr. Hauwa">
-                <source src="/dwn-two-versions.mp4" type="video/mp4" />
-                Your browser does not support video.
-              </video>
-              <p className="text-sm text-ivory/70 mt-3">Two versions of you: a short story-led clip. The clip includes on-screen text.</p>
-            </div>
-            <div className="w-[230px]">
-              <video controls playsInline preload="none" poster="/dwn-wins-poster.jpg" width={360} height={640} className="w-full h-auto rounded-2xl shadow-xl bg-dark" aria-label="Dr. Hauwa on opportunities and member wins inside the Diaspora Wealth Network">
-                <source src="/dwn-wins.mp4" type="video/mp4" />
-                Your browser does not support video.
-              </video>
-              <p className="text-sm text-ivory/70 mt-3">Inside DWN: opportunities and member wins. The clip includes on-screen text; results vary by person.</p>
-            </div>
           </div>
-          <p className="text-sm sm:text-base text-ivory/80 -mt-4 mb-8 max-w-2xl mx-auto">Some clips mention commenting or sending a DM for a link. You can skip that and use the buttons below to get the free masterclass or join DWN directly.</p>
+          <p className="text-sm sm:text-base text-ivory/80 -mt-4 mb-8 max-w-2xl mx-auto">The video may mention commenting or sending a DM for a link. You can skip that and use the buttons below to get the free masterclass or join DWN directly.</p>
           <div className="grid gap-6 sm:grid-cols-2 text-center">
             <div>
               <TestimonialProof placement="webinar" />
