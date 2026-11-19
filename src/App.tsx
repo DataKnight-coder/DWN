@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import MobileNav from './components/MobileNav';
 import PathwayQuiz from './components/PathwayQuiz';
 import UnsubscribePanel from './components/UnsubscribePanel';
@@ -9,20 +9,9 @@ import OutboundTracking from './components/OutboundTracking';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import TrustStrip from './components/TrustStrip';
-import Journey from './components/Journey';
-import AuthorityPillars from './components/AuthorityPillars';
-import FeatureRealEstate from './components/FeatureRealEstate';
-import FeatureCyber from './components/FeatureCyber';
-import DWNSection from './components/DWNSection';
-import Testimonials from './components/Testimonials';
-import Programs from './components/Programs';
-import AITraining from './components/AITraining';
-import Story from './components/Story';
-import Process from './components/Process';
-import MediaContent from './components/MediaContent';
-import EmailCTA from './components/EmailCTA';
-import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
+
+const BelowFold = lazy(() => import('./components/BelowFold'));
 
 const App: React.FC = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -52,19 +41,9 @@ const App: React.FC = () => {
       <main id="main-content" className="flex-grow">
         <Hero />
         <TrustStrip />
-        <Programs />
-        <Journey />
-        <AuthorityPillars />
-        <FeatureRealEstate />
-        <FeatureCyber />
-        <AITraining />
-        <DWNSection />
-        <Testimonials />
-        <Story />
-        <Process />
-        <MediaContent />
-        <EmailCTA />
-        <FinalCTA />
+        <Suspense fallback={<div aria-hidden="true" style={{ minHeight: '100vh' }} />}>
+          <BelowFold />
+        </Suspense>
       </main>
       <UnsubscribePanel />
       <Footer />
