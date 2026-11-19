@@ -2,7 +2,7 @@ import React from 'react';
 import offers from '../../content/offers.json';
 
 type Offer = { id: string; title: string; description: string; category: string; cta: string; url: string; provider: string };
-const featured = (offers as Offer[]).filter(offer => ['free-guide', 'dwn-membership', 'strategy-session'].includes(offer.id));
+const featured = (offers as Offer[]).filter(offer => ['free-guide', 'dwn-membership', 'strategy-session', 'monetization-masterclass'].includes(offer.id));
 
 const Programs: React.FC = () => (
   <section id="all-programs" className="bg-ivory py-16 sm:py-24 border-t border-primary/10" aria-labelledby="next-step-heading">

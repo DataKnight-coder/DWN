@@ -15,16 +15,6 @@ const props = [
 const DWNSection: React.FC = () => {
   return (
     <section id="dwn" className="bg-primary text-ivory py-20 sm:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1920&q=80"
-          alt="DWN Community"
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover opacity-20 mix-blend-luminosity"
-        />
-        <div className="absolute inset-0 bg-primary/90 mix-blend-multiply" />
-      </div>
 
       <div className="container mx-auto px-5 sm:px-6 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-14 sm:mb-20">

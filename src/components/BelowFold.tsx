@@ -1,20 +1,15 @@
 import React, { startTransition, useEffect, useState } from 'react';
 import PathFinder from './PathFinder';
 import Programs from './Programs';
-import Journey from './Journey';
-import AuthorityPillars from './AuthorityPillars';
-import FeatureRealEstate from './FeatureRealEstate';
-import FeatureCyber from './FeatureCyber';
-import AITraining from './AITraining';
-import DWNSection from './DWNSection';
 import Testimonials from './Testimonials';
 import Story from './Story';
-import Process from './Process';
+import AITraining from './AITraining';
+import DWNSection from './DWNSection';
+import Expertise from './Expertise';
+import FAQ from './FAQ';
 import EmailCTA from './EmailCTA';
-import FinalCTA from './FinalCTA';
 
-const sections: React.FC[] = [PathFinder, Programs, Journey, AuthorityPillars, FeatureRealEstate, FeatureCyber, AITraining,
-  DWNSection, Testimonials, Story, Process, EmailCTA, FinalCTA];
+const sections: React.FC[] = [PathFinder, Testimonials, Story, AITraining, DWNSection, Programs, Expertise, FAQ, EmailCTA];
 
 // Hash links that open the enquiry drawer are handled by ConversionDrawer, not by scrolling.
 const drawerHashes = new Set(['#contact', '#join-dwn', '#ai-training']);
@@ -32,7 +27,8 @@ const BelowFold: React.FC = () => {
   }, [visible, done]);
 
   useEffect(() => {
-    const mountAll = () => startTransition(() => setVisible(sections.length));
+    // A link into the page needs exact positions, so skip the off-screen rendering shortcut for it.
+    const mountAll = () => { document.documentElement.classList.add('anchor-jump'); startTransition(() => setVisible(sections.length)); };
     window.addEventListener('hashchange', mountAll);
     if (window.location.hash && !drawerHashes.has(window.location.hash)) mountAll();
     return () => window.removeEventListener('hashchange', mountAll);

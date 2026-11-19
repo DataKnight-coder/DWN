@@ -39,8 +39,8 @@ const EmailCTA: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-            Build More Than a Career. <br className="hidden md:block" />
-            <span className="text-ivory drop-shadow-sm">Build Options.</span>
+            Get new guides <br className="hidden md:block" />
+            <span className="text-ivory drop-shadow-sm">by email.</span>
           </h2>
           <p className="text-xl md:text-2xl font-medium opacity-90 mb-12 max-w-2xl mx-auto">
             Get practical insights on career growth, entrepreneurship, wealth and opportunities for diaspora professionals.

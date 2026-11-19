@@ -15,7 +15,9 @@ html { scroll-behavior: smooth; }
 }
 
 /* Sections below the hero skip style, layout and paint until they are near the viewport. */
-main > section:nth-of-type(n+3) {
+main > section { scroll-margin-top: 88px; }
+
+html:not(.anchor-jump) main > section:nth-of-type(n+3) {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
