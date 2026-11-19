@@ -4,6 +4,7 @@ import { cleanLead, classifyLead } from '../server/crm.mjs';
 import { onRequestPost } from '../functions/api/leads.js';
 import { DatabaseSync } from 'node:sqlite';
 import { sendServiceEmail, renderEmail, emailState } from '../server/email.mjs';
+import { runSequence, renderWelcome, sequenceState } from '../server/sequence.mjs';
 import { readFileSync } from 'node:fs';
 import { saveLead } from '../server/crm.mjs';
 import { onRequestPost as postImport } from '../functions/api/admin/import.js';
@@ -365,4 +366,94 @@ test('test allowlist limits service emails to approved addresses only', async ()
   assert.equal((await sendServiceEmail(env, allowed, fetchStub)).status, 'sent');
   assert.deepEqual(sent, ['tester@example.com']);
   sqlite.close();
+});
+
+test('welcome sequence guards: off unless every condition is met', () => {
+  const ok = { SEQUENCE_ENABLED: 'true', EMAIL_SENDING_ENABLED: 'true', RESEND_API_KEY: 'k', EMAIL_POSTAL_ADDRESS: '1 Main St, City, ON A1A 1A1', SEQUENCE_SINCE: '2026-11-19T00:00:00Z' };
+  assert.equal(sequenceState({}), 'off');
+  assert.equal(sequenceState({ ...ok, SEQUENCE_ENABLED: 'false' }), 'off');
+  assert.equal(sequenceState({ ...ok, EMAIL_SENDING_ENABLED: 'false' }), 'blocked_email_off');
+  assert.equal(sequenceState({ ...ok, EMAIL_POSTAL_ADDRESS: '  ' }), 'blocked_no_postal_address');
+  assert.equal(sequenceState({ ...ok, SEQUENCE_SINCE: '' }), 'blocked_no_start_date');
+  assert.equal(sequenceState(ok), 'on');
+  assert.equal(sequenceState({ ...ok, EMAIL_TEST_ALLOWLIST: 'a@b.co' }), 'on_test_allowlist_only');
+});
+
+test('welcome sequence sends approved copy only to consented, unsuppressed contacts, on schedule, once', async () => {
+  const { sqlite, db } = database();
+  const mk = async (email, interest, consent) => {
+    await saveLead(db, cleanLead({ email, firstName: 'Ada', source: 'free_guide_popup', requestId: crypto.randomUUID(), interest, marketingConsent: consent }));
+  };
+  await mk('ai@example.com', 'AI', true);
+  await mk('house@example.com', 'Real Estate', true);
+  await mk('noconsent@example.com', 'AI', false);
+  await mk('unsub@example.com', 'AI', true);
+  await mk('early@example.com', 'AI', true);
+  sqlite.prepare('INSERT INTO suppressions(email,reason) VALUES(?,?)').run('unsub@example.com', 'unsubscribe');
+  const set = (email, at) => sqlite.prepare('UPDATE contacts SET consent_at=? WHERE email=?').run(at, email);
+  set('ai@example.com', '2026-11-10T12:00:00.000Z'); set('house@example.com', '2026-11-10T12:00:00.000Z');
+  set('unsub@example.com', '2026-11-10T12:00:00.000Z'); set('early@example.com', '2026-10-01T12:00:00.000Z'); // before the start date
+  const sent = [];
+  const fetchStub = async (url, init) => { const body = JSON.parse(init.body); sent.push({ ...body, key: init.headers['Idempotency-Key'] }); return Response.json({ id: `m${sent.length}` }); };
+  const env = { DB: db, SEQUENCE_ENABLED: 'true', EMAIL_SENDING_ENABLED: 'true', RESEND_API_KEY: 'k',
+    EMAIL_POSTAL_ADDRESS: '1 Main St, City, ON A1A 1A1', SEQUENCE_SINCE: '2026-11-05T00:00:00Z' };
+
+  // One day after consent: nothing yet.
+  assert.equal((await runSequence(env, new Date('2026-11-11T13:00:00Z'), fetchStub)).sent, 0);
+  // Two days after: email 2 for the two eligible contacts only.
+  const day2 = new Date('2026-11-12T13:00:00Z');
+  assert.equal((await runSequence(env, day2, fetchStub)).sent, 2);
+  assert.deepEqual(sent.map(m => m.to[0]).sort(), ['ai@example.com', 'house@example.com']);
+  const ai = sent.find(m => m.to[0] === 'ai@example.com'), house = sent.find(m => m.to[0] === 'house@example.com');
+  assert.equal(ai.subject, 'A practical next step after the guide');
+  assert.match(ai.html, /drhauwaphd\.ca\/ai-training/); assert.match(house.html, /stan\.store\/DrHauwaPhD/);
+  assert.match(ai.html, /1 Main St, City, ON A1A 1A1/); assert.match(ai.html, /#unsubscribe/);
+  assert.match(ai.headers['List-Unsubscribe'], /mailto:hello@drhauwaphd\.ca/);
+  assert.equal(ai.from, 'Dr. Hauwa | Diaspora Wealth Network <hello@mail.drhauwaphd.ca>');
+  assert.equal(ai.reply_to, 'hello@drhauwaphd.ca');
+  // Running again must not send duplicates.
+  assert.equal((await runSequence(env, day2, fetchStub)).sent, 0);
+  // Email 3 needs 3 more days after email 2 was sent.
+  assert.equal((await runSequence(env, new Date('2026-11-14T13:00:00Z'), fetchStub)).sent, 0);
+  // A person who withdraws consent before email 3 gets nothing more.
+  sqlite.prepare("UPDATE contacts SET marketing_consent=0 WHERE email='house@example.com'").run();
+  const day5 = new Date('2026-11-15T13:00:00Z');
+  assert.equal((await runSequence(env, day5, fetchStub)).sent, 1);
+  const third = sent[sent.length - 1];
+  assert.equal(third.to[0], 'ai@example.com'); assert.equal(third.subject, 'Build with others, not alone');
+  assert.match(third.html, /selfany\.com\/thedwn/); assert.match(third.html, /not a promise of any result/);
+  // The sequence ends: no email 4, no repeats.
+  assert.equal((await runSequence(env, new Date('2026-12-30T00:00:00Z'), fetchStub)).sent, 0);
+  sqlite.close();
+});
+
+test('welcome sequence honours the test allowlist and retries failures at most three times', async () => {
+  const { sqlite, db } = database();
+  for (const email of ['a@example.com', 'b@example.com'])
+    await saveLead(db, cleanLead({ email, firstName: 'X', source: 'free_guide_popup', requestId: crypto.randomUUID(), interest: 'Digital Income', marketingConsent: true }));
+  sqlite.prepare("UPDATE contacts SET consent_at='2026-11-10T12:00:00.000Z'").run();
+  const env = { DB: db, SEQUENCE_ENABLED: 'true', EMAIL_SENDING_ENABLED: 'true', RESEND_API_KEY: 'k', EMAIL_POSTAL_ADDRESS: 'Addr',
+    SEQUENCE_SINCE: '2026-11-01T00:00:00Z', EMAIL_TEST_ALLOWLIST: 'a@example.com' };
+  const recipients = [];
+  const good = async (url, init) => { recipients.push(JSON.parse(init.body).to[0]); return Response.json({ id: 'x' }); };
+  const result = await runSequence(env, new Date('2026-11-13T00:00:00Z'), good);
+  assert.deepEqual(recipients, ['a@example.com']); assert.equal(result.skipped, 1);
+  // Failures: retried hourly, then given up after three.
+  const { sqlite: s2, db: db2 } = database();
+  await saveLead(db2, cleanLead({ email: 'f@example.com', firstName: 'F', source: 'free_guide_popup', requestId: crypto.randomUUID(), interest: 'AI', marketingConsent: true }));
+  s2.prepare("UPDATE contacts SET consent_at='2026-11-10T12:00:00.000Z'").run();
+  const env2 = { ...env, DB: db2, EMAIL_TEST_ALLOWLIST: '' };
+  let calls = 0; const bad = async () => { calls++; return Response.json({ message: 'rejected' }, { status: 422 }); };
+  for (let hour = 0; hour < 6; hour++) await runSequence(env2, new Date(Date.UTC(2026, 10, 13, hour)), bad);
+  assert.equal(calls, 3);
+  assert.equal(s2.prepare("SELECT COUNT(*) n FROM email_log WHERE status='failed'").get().n, 3);
+  sqlite.close(); s2.close();
+});
+
+test('welcome emails escape names and the cron endpoint rejects wrong secrets', async () => {
+  const mail = renderWelcome('welcome_2', { firstName: '<b>x</b>', interest: 'AI', postalAddress: 'A & B' });
+  assert.doesNotMatch(mail.html, /<b>x<\/b>/); assert.match(mail.html, /A &amp; B/);
+  const { onRequestPost: cron } = await import('../functions/api/cron/sequence.js');
+  const call = secret => cron({ request: new Request('https://drhauwaphd.ca/api/cron/sequence', { method: 'POST', headers: secret ? { 'X-Cron-Secret': secret } : {} }), env: { CRON_SECRET: 'right', DB: {} } });
+  assert.equal((await call('')).status, 403); assert.equal((await call('wrong')).status, 403);
 });
