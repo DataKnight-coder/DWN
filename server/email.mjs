@@ -79,7 +79,8 @@ ${c.note ? `<p style="margin:18px 0 0;font-size:14px;line-height:1.5;color:#3b4a
 
 export function emailState(env) {
   if (!env.RESEND_API_KEY) return 'not_connected';
-  return env.EMAIL_SENDING_ENABLED === 'true' ? 'enabled' : 'connected_sending_disabled';
+  if (env.EMAIL_SENDING_ENABLED !== 'true') return 'connected_sending_disabled';
+  return String(env.EMAIL_TEST_ALLOWLIST || '').trim() ? 'enabled_test_allowlist_only' : 'enabled';
 }
 
 async function record(db, entry) {
@@ -98,6 +99,12 @@ export async function sendServiceEmail(env, lead, fetchImpl = fetch) {
     const base = { contactId: contact.id, template, requestId: lead.requestId };
     if (env.EMAIL_SENDING_ENABLED !== 'true' || !env.RESEND_API_KEY) {
       await record(env.DB, { ...base, status: 'skipped_disabled' });
+      return { status: 'skipped_disabled' };
+    }
+    // Controlled-test mode: while EMAIL_TEST_ALLOWLIST is set, only those addresses are ever emailed.
+    const allowlist = String(env.EMAIL_TEST_ALLOWLIST || '').toLowerCase().split(',').map(item => item.trim()).filter(Boolean);
+    if (allowlist.length && !allowlist.includes(lead.email)) {
+      await record(env.DB, { ...base, status: 'skipped_disabled', error: 'not on test allowlist' });
       return { status: 'skipped_disabled' };
     }
     if (await env.DB.prepare('SELECT email FROM suppressions WHERE email=?').bind(lead.email).first()) {

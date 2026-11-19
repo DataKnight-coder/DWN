@@ -312,6 +312,7 @@ test('service emails stay off by default, log skips, and never block lead captur
   assert.equal(emailState({}), 'not_connected');
   assert.equal(emailState({ RESEND_API_KEY: 'k' }), 'connected_sending_disabled');
   assert.equal(emailState({ RESEND_API_KEY: 'k', EMAIL_SENDING_ENABLED: 'true' }), 'enabled');
+  assert.equal(emailState({ RESEND_API_KEY: 'k', EMAIL_SENDING_ENABLED: 'true', EMAIL_TEST_ALLOWLIST: 'a@b.co' }), 'enabled_test_allowlist_only');
   // Enabled: sends once with the approved sender, reply-to and idempotency key.
   const lead2 = { ...lead, requestId: crypto.randomUUID() };
   const env = { DB: db, RESEND_API_KEY: 'k', EMAIL_SENDING_ENABLED: 'true' };
@@ -350,4 +351,18 @@ test('email templates escape names and read cleanly as plain text', () => {
   assert.match(mail.text, /selfany\.com\/thedwn/);
   assert.equal(renderEmail('consultation_ack', '').subject, 'We received your consultation request');
   assert.match(renderEmail('ai_training_ack', 'Ada').text, /not published yet/);
+});
+
+test('test allowlist limits service emails to approved addresses only', async () => {
+  const { sqlite, db } = database();
+  const mk = email => cleanLead({ email, firstName: 'T', source: 'free_guide_popup', requestId: crypto.randomUUID(), interest: 'AI' });
+  const allowed = mk('tester@example.com'), other = mk('visitor@example.com');
+  await saveLead(db, allowed); await saveLead(db, other);
+  let sent = [];
+  const fetchStub = async (url, init) => { sent.push(JSON.parse(init.body).to[0]); return Response.json({ id: 'x' }); };
+  const env = { DB: db, RESEND_API_KEY: 'k', EMAIL_SENDING_ENABLED: 'true', EMAIL_TEST_ALLOWLIST: ' Tester@Example.com ' };
+  assert.equal((await sendServiceEmail(env, other, fetchStub)).status, 'skipped_disabled');
+  assert.equal((await sendServiceEmail(env, allowed, fetchStub)).status, 'sent');
+  assert.deepEqual(sent, ['tester@example.com']);
+  sqlite.close();
 });
