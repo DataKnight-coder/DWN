@@ -169,7 +169,7 @@ Copy approved by the site owner on 19 Nov 2026 exactly as written in section 2.
 | `SEQUENCE_SINCE` | an ISO date such as `2026-11-20T00:00:00Z`; people who consented earlier are not enrolled |
 | `EMAIL_SENDING_ENABLED` | already `true` |
 
-**Test first:** set `EMAIL_TEST_ALLOWLIST` to your own address; only that address is emailed (health shows `on_test_allowlist_only`). Remove it to go live for everyone.
+**Test first:** set `SEQUENCE_TEST_ALLOWLIST` to your own address; only that address is emailed (health shows `on_test_allowlist_only`). Remove it to go live for everyone.
 
 **Unsubscribe:** every email links to the site's Stop DWN emails form and carries a List-Unsubscribe header; unsubscribing suppresses the address everywhere.
 

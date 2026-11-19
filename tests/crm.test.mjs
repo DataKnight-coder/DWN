@@ -376,7 +376,7 @@ test('welcome sequence guards: off unless every condition is met', () => {
   assert.equal(sequenceState({ ...ok, EMAIL_POSTAL_ADDRESS: '  ' }), 'blocked_no_postal_address');
   assert.equal(sequenceState({ ...ok, SEQUENCE_SINCE: '' }), 'blocked_no_start_date');
   assert.equal(sequenceState(ok), 'on');
-  assert.equal(sequenceState({ ...ok, EMAIL_TEST_ALLOWLIST: 'a@b.co' }), 'on_test_allowlist_only');
+  assert.equal(sequenceState({ ...ok, SEQUENCE_TEST_ALLOWLIST: 'a@b.co' }), 'on_test_allowlist_only');
 });
 
 test('welcome sequence sends approved copy only to consented, unsuppressed contacts, on schedule, once', async () => {
@@ -433,7 +433,7 @@ test('welcome sequence honours the test allowlist and retries failures at most t
     await saveLead(db, cleanLead({ email, firstName: 'X', source: 'free_guide_popup', requestId: crypto.randomUUID(), interest: 'Digital Income', marketingConsent: true }));
   sqlite.prepare("UPDATE contacts SET consent_at='2026-11-10T12:00:00.000Z'").run();
   const env = { DB: db, SEQUENCE_ENABLED: 'true', EMAIL_SENDING_ENABLED: 'true', RESEND_API_KEY: 'k', EMAIL_POSTAL_ADDRESS: 'Addr',
-    SEQUENCE_SINCE: '2026-11-01T00:00:00Z', EMAIL_TEST_ALLOWLIST: 'a@example.com' };
+    SEQUENCE_SINCE: '2026-11-01T00:00:00Z', SEQUENCE_TEST_ALLOWLIST: 'a@example.com' };
   const recipients = [];
   const good = async (url, init) => { recipients.push(JSON.parse(init.body).to[0]); return Response.json({ id: 'x' }); };
   const result = await runSequence(env, new Date('2026-11-13T00:00:00Z'), good);
@@ -442,7 +442,7 @@ test('welcome sequence honours the test allowlist and retries failures at most t
   const { sqlite: s2, db: db2 } = database();
   await saveLead(db2, cleanLead({ email: 'f@example.com', firstName: 'F', source: 'free_guide_popup', requestId: crypto.randomUUID(), interest: 'AI', marketingConsent: true }));
   s2.prepare("UPDATE contacts SET consent_at='2026-11-10T12:00:00.000Z'").run();
-  const env2 = { ...env, DB: db2, EMAIL_TEST_ALLOWLIST: '' };
+  const env2 = { ...env, DB: db2, SEQUENCE_TEST_ALLOWLIST: '' };
   let calls = 0; const bad = async () => { calls++; return Response.json({ message: 'rejected' }, { status: 422 }); };
   for (let hour = 0; hour < 6; hour++) await runSequence(env2, new Date(Date.UTC(2026, 10, 13, hour)), bad);
   assert.equal(calls, 3);

@@ -69,7 +69,7 @@ export function sequenceState(env) {
   if (env.EMAIL_SENDING_ENABLED !== 'true' || !env.RESEND_API_KEY) return 'blocked_email_off';
   if (!String(env.EMAIL_POSTAL_ADDRESS || '').trim()) return 'blocked_no_postal_address';
   if (!Number.isFinite(Date.parse(env.SEQUENCE_SINCE || ''))) return 'blocked_no_start_date';
-  return String(env.EMAIL_TEST_ALLOWLIST || '').trim() ? 'on_test_allowlist_only' : 'on';
+  return String(env.SEQUENCE_TEST_ALLOWLIST || '').trim() ? 'on_test_allowlist_only' : 'on';
 }
 
 const dueSql = (previous) => `
@@ -89,7 +89,7 @@ export async function runSequence(env, now = new Date(), fetchImpl = fetch) {
   const state = sequenceState(env);
   if (!state.startsWith('on')) return { state, sent: 0, failed: 0, skipped: 0 };
   const since = new Date(env.SEQUENCE_SINCE).toISOString();
-  const allow = String(env.EMAIL_TEST_ALLOWLIST || '').toLowerCase().split(',').map(item => item.trim()).filter(Boolean);
+  const allow = String(env.SEQUENCE_TEST_ALLOWLIST || '').toLowerCase().split(',').map(item => item.trim()).filter(Boolean);
   const totals = { state, sent: 0, failed: 0, skipped: 0 };
   const steps = [
     { template: 'welcome_2', sql: dueSql('AND c.consent_at<=?'), args: [since, 'welcome_2', 'welcome_2', new Date(now - 2 * DAY).toISOString()] },
