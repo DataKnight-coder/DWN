@@ -137,6 +137,6 @@
         if (distance > 0 && scrollY / distance >= 0.5) trigger();
       };
       window.addEventListener('scroll', onScroll, { passive: true });
-      if (!mobile) setTimeout(trigger, 25000);
+      if (!mobile) setTimeout(trigger, 8000);
     }).catch(() => {});
 })();
