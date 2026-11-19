@@ -1,5 +1,13 @@
 // Shared free-guide invitation for the homepage and static editorial pages.
 (() => {
+  // Remember campaign tags from the landing URL for this browsing session, so a sign-up on a later page is still attributed to the ad.
+  try {
+    const landing = new URLSearchParams(location.search);
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) {
+      const value = (landing.get(key) || '').trim().slice(0, 100);
+      if (value) sessionStorage.setItem(`dwn-attribution:${key}`, value);
+    }
+  } catch { /* Attribution is optional. */ }
   const guideUrl = 'https://selfany.com/ABNVUFTKMG';
   const conversionKey = 'dwn-free-guide-converted-v1';
   const dismissKey = 'dwn-free-guide-dismissed-v1';
