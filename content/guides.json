@@ -1,5 +1,95 @@
 [
   {
+    "slug": "ai-training-jobs-guide",
+    "title": "AI Training Jobs: What They Are and How to Get Started",
+    "description": "What AI training and evaluation work involves, who can do it, how screening works, how to prepare and what to watch for, with honest expectations.",
+    "category": "AI training",
+    "summary": "Tasks, screening, preparation, taxes and safety for people exploring paid AI-training work.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn AI-training work with a community.",
+      "text": "Dr. Hauwa's DWN community shares tips and training on finding and applying for AI-training work. Explore AI Training or ask a question.",
+      "href": "/ai-training/",
+      "label": "Explore AI Training"
+    }
+  },
+  {
+    "slug": "ai-training-platforms-compared",
+    "title": "Mercor, micro1 and Handshake AI: How AI Training Platforms Compare",
+    "description": "How Mercor, micro1 and Handshake AI describe themselves, how you get in, and a checklist for comparing any AI training platform before you apply.",
+    "category": "AI training",
+    "summary": "What each platform says publicly and what to check on eligibility, pay terms and agreements.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn AI-training work with a community.",
+      "text": "Dr. Hauwa's DWN community shares tips and training on finding and applying for AI-training work. Explore AI Training or ask a question.",
+      "href": "/ai-training/",
+      "label": "Explore AI Training"
+    }
+  },
+  {
+    "slug": "ai-training-job-scams",
+    "title": "How to Spot AI Training and Remote Job Scams",
+    "description": "Warning signs of fake AI training and remote job offers, how to apply safely, and what to do if you have been targeted, based on Canadian fraud guidance.",
+    "category": "AI training",
+    "summary": "The red flags that matter, from upfront fees to fake cheques, and how to verify an employer.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn AI-training work with a community.",
+      "text": "Dr. Hauwa's DWN community shares tips and training on finding and applying for AI-training work. Explore AI Training or ask a question.",
+      "href": "/ai-training/",
+      "label": "Explore AI Training"
+    }
+  },
+  {
+    "slug": "dropshipping-beginners-guide",
+    "title": "Dropshipping for Beginners: eBay, Shopify and Amazon Compared",
+    "description": "How dropshipping works, how an own store, eBay and Amazon differ, supplier checks, and Canadian tax and customs basics before you start.",
+    "category": "Dropshipping",
+    "summary": "A plain comparison of the three routes, with a 30-day test and the key rules for each.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn online selling with a community.",
+      "text": "DWN members get tips and training on eBay, Amazon, Shopify, dropshipping and affiliate marketing, alongside other income paths.",
+      "href": "/diaspora-wealth-network/",
+      "label": "Explore DWN membership"
+    }
+  },
+  {
+    "slug": "ebay-dropshipping-guide",
+    "title": "eBay Dropshipping: What Is Allowed and How It Works",
+    "description": "Is dropshipping allowed on eBay, why you cannot fulfil eBay orders from Amazon, and what a compliant setup looks like.",
+    "category": "Dropshipping",
+    "summary": "The allowed and prohibited models, a safe setup and common mistakes.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn online selling with a community.",
+      "text": "DWN members get tips and training on eBay, Amazon, Shopify, dropshipping and affiliate marketing, alongside other income paths.",
+      "href": "/diaspora-wealth-network/",
+      "label": "Explore DWN membership"
+    }
+  },
+  {
+    "slug": "amazon-dropshipping-rules",
+    "title": "Amazon Dropshipping Rules: Seller of Record and What You Must Do",
+    "description": "Amazon's seller-of-record rule, packaging and paperwork requirements, what is prohibited and how to set up a compliant dropshipping arrangement.",
+    "category": "Dropshipping",
+    "summary": "What seller of record means and how to keep your packaging and invoices compliant.",
+    "published": "2026-11-19",
+    "callout": {
+      "eyebrow": "Go deeper",
+      "heading": "Learn online selling with a community.",
+      "text": "DWN members get tips and training on eBay, Amazon, Shopify, dropshipping and affiliate marketing, alongside other income paths.",
+      "href": "/diaspora-wealth-network/",
+      "label": "Explore DWN membership"
+    }
+  },
+  {
     "slug": "side-hustles-canada",
     "title": "Side Hustles in Canada: Online and Offline Options Compared",
     "description": "Compare online and offline side hustles in Canada by permission, cost, speed and scalability, with work-permit, licensing and tax checks.",

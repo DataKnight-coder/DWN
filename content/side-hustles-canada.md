@@ -26,7 +26,8 @@ Online work can be done from home and is not limited to your local area. It stil
 - **Freelance services:** Writing, design, administration, data work or technical support, offered to a defined type of client.
 - **Digital products and teaching:** Templates, guides or short courses that solve a clear problem. See our guide to [selling digital products](/blog/how-to-sell-digital-products/).
 - **Affiliate marketing:** Earning a commission when a qualifying customer action happens through your recommendation. Read the [beginner guide to affiliate marketing in Canada](/blog/affiliate-marketing-canada/) and the [comparison of affiliate programs](/blog/best-affiliate-programs-canada/).
-- **Remote work and tasks:** Customer support, transcription, data labelling and similar remote tasks. Be careful with any offer that asks you to pay to get started or promises guaranteed earnings.
+- **Remote work and tasks:** Customer support, transcription, data labelling and similar remote tasks, including [AI training work](/blog/ai-training-jobs-guide/). Be careful with any offer that asks you to pay to get started or promises guaranteed earnings; see [how to spot job scams](/blog/ai-training-job-scams/).
+- **Online selling and dropshipping:** Selling through your own store or marketplaces without holding stock. Read our [dropshipping guide for beginners](/blog/dropshipping-beginners-guide/).
 
 ## A simple way to choose
 

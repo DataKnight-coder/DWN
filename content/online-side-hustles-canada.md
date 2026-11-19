@@ -14,6 +14,8 @@ Start with one of these paths and test it before adding another:
 - **Online teaching or educational resources:** A tutor or subject specialist can teach within their competence or create a guide. Check any professional or provincial rules that apply to the subject.
 - **Digital products:** Templates, checklists, guides and short courses can solve repeatable problems. The work is not passive: research, support and updates still matter. Read our [digital products guide](/blog/how-to-sell-digital-products/).
 - **Affiliate marketing:** Useful recommendations can earn a commission when a qualifying customer action occurs. Audience trust and clear disclosures matter more than posting large numbers of links. Read our [Canadian affiliate marketing guide](/blog/affiliate-marketing-canada/) and the [comparison of affiliate programs](/blog/best-affiliate-programs-canada/).
+- **Selling products online:** Marketplace or store selling, including dropshipping. Compare [eBay, Shopify and Amazon](/blog/dropshipping-beginners-guide/).
+- **AI-training work:** Part-time, project-based work evaluating and improving AI systems. Read [what it involves and how to get started](/blog/ai-training-jobs-guide/).
 - **Content-led services:** Articles or videos can demonstrate expertise and lead to consulting or project enquiries. Treat content as a way to help a particular audience, not as an instant revenue source.
 
 ## A four-week test you can run without overcommitting

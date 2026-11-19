@@ -15,6 +15,9 @@ const areas = [
   { id: 'entrepreneurship', no: '04', title: 'Entrepreneurship',
     desc: 'Multiple income channels, strategic growth, and business development.',
     guide: 'Side hustles in Canada', href: '/blog/side-hustles-canada/' },
+  { id: 'ai-online-income', no: '05', title: 'AI Training & Online Selling',
+    desc: 'Finding and preparing for AI-training work, plus eBay, Amazon and Shopify selling, dropshipping and affiliate marketing, with the rules for each.',
+    guide: 'AI training jobs, and how to get started', href: '/blog/ai-training-jobs-guide/' },
 ];
 
 const Expertise: React.FC = () => (
@@ -25,7 +28,7 @@ const Expertise: React.FC = () => (
         <h2 id="expertise-heading" className="text-4xl sm:text-5xl font-black text-primary tracking-tight leading-tight mb-4">
           Where Dr. Hauwa can <span className="font-serif italic font-normal text-[#45620a]">help you grow.</span>
         </h2>
-        <p className="text-lg text-primary/80">Building expertise, ownership, visibility, income and long-term opportunity. Each area has a free guide to start with.</p>
+        <p className="text-lg text-primary/80">Building expertise, ownership, visibility, income and long-term opportunity. Each area has a free guide to start with, and the AI and online-selling guides answer the questions people ask most.</p>
       </div>
       <div className="border-t border-primary/20">
         {areas.map(area => (

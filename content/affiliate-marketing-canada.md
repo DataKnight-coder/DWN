@@ -40,6 +40,8 @@ Choose one audience and one problem. Compare two relevant products using a writt
 
 For a beginner overview of online income options, [download the free How to Make Money Online guide](https://selfany.com/ABNVUFTKMG) from Selfany. To explore mentorship and other pathways, read about [Diaspora Wealth Network membership](/diaspora-wealth-network/).
 
+If you also sell products yourself, compare [dropshipping on eBay, Shopify and Amazon](/blog/dropshipping-beginners-guide/).
+
 ## Frequently asked questions
 
 ### Is affiliate marketing legal in Canada?
