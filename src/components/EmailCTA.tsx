@@ -27,7 +27,7 @@ const EmailCTA: React.FC = () => {
     finally { setBusy(false); if (turnstile) { setTurnstileToken(''); setResetNonce(value => value + 1); } }
   };
   return (
-    <section id="updates" className="bg-sage text-primary py-32 overflow-hidden relative">
+    <section id="updates" className="bg-sage text-primary py-14 sm:py-24 overflow-hidden relative">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-ivory/20 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2" />
       
@@ -42,7 +42,7 @@ const EmailCTA: React.FC = () => {
             Get new guides <br className="hidden md:block" />
             <span className="text-ivory drop-shadow-sm">by email.</span>
           </h2>
-          <p className="text-xl md:text-2xl font-medium opacity-90 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl font-medium opacity-90 mb-8 max-w-2xl mx-auto">
             Get practical insights on career growth, entrepreneurship, wealth and opportunities for diaspora professionals.
           </p>
 

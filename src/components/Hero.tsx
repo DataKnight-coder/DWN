@@ -8,7 +8,7 @@ const guide = offers.find(offer => offer.id === 'free-guide')!;
 // contentful paint, so it must not wait for a script-driven fade-in.
 const Hero: React.FC = () => {
   return (
-    <section className="relative bg-ivory text-primary flex items-center pt-14 sm:pt-20 pb-16 overflow-hidden">
+    <section className="relative bg-ivory text-primary flex items-center pt-12 sm:pt-16 pb-12 overflow-hidden">
       <div className="container mx-auto px-5 sm:px-6">
 
         {/* Mobile: lead with the offer and actions before the portrait. */}

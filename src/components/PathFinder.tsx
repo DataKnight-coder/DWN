@@ -31,7 +31,7 @@ const PathFinder: React.FC = () => {
   const external = (href: string) => href.startsWith('http');
 
   return (
-    <section id="start-here" aria-labelledby="start-here-heading" className="bg-white py-16 sm:py-20 border-t border-primary/10">
+    <section id="start-here" aria-labelledby="start-here-heading" className="bg-white py-12 sm:py-16 border-t border-primary/10">
       <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
         <p className="text-xs font-black uppercase tracking-[.18em] text-[#45620a] mb-3">Start here</p>
         <h2 id="start-here-heading" className="text-4xl sm:text-5xl font-black text-primary tracking-tight leading-tight mb-8">

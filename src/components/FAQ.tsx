@@ -17,7 +17,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 ];
 
 const FAQ: React.FC = () => (
-  <section id="faq" aria-labelledby="faq-heading" className="bg-ivory py-16 sm:py-24 border-t border-primary/10">
+  <section id="faq" aria-labelledby="faq-heading" className="bg-ivory py-12 sm:py-16 border-t border-primary/10">
     <div className="container mx-auto px-5 sm:px-6 max-w-4xl">
       <p className="text-xs font-black uppercase tracking-[.18em] text-[#45620a] mb-3">Questions</p>
       <h2 id="faq-heading" className="text-4xl sm:text-5xl font-black text-primary tracking-tight leading-tight mb-8">

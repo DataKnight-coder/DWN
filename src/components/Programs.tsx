@@ -5,15 +5,15 @@ type Offer = { id: string; title: string; description: string; category: string;
 const featured = (offers as Offer[]).filter(offer => ['free-guide', 'dwn-membership', 'strategy-session', 'monetization-masterclass'].includes(offer.id));
 
 const Programs: React.FC = () => (
-  <section id="all-programs" className="bg-ivory py-16 sm:py-24 border-t border-primary/10" aria-labelledby="next-step-heading">
+  <section id="all-programs" className="bg-ivory py-12 sm:py-16 border-t border-primary/10" aria-labelledby="next-step-heading">
     <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
-      <div className="max-w-3xl mb-9 sm:mb-12">
+      <div className="max-w-3xl mb-6 sm:mb-8">
         <p className="text-xs font-black uppercase tracking-[.18em] text-[#45620a] mb-3">Explore your options</p>
         <h2 id="next-step-heading" className="text-4xl sm:text-5xl font-black text-primary tracking-tight leading-tight mb-4">Choose Your Next Step</h2>
         <p className="text-lg text-primary/80">Start with a free guide, explore the DWN community, or ask for individual strategy support. Each option has a different purpose.</p>
       </div>
       <div className="border-t border-primary/20">
-        {featured.map((offer, index) => <article key={offer.id} className="grid gap-4 lg:grid-cols-[5rem_1fr_auto] items-center py-7 border-b border-primary/20">
+        {featured.map((offer, index) => <article key={offer.id} className="grid gap-4 lg:grid-cols-[5rem_1fr_auto] items-center py-5 border-b border-primary/20">
           <span aria-hidden="true" className="text-[#45620a] font-serif italic text-3xl">0{index + 1}</span>
           <div>
             <p className="text-xs font-black uppercase tracking-widest text-[#45620a] mb-1">{offer.category}</p>

@@ -4,9 +4,9 @@ import { m as motion } from 'framer-motion';
 
 const Story: React.FC = () => {
   return (
-    <section id="about" className="bg-ivory py-32 overflow-hidden">
+    <section id="about" className="bg-ivory py-14 sm:py-20 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
           
           {/* Left: Editorial Image */}
           <motion.div 
@@ -14,7 +14,7 @@ const Story: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:w-1/2 relative"
+            className="w-full max-w-md mx-auto lg:max-w-none lg:w-5/12 relative"
           >
             <div className="w-full aspect-[3/4] md:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-10">
               <img 
@@ -32,8 +32,8 @@ const Story: React.FC = () => {
           </motion.div>
 
           {/* Right: Biography Narrative */}
-          <div className="lg:w-1/2">
-            <h2 className="text-5xl md:text-7xl font-black text-primary tracking-tighter mb-8 leading-[1.05]">
+          <div className="lg:w-7/12">
+            <h2 className="text-5xl md:text-6xl font-black text-primary tracking-tighter mb-8 leading-[1.05]">
               Career. Business.<br />
               Ownership. <span className="font-serif italic font-light text-[#45620a]">Impact.</span>
             </h2>

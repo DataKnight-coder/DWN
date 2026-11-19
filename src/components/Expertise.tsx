@@ -18,9 +18,9 @@ const areas = [
 ];
 
 const Expertise: React.FC = () => (
-  <section id="expertise" aria-labelledby="expertise-heading" className="bg-white py-16 sm:py-24 border-t border-primary/10">
+  <section id="expertise" aria-labelledby="expertise-heading" className="bg-white py-12 sm:py-16 border-t border-primary/10">
     <div className="container mx-auto px-5 sm:px-6 max-w-6xl">
-      <div className="max-w-3xl mb-9 sm:mb-12">
+      <div className="max-w-3xl mb-6 sm:mb-8">
         <p className="text-xs font-black uppercase tracking-[.18em] text-[#45620a] mb-3">Expertise</p>
         <h2 id="expertise-heading" className="text-4xl sm:text-5xl font-black text-primary tracking-tight leading-tight mb-4">
           Where Dr. Hauwa can <span className="font-serif italic font-normal text-[#45620a]">help you grow.</span>
@@ -29,7 +29,7 @@ const Expertise: React.FC = () => (
       </div>
       <div className="border-t border-primary/20">
         {areas.map(area => (
-          <article key={area.id} id={area.id} className="grid gap-3 lg:grid-cols-[5rem_1fr_auto] items-center py-6 border-b border-primary/20 scroll-mt-24">
+          <article key={area.id} id={area.id} className="grid gap-3 lg:grid-cols-[5rem_1fr_auto] items-center py-5 border-b border-primary/20 scroll-mt-24">
             <span aria-hidden="true" className="text-[#45620a] font-serif italic text-3xl">{area.no}</span>
             <div>
               <h3 className="text-2xl font-black text-primary tracking-tight">{area.title}</h3>

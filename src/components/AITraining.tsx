@@ -7,7 +7,7 @@ const topics = [
 ];
 
 export default function AITraining() {
-  return <section id="ai-training-section" className="bg-dark text-ivory py-20 sm:py-28">
+  return <section id="ai-training-section" className="bg-dark text-ivory py-14 sm:py-20">
     <div className="container mx-auto px-5 sm:px-6 max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-center">
       <div><p className="uppercase tracking-[.2em] text-accent text-xs font-bold mb-4">Practical AI training</p>
         <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">Learn to use AI for meaningful work.</h2>
