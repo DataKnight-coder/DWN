@@ -148,3 +148,29 @@ If you have questions first, reply to this email.
 - [ ] Unsubscribe link tested end to end, including suppression.
 - [ ] Wait times between emails approved.
 - [ ] Test sends to an authorized tester only, then a small first batch.
+
+---
+
+## Welcome sequence: implementation and go-live (built, switched OFF)
+
+Copy approved by the site owner on 19 Nov 2026 exactly as written in section 2.
+
+**Code:** `server/sequence.mjs`, protected hourly endpoint `/api/cron/sequence`, and the `dwn-cron` worker (`workers/dwn-cron`, runs at the top of every hour and only calls the endpoint). `/api/health` shows `welcomeSequence`.
+
+**Who gets it:** only contacts who ticked the optional marketing box on the free-guide popup (`consent_source = free_guide_popup`) **and** whose consent was recorded on or after `SEQUENCE_SINCE`. Never suppressed addresses. Consent is re-checked before each email, so someone who withdraws stops receiving them.
+
+**When:** email 2 two days after consent; email 3 three days after email 2 was sent; then it stops. Each email is sent once (log plus idempotency key). A failed send is retried hourly, at most three times.
+
+**It sends nothing until all of these are set (Pages, Production):**
+| Setting | Value |
+|---|---|
+| `SEQUENCE_ENABLED` | `true` |
+| `EMAIL_POSTAL_ADDRESS` | the sender's postal address, shown in every footer (required by Canadian anti-spam law) |
+| `SEQUENCE_START_AT` is named `SEQUENCE_SINCE` | an ISO date such as `2026-11-20T00:00:00Z`; people who consented earlier are not enrolled |
+| `EMAIL_SENDING_ENABLED` | already `true` |
+
+**Test first:** set `EMAIL_TEST_ALLOWLIST` to your own address; only that address is emailed (health shows `on_test_allowlist_only`). Remove it to go live for everyone.
+
+**Unsubscribe:** every email links to the site's Stop DWN emails form and carries a List-Unsubscribe header; unsubscribing suppresses the address everywhere.
+
+**Switch off:** delete `SEQUENCE_ENABLED` and redeploy.
