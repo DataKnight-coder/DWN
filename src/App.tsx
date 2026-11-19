@@ -9,7 +9,6 @@ import OutboundTracking from './components/OutboundTracking';
 
 import Header from './components/Header';
 import Hero from './components/Hero';
-import TrustStrip from './components/TrustStrip';
 import Footer from './components/Footer';
 
 const BelowFold = lazy(() => import('./components/BelowFold'));
@@ -42,7 +41,6 @@ const App: React.FC = () => {
       <Header onOpenMobileNav={() => setIsMobileNavOpen(true)} onOpenQuiz={() => setIsQuizOpen(true)} />
       <main id="main-content" className="flex-grow">
         <Hero />
-        <TrustStrip />
         <Suspense fallback={<div aria-hidden="true" style={{ minHeight: '100vh' }} />}>
           <BelowFold />
         </Suspense>

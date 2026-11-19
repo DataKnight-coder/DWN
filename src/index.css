@@ -14,11 +14,6 @@ html { scroll-behavior: smooth; }
   line-gap-override: 0%;
 }
 
-/* Focus-areas marquee: compositor-only CSS animation (no per-frame script). */
-@keyframes marquee-slide { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-1920px, 0, 0); } }
-.marquee-track { animation: marquee-slide 30s linear infinite; will-change: transform; }
-@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
-
 /* Sections below the hero skip style, layout and paint until they are near the viewport. */
 main > section:nth-of-type(n+3) {
   content-visibility: auto;

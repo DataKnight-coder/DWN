@@ -1,4 +1,5 @@
 import React, { startTransition, useEffect, useState } from 'react';
+import PathFinder from './PathFinder';
 import Programs from './Programs';
 import Journey from './Journey';
 import AuthorityPillars from './AuthorityPillars';
@@ -12,7 +13,7 @@ import Process from './Process';
 import EmailCTA from './EmailCTA';
 import FinalCTA from './FinalCTA';
 
-const sections: React.FC[] = [Programs, Journey, AuthorityPillars, FeatureRealEstate, FeatureCyber, AITraining,
+const sections: React.FC[] = [PathFinder, Programs, Journey, AuthorityPillars, FeatureRealEstate, FeatureCyber, AITraining,
   DWNSection, Testimonials, Story, Process, EmailCTA, FinalCTA];
 
 // Hash links that open the enquiry drawer are handled by ConversionDrawer, not by scrolling.

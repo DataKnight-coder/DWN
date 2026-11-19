@@ -31,23 +31,13 @@ const Hero: React.FC = () => {
               <div className="absolute inset-0 bg-primary/20 mix-blend-multiply pointer-events-none" />
             </div>
 
-            {/* Founder badge */}
-            <div className="absolute top-1/4 -left-4 sm:-left-10 z-20 bg-ivory/90 border border-white/50 p-3 sm:p-5 rounded-2xl shadow-2xl flex items-center gap-3">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent rounded-full flex items-center justify-center font-black text-primary text-lg sm:text-xl shrink-0">
-                D
-              </div>
-              <div>
-                <div className="text-[10px] font-bold uppercase tracking-widest text-primary/60">Founder</div>
-                <div className="font-black text-primary text-sm sm:text-base leading-tight">Diaspora Wealth<br/>Network</div>
-              </div>
-            </div>
-
             {/* Static decorative glow (no continuous animation) */}
             <div aria-hidden="true" className="absolute -bottom-8 -right-8 w-32 h-32 sm:w-40 sm:h-40 bg-accent rounded-full -z-10 blur-2xl opacity-60" />
           </div>
 
           {/* Text content */}
           <div className="w-full text-center lg:text-left">
+            <p className="text-xs font-black uppercase tracking-[.16em] text-[#45620a] mb-4">Dr. Hauwa · Founder, Diaspora Wealth Network</p>
             <h1 className="text-[2.15rem] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tighter mb-6 sm:mb-8 text-primary">
               Earn More.<br />
               Build Valuable Skills.<br />
