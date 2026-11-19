@@ -3,6 +3,7 @@ export const leadSources = new Set(['community', 'newsletter', 'pathway_quiz', '
 export function classifyLead(lead) {
   if (lead.source === 'consultation') return { segment: 'consulting', score: 80, nextAction: 'Review consultation enquiry' };
   if (lead.source === 'ai_training' || lead.interest === 'AI') return { segment: 'ai_training', score: 60, nextAction: 'Review AI training enquiry' };
+  if (lead.interest === 'Personal Mentorship') return { segment: 'consulting', score: 65, nextAction: 'Review mentorship interest' };
   if (lead.interest === 'DWN Membership') return { segment: 'community', score: 55, nextAction: 'Review DWN membership interest' };
   const focus = `${lead.interest} ${lead.obstacle}`.toLowerCase();
   if (/real estate|property/.test(focus)) return { segment: 'real_estate', score: 55, nextAction: 'Review property interest' };
@@ -24,7 +25,7 @@ export function cleanLead(input) {
   if (!leadSources.has(source)) throw new Error('Invalid form source.');
   if (!/^[0-9a-f]{8}-[0-9a-f-]{27,}$/i.test(requestId) || requestId.length > 64) throw new Error('Invalid submission ID.');
   const interest = String(input.interest || '').trim().slice(0, 120);
-  if (source === 'free_guide_popup' && !['Digital Income','AI','Cybersecurity','Real Estate','DWN Membership'].includes(interest))
+  if (source === 'free_guide_popup' && !['Digital Income','AI','Cybersecurity','Real Estate','DWN Membership','Personal Mentorship'].includes(interest))
     throw new Error('Choose your primary interest.');
   if ((source === 'free_guide_popup' || source === 'ai_training') && !firstName) throw new Error('Enter your first name.');
   const country = String(input.country || '').trim();

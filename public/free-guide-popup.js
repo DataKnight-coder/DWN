@@ -21,9 +21,10 @@
       keepalive: true }).catch(() => {});
     if (window.gtag) window.gtag('event', kind, { page_location: location.href, lead_magnet: 'free-guide' });
   };
+  const recentlyDismissed = () => { const at = Number(safeGet(localStorage, dismissKey)); return at > 0 && Date.now() - at < 7 * 86400000; };
   const close = () => {
     root?.remove(); root = null;
-    safeSet(sessionStorage, dismissKey, '1');
+    safeSet(localStorage, dismissKey, String(Date.now()));
     if (widgetId !== undefined) try { window.turnstile?.remove(widgetId); } catch { /* Continue. */ }
     priorFocus?.focus();
   };
@@ -54,7 +55,7 @@
       'expired-callback': () => { turnstileToken = ''; root.querySelector('[type="submit"]').disabled = true; },
     });
   };
-  const formMarkup = siteKey => `<div class="dwn-guide-backdrop"><div class="dwn-guide-panel" role="dialog" aria-modal="true" aria-labelledby="dwn-guide-title"><button class="dwn-guide-close" type="button" aria-label="Close free guide form">✕</button><p class="dwn-guide-kicker">Free resource</p><h2 id="dwn-guide-title">How to Make Money Online</h2><p>Get the beginner guide and choose the opportunity you want to explore first.</p><form class="dwn-guide-form"><label>First name<input name="firstName" autocomplete="given-name" maxlength="80" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Primary interest<select name="interest" required><option value="" selected disabled>Choose one</option><option>Digital Income</option><option>AI</option><option>Cybersecurity</option><option>Real Estate</option><option>DWN Membership</option></select></label><label>Country <small>(optional)</small><input name="country" autocomplete="country-name" maxlength="80"></label><label class="dwn-guide-consent"><input name="consent" type="checkbox"><span>Send me DWN news and offers by email. I can unsubscribe at any time.</span></label><p class="dwn-guide-fine">We use your details to save this request and show your guide link. Marketing emails require the separate checkbox. Read our <a href="/privacy-policy/" target="_blank">privacy policy</a>.</p><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="dwn-guide-honeypot"><div id="free-guide-turnstile" aria-label="Security check"></div><button type="submit" ${siteKey ? 'disabled' : ''}>Get my free guide</button><p class="dwn-guide-status" role="status" aria-live="polite"></p></form></div></div>`;
+  const formMarkup = siteKey => `<div class="dwn-guide-backdrop"><div class="dwn-guide-panel" role="dialog" aria-modal="true" aria-labelledby="dwn-guide-title"><button class="dwn-guide-close" type="button" aria-label="Close free guide form">✕</button><p class="dwn-guide-kicker">Free resource</p><h2 id="dwn-guide-title">How to Make Money Online</h2><p>Get the beginner guide and choose the opportunity you want to explore first.</p><form class="dwn-guide-form"><label>First name<input name="firstName" autocomplete="given-name" maxlength="80" required></label><label>Email<input name="email" type="email" autocomplete="email" required></label><label>Primary interest<select name="interest" required><option value="" selected disabled>Choose one</option><option>Digital Income</option><option>AI</option><option>Cybersecurity</option><option>Real Estate</option><option>DWN Membership</option><option>Personal Mentorship</option></select></label><label>Country <small>(optional)</small><input name="country" autocomplete="country-name" maxlength="80"></label><label class="dwn-guide-consent"><input name="consent" type="checkbox"><span>Send me DWN news and offers by email. I can unsubscribe at any time.</span></label><p class="dwn-guide-fine">We use your details to save this request and show your guide link. Marketing emails require the separate checkbox. Read our <a href="/privacy-policy/" target="_blank">privacy policy</a>.</p><input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="dwn-guide-honeypot"><div id="free-guide-turnstile" aria-label="Security check"></div><button type="submit" ${siteKey ? 'disabled' : ''}>Get my free guide</button><p class="dwn-guide-status" role="status" aria-live="polite"></p></form></div></div>`;
   const expand = siteKey => {
     priorFocus = document.activeElement;
     expanded = true;
@@ -104,7 +105,10 @@
     });
   };
   const open = siteKey => {
-    if (opened || document.querySelector('[role="dialog"]') || ['#contact','#join-dwn','#ai-training'].includes(location.hash)) return;
+    if (safeGet(localStorage, trackingKey) === null) { setTimeout(() => open(siteKey), 3000); return; }
+    if (opened) return;
+    // Another dialog is open: wait and try again rather than losing this visit's one chance.
+    if (document.querySelector('[role="dialog"]') || ['#contact','#join-dwn','#ai-training'].includes(location.hash)) { setTimeout(() => open(siteKey), 3000); return; }
     opened = true;
     root = document.createElement('div'); root.id = 'dwn-free-guide-popup';
     document.body.appendChild(root);
@@ -117,9 +121,10 @@
   };
   fetch('/api/health', { cache: 'no-store' }).then(response => response.ok ? response.json() : null)
     .then(health => {
-      const siteKey = document.querySelector('meta[name="dwn-turnstile-site-key"]')?.content || '';
+      const metaKey = document.querySelector('meta[name="dwn-turnstile-site-key"]')?.content || '';
+      const siteKey = /^[A-Za-z0-9_-]{10,}$/.test(metaKey) ? metaKey : '';
       if (!health?.leadIntake || (health.turnstile && !siteKey) ||
-          safeGet(localStorage, conversionKey) || safeGet(sessionStorage, dismissKey)) return;
+          safeGet(localStorage, conversionKey) || recentlyDismissed()) return;
       let triggered = false;
       const trigger = () => {
         if (triggered) return;

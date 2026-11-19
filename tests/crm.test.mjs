@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanLead } from '../server/crm.mjs';
+import { cleanLead, classifyLead } from '../server/crm.mjs';
 import { onRequestPost } from '../functions/api/leads.js';
 import { DatabaseSync } from 'node:sqlite';
 import { readFileSync } from 'node:fs';
@@ -47,6 +47,9 @@ test('free guide and AI enquiries reuse CRM records and log consent per submissi
   assert.equal(details.interest, 'Digital Income');
   assert.equal(details.landingPage, '/');
   assert.equal(details.marketingConsent, false);
+  const mentor = cleanLead({ email: 'mentor@example.com', firstName: 'Mo', source: 'free_guide_popup',
+    requestId, interest: 'Personal Mentorship', marketingConsent: false });
+  assert.equal(classifyLead(mentor).segment, 'consulting');
   const ai = cleanLead({ email: 'lead@example.com', firstName: 'Lee', source: 'ai_training',
     requestId: crypto.randomUUID(), interest: 'AI', message: 'I want to learn AI tools.', landingPage: '/ai-training/',
     marketingConsent: true });
