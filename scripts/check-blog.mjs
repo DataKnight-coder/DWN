@@ -81,7 +81,11 @@ for (const offer of offers) {
 const ai = await readFile(join(dist, 'ai-training', 'index.html'), 'utf8');
 assert.match(ai, /href="\/#ai-training"/);
 const tracking = await readFile(join(dist, 'site-tracking.js'), 'utf8');
-assert.doesNotMatch(tracking, /connect\.facebook\.net|fbq\(/);
+assert.doesNotMatch(tracking, /connect\.facebook\.net/);
+const pixelLoader = await readFile(join(dist, 'meta-pixel.js'), 'utf8');
+assert.match(pixelLoader, /dwn-meta-pixel-id/);
+assert.match(pixelLoader, /=== 'accepted'/); // loads only after consent
+if (!process.env.VITE_META_PIXEL_ID) assert.doesNotMatch(await readFile(join(dist, 'index.html'), 'utf8'), /name="dwn-meta-pixel-id" content="\d/);
 const popup = await readFile(join(dist, 'free-guide-popup.js'), 'utf8');
 assert.match(popup, /free_guide_popup/);
 assert.match(popup, /\/api\/health/);

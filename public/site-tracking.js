@@ -8,13 +8,15 @@ function showChoice() {
   banner.setAttribute('role', 'region');
   banner.setAttribute('aria-label', 'Marketing tracking choice');
   banner.className = 'static-consent';
-  banner.innerHTML = '<p>Allow optional website engagement and offer click tracking? Cloudflare may collect basic visit analytics separately. Your choice does not affect access to the site.</p><div><button type="button" data-choice="accepted">Allow tracking</button><button type="button" data-choice="declined">Decline</button></div>';
+  const metaNote = /^\d{8,20}$/.test(document.querySelector('meta[name="dwn-meta-pixel-id"]')?.content || '') ? ' Meta (Facebook and Instagram) may also receive page views and sign-up or offer-click events to measure advertising.' : '';
+  banner.innerHTML = '<p>Allow optional website engagement and offer click tracking? Cloudflare may collect basic visit analytics separately.' + metaNote + ' Your choice does not affect access to the site.</p><div><button type="button" data-choice="accepted">Allow tracking</button><button type="button" data-choice="declined">Decline</button></div>';
   banner.addEventListener('click', event => {
     const value = event.target.closest('button[data-choice]')?.dataset.choice;
     if (!value) return;
     const prior = choice();
     try { localStorage.setItem(consentKey, value); } catch { /* Current page choice only. */ }
     banner.remove();
+    window.dispatchEvent(new Event('dwn-tracking-choice'));
     if (prior === 'accepted' && value === 'declined') { location.reload(); return; }
   });
   document.body.appendChild(banner);
@@ -37,5 +39,6 @@ document.addEventListener('click', event => {
     utm_medium: utm('utm_medium'), utm_campaign: utm('utm_campaign') });
   if (navigator.sendBeacon) navigator.sendBeacon('/api/outbound', new Blob([payload], { type: 'application/json' }));
   else fetch('/api/outbound', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(() => {});
+  if (window.fbq) window.fbq('trackCustom', 'OfferClick', { offer_id: offerId, placement });
   if (window.gtag) window.gtag('event', 'offer_outbound_click', { offer_id: offerId, page_location: location.href, link_url: anchor.href });
 });

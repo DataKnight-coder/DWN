@@ -29,6 +29,7 @@ export default function OutboundTracking() {
         utm_campaign: attribution.utm_campaign });
       if (navigator.sendBeacon) navigator.sendBeacon('/api/outbound',new Blob([payload],{ type:'application/json' }));
       else fetch('/api/outbound',{ method:'POST',headers:{'Content-Type':'application/json'},body:payload,keepalive:true }).catch(() => {});
+      if (target.offerId && (window as any).fbq) (window as any).fbq('trackCustom', 'OfferClick', { offer_id: target.offerId, placement: anchor.dataset.cta || 'other' });
       if (target.offerId && (window as any).gtag) (window as any).gtag('event', 'offer_outbound_click', {
         offer_id: target.offerId, page_location: window.location.href, link_url: anchor.href });
     };

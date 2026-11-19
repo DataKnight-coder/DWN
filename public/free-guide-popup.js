@@ -95,6 +95,7 @@
         if (!response.ok || !result.ok) throw new Error(result.error || 'Could not save your details. Please retry.');
         safeSet(localStorage, conversionKey, '1');
         measured('popup_submission');
+        if (window.fbq) window.fbq('track', 'Lead', { content_name: 'Free Guide' });
         root.querySelector('.dwn-guide-panel').innerHTML = `<button class="dwn-guide-close" type="button" aria-label="Close free guide confirmation">✕</button><p class="dwn-guide-kicker">Saved</p><h2 id="dwn-guide-title">Your guide is ready.</h2><p>Open the free resource on Selfany. Your website enquiry has been saved.</p><a class="dwn-guide-delivery" href="${guideUrl}" data-offer-id="free-guide" data-cta="popup_delivery" target="_blank" rel="noreferrer">Open free guide ↗</a>`;
         root.querySelector('.dwn-guide-close').addEventListener('click', close);
         root.querySelector('.dwn-guide-close').focus();
