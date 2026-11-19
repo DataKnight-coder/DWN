@@ -40,7 +40,7 @@ const TurnstileField: React.FC<{ onToken: (token: string) => void; resetNonce: n
     };
   }, [siteKey, onToken, resetNonce]);
   if (!siteKey) return null;
-  return <div ref={ref} aria-label="Security check" />;
+  return <div ref={ref} role="group" aria-label="Security check" />;
 };
 
 export default TurnstileField;
