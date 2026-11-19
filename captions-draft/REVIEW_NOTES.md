@@ -1,3 +1,13 @@
+# Caption status
+
+**Published (19 Nov 2026):** `dwn-founder-story` and `dwn-community-intro` now have reviewed English captions at `public/captions/*.en.vtt`, attached to the players as selectable captions (the CC control; off by default). Wording was confirmed by the site owner. Timings come from word-level timestamps; cues are at most two lines of 42 characters. The spoken "comment" and "DM" wording is kept as recorded.
+
+Judgement calls approved by the owner and applied: "rent", "Work, eat, sleep, repeat", "new skills", "instant success; even I can't promise you that", "Diaspora Wealth Network", "see you guys". The webinar title is captioned as transcribed ("On Your Future"). Two independent transcription models heard it that way, but if the real title is "Own Your Future" it is a one-word edit in `public/captions/dwn-community-intro.en.vtt`.
+
+The remaining drafts in this folder are for videos that are no longer on the homepage and are kept only for reference.
+
+---
+
 # Caption drafts: NOT published, need human review
 
 Generated with Whisper `medium.en` from the site's six video files. These files live outside `public/`, so nothing here is served on the website. Do not publish until each line has been checked against the audio by someone who knows the content.

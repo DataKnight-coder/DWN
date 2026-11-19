@@ -58,6 +58,7 @@ const Story: React.FC = () => {
           <div className="max-w-[250px] mx-auto lg:mx-0 lg:col-start-2 xl:col-start-3 xl:row-start-1">
           <video controls playsInline preload="none" poster="/dwn-founder-story-poster.jpg" className="w-full rounded-2xl shadow-xl bg-dark" aria-label="Dr. Hauwa introduces her story and the Diaspora Wealth Network">
             <source src="/dwn-founder-story.mp4" type="video/mp4" />
+            <track kind="captions" src="/captions/dwn-founder-story.en.vtt" srcLang="en" label="English" />
             Your browser does not support video.
           </video>
           <p className="text-sm text-primary/70 mt-3">Watch Dr. Hauwa discuss why a broader plan matters for people building a life abroad. The clip includes on-screen text.</p>

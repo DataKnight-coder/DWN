@@ -34,6 +34,7 @@ const DWNSection: React.FC = () => {
             <div className="w-[230px]">
               <video controls playsInline preload="none" poster="/dwn-community-intro-poster.jpg" width={360} height={640} className="w-full h-auto rounded-2xl shadow-xl bg-dark" aria-label="Dr. Hauwa introduces the Diaspora Wealth Network">
                 <source src="/dwn-community-intro.mp4" type="video/mp4" />
+                <track kind="captions" src="/captions/dwn-community-intro.en.vtt" srcLang="en" label="English" />
                 Your browser does not support video.
               </video>
               <p className="text-sm text-ivory/70 mt-3">A short introduction to DWN from Dr. Hauwa. The clip includes on-screen text.</p>

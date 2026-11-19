@@ -92,4 +92,19 @@ assert.match(popup, /\/api\/health/);
 assert.match(popup, /\/api\/leads/);
 assert.match(popup, /\/api\/engagement/);
 assert.match(await readFile(join(dist, 'index.html'), 'utf8'), /\/free-guide-popup.js/);
+
+// Caption files: valid WebVTT, at most two lines of 42 characters, ordered times, Diaspora Wealth Network spelled correctly.
+for (const stem of ['dwn-founder-story', 'dwn-community-intro']) {
+  const vtt = await readFile(join(dist, 'captions', `${stem}.en.vtt`), 'utf8');
+  assert.match(vtt, /^WEBVTT/);
+  let last = -1;
+  for (const block of vtt.split(/\n\n+/).slice(1).filter(Boolean)) {
+    const [time, ...lines] = block.split('\n');
+    const [from, to] = time.split(' --> ').map(t => { const [m, sec] = t.split(':'); return Number(m) * 60 + Number(sec); });
+    assert.ok(from >= last - 0.001 && to > from, `cue times out of order in ${stem}: ${time}`);
+    assert.ok(lines.length >= 1 && lines.length <= 2 && lines.every(line => line.length <= 42), `caption too long in ${stem}: ${lines.join(' / ')}`);
+    last = to;
+  }
+  assert.match(vtt, /Diaspora Wealth Network/);
+}
 console.log('Offers, AI training, privacy, new guides, metadata, sitemap and inactive Meta Pixel checks passed.');
