@@ -48,7 +48,7 @@ Affiliate marketing can be conducted in Canada, but advertising, tax, contract a
 
 ### Which affiliate program should I join first?
 
-Choose a program whose product is genuinely relevant to your audience and whose eligibility and terms you understand. Compare official program pages rather than relying on a list of headline commission rates.
+Choose a program whose product is genuinely relevant to your audience and whose eligibility and terms you understand. Compare official program pages rather than relying on a list of headline commission rates. Our [comparison of affiliate programs in Canada](/blog/best-affiliate-programs-canada/) shows what to check on each one.
 
 ### Does clicking an affiliate link mean I earned a commission?
 

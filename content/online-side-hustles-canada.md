@@ -2,7 +2,7 @@
 
 A side hustle is an additional way to earn outside your main job. The most useful question is not “Which idea makes the most money?” It is “Which problem can I solve with skills, time and resources I actually have?” For immigrants and diaspora professionals in Canada, that question also includes work authorization, taxes and the time needed to establish a new life.
 
-This guide focuses on online side hustles: work that can be researched, sold or delivered mainly through the internet. It covers a narrower subject than our [broader wealth-building guide](/blog/build-wealth-as-an-immigrant-in-canada/), which also discusses saving, investing, careers and property. There is no guaranteed income from any of the ideas below.
+This guide focuses on online side hustles: work that can be researched, sold or delivered mainly through the internet. It covers a narrower subject than our [broader wealth-building guide](/blog/build-wealth-as-an-immigrant-in-canada/), which also discusses saving, investing, careers and property. If you want to compare offline and local options as well, start with our guide to [side hustles in Canada](/blog/side-hustles-canada/). There is no guaranteed income from any of the ideas below.
 
 ## Choose a path that fits your starting point
 
@@ -13,7 +13,7 @@ Start with one of these paths and test it before adding another:
 - **Freelance services:** Writing, design, administration, data analysis or web work can be offered to a clearly defined client. A service can be tested with a small project, but delivery still depends on your time.
 - **Online teaching or educational resources:** A tutor or subject specialist can teach within their competence or create a guide. Check any professional or provincial rules that apply to the subject.
 - **Digital products:** Templates, checklists, guides and short courses can solve repeatable problems. The work is not passive: research, support and updates still matter. Read our [digital products guide](/blog/how-to-sell-digital-products/).
-- **Affiliate marketing:** Useful recommendations can earn a commission when a qualifying customer action occurs. Audience trust and clear disclosures matter more than posting large numbers of links. Read our [Canadian affiliate marketing guide](/blog/affiliate-marketing-canada/).
+- **Affiliate marketing:** Useful recommendations can earn a commission when a qualifying customer action occurs. Audience trust and clear disclosures matter more than posting large numbers of links. Read our [Canadian affiliate marketing guide](/blog/affiliate-marketing-canada/) and the [comparison of affiliate programs](/blog/best-affiliate-programs-canada/).
 - **Content-led services:** Articles or videos can demonstrate expertise and lead to consulting or project enquiries. Treat content as a way to help a particular audience, not as an instant revenue source.
 
 ## A four-week test you can run without overcommitting
