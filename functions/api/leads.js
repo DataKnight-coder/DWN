@@ -1,6 +1,7 @@
 import { cleanLead, json, limitRequest, saveLead } from '../../server/crm.mjs';
+import { sendServiceEmail } from '../../server/email.mjs';
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   if (!env.DB || !env.RATE_LIMIT_SALT) return json({ error: 'Lead intake is temporarily unavailable.' }, 503);
   const url = new URL(request.url);
   if (request.headers.get('Origin') !== url.origin) return json({ error: 'Invalid request origin.' }, 403);
@@ -24,6 +25,11 @@ export async function onRequestPost({ request, env }) {
   try {
     if (!await limitRequest(env.DB, request, env.RATE_LIMIT_SALT)) return json({ error: 'Please try again later.' }, 429);
     const result = await saveLead(env.DB, lead);
+    // Service email (guide delivery / enquiry acknowledgement). Off unless explicitly enabled; never blocks the response.
+    if (!result.duplicate) {
+      const sending = sendServiceEmail(env, lead);
+      if (typeof waitUntil === 'function') waitUntil(sending);
+    }
     return json({ ok: true, duplicate: result.duplicate }, 201);
   } catch (error) {
     console.error('Lead persistence failed', error);

@@ -1,5 +1,6 @@
 import { authorize } from '../../../server/access.mjs';
 import { json } from '../../../server/crm.mjs';
+import { emailState } from '../../../server/email.mjs';
 
 export async function onRequestGet(context) {
   const auth = await authorize(context);
@@ -18,7 +19,7 @@ export async function onRequestGet(context) {
       confirmedConsultationRevenue: consultationRevenue.results,
       testimonials: testimonials.results,
       integrations: { selfany: 'external_links_only', ai: context.env.AI ? 'on_demand' : 'not_connected',
-        resend: 'not_connected', ga4: 'not_connected',
+        resend: emailState(context.env), ga4: 'not_connected',
         searchConsole: 'not_connected', metaAds: 'not_connected', cloudflareAnalytics: 'not_connected' } });
   } catch (error) {
     console.error('Overview query failed', error);

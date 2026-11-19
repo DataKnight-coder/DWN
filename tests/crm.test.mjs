@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { cleanLead, classifyLead } from '../server/crm.mjs';
 import { onRequestPost } from '../functions/api/leads.js';
 import { DatabaseSync } from 'node:sqlite';
+import { sendServiceEmail, renderEmail, emailState } from '../server/email.mjs';
 import { readFileSync } from 'node:fs';
 import { saveLead } from '../server/crm.mjs';
 import { onRequestPost as postImport } from '../functions/api/admin/import.js';
@@ -120,6 +121,7 @@ function database() {
   sqlite.exec(readFileSync(new URL('../migrations/0003_growth.sql', import.meta.url), 'utf8'));
   sqlite.exec(readFileSync(new URL('../migrations/0004_offers.sql', import.meta.url), 'utf8'));
   sqlite.exec(readFileSync(new URL('../migrations/0005_engagement.sql', import.meta.url), 'utf8'));
+  sqlite.exec(readFileSync(new URL('../migrations/0006_email_log.sql', import.meta.url), 'utf8'));
   const db = {
     prepare(sql) {
       let args = [];
@@ -293,4 +295,59 @@ test('Access-signed admin blocks Selfany imports and reports website leads', asy
     assert.equal((await suggestion.json()).status, 'draft_for_human_review');
     assert.equal(promptText.includes('attendee@example.com'), false);
   } finally { globalThis.fetch = originalFetch; sqlite.close(); }
+});
+
+test('service emails stay off by default, log skips, and never block lead capture', async () => {
+  const { sqlite, db } = database();
+  const lead = cleanLead({ email: 'guide@example.com', firstName: 'Gia', source: 'free_guide_popup',
+    requestId: crypto.randomUUID(), interest: 'AI', marketingConsent: false });
+  await saveLead(db, lead);
+  let calls = 0;
+  const fetchStub = async (url, init) => { calls++; fetchStub.last = { url, init }; return Response.json({ id: 'resend-1' }); };
+  // Disabled flag: nothing leaves the building, but the skip is logged.
+  assert.equal((await sendServiceEmail({ DB: db, RESEND_API_KEY: 'k' }, lead, fetchStub)).status, 'skipped_disabled');
+  assert.equal(calls, 0);
+  // Enabled without a key is also off.
+  assert.equal((await sendServiceEmail({ DB: db, EMAIL_SENDING_ENABLED: 'true' }, lead, fetchStub)).status, 'skipped_disabled');
+  assert.equal(emailState({}), 'not_connected');
+  assert.equal(emailState({ RESEND_API_KEY: 'k' }), 'connected_sending_disabled');
+  assert.equal(emailState({ RESEND_API_KEY: 'k', EMAIL_SENDING_ENABLED: 'true' }), 'enabled');
+  // Enabled: sends once with the approved sender, reply-to and idempotency key.
+  const lead2 = { ...lead, requestId: crypto.randomUUID() };
+  const env = { DB: db, RESEND_API_KEY: 'k', EMAIL_SENDING_ENABLED: 'true' };
+  assert.equal((await sendServiceEmail(env, lead2, fetchStub)).status, 'sent');
+  const body = JSON.parse(fetchStub.last.init.body);
+  assert.equal(body.from, 'Dr. Hauwa | Diaspora Wealth Network <hello@mail.drhauwaphd.ca>');
+  assert.equal(body.reply_to, 'hello@drhauwaphd.ca');
+  assert.deepEqual(body.to, ['guide@example.com']);
+  assert.equal(fetchStub.last.init.headers['Idempotency-Key'], `${lead2.requestId}:free_guide_delivery`);
+  assert.match(body.html, /selfany\.com\/ABNVUFTKMG/);
+  assert.doesNotMatch(body.html, /unsubscribe/i); // service email, not marketing
+  // A repeat within 24 hours is skipped, not re-sent.
+  const lead3 = { ...lead, requestId: crypto.randomUUID() };
+  assert.equal((await sendServiceEmail(env, lead3, fetchStub)).status, 'skipped_recent');
+  assert.equal(calls, 1);
+  // Suppressed contacts get nothing.
+  sqlite.prepare('INSERT INTO suppressions(email,reason) VALUES(?,?)').run('guide@example.com', 'unsubscribe');
+  assert.equal((await sendServiceEmail(env, { ...lead, requestId: crypto.randomUUID() }, fetchStub)).status, 'skipped_suppressed');
+  // Newsletter and quiz sources have no service email.
+  assert.equal((await sendServiceEmail(env, { ...lead, source: 'newsletter' }, fetchStub)).status, 'none');
+  // A provider failure is logged and swallowed.
+  const bad = cleanLead({ email: 'fail@example.com', firstName: 'Fay', source: 'consultation', requestId: crypto.randomUUID(), message: 'Hi' });
+  await saveLead(db, bad);
+  const failing = async () => Response.json({ message: 'domain not verified' }, { status: 403 });
+  assert.equal((await sendServiceEmail(env, bad, failing)).status, 'failed');
+  const statuses = sqlite.prepare('SELECT status FROM email_log ORDER BY created_at').all().map(row => row.status);
+  assert.ok(statuses.includes('sent') && statuses.includes('failed') && statuses.includes('skipped_suppressed'));
+  sqlite.close();
+});
+
+test('email templates escape names and read cleanly as plain text', () => {
+  const mail = renderEmail('community_ack', '<script>alert(1)</script>');
+  assert.doesNotMatch(mail.html, /<script>/);
+  assert.match(mail.html, /&lt;script&gt;/);
+  assert.match(mail.html, /viewport/);
+  assert.match(mail.text, /selfany\.com\/thedwn/);
+  assert.equal(renderEmail('consultation_ack', '').subject, 'We received your consultation request');
+  assert.match(renderEmail('ai_training_ack', 'Ada').text, /not published yet/);
 });
