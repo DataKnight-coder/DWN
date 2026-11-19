@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 const pillars = [
   {
@@ -71,7 +71,6 @@ const AuthorityPillars: React.FC = () => {
             return (
               <motion.div
                 key={pillar.id}
-                layout
                 onMouseEnter={() => setActiveId(pillar.id)}
                 className={`group relative rounded-[2rem] overflow-hidden cursor-pointer shadow-2xl flex-1 flex flex-col justify-end transition-all duration-700 ease-[0.16,1,0.3,1] ${isActive ? 'grow-[3]' : 'grow-[1]'}`}
               >
@@ -84,7 +83,7 @@ const AuthorityPillars: React.FC = () => {
                 <div className={`absolute inset-0 bg-gradient-to-t transition-opacity duration-700 ${isActive ? 'from-dark/95 via-dark/40 to-transparent' : 'from-dark/90 to-dark/40'}`} />
                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
 
-                <motion.div layout="position" className="relative z-10 p-8 w-full">
+                <motion.div className="relative z-10 p-8 w-full">
                   <div className={`text-accent font-bold uppercase tracking-widest text-xs mb-4 transition-all duration-300 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
                     {pillar.num}
                   </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 import { trackEvent } from '../utils/tracking';
 import { submitLead } from '../utils/leads';
 import { useLeadIntake } from '../utils/useLeadIntake';

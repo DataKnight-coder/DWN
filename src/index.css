@@ -1,10 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html { scroll-behavior: smooth; }
+
+/* Metrics-matched fallback so the headline does not change height when Inter loads (prevents layout shift). */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.4%;
+  ascent-override: 90.2%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+
+/* Focus-areas marquee: compositor-only CSS animation (no per-frame script). */
+@keyframes marquee-slide { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-1920px, 0, 0); } }
+.marquee-track { animation: marquee-slide 30s linear infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+/* Sections below the hero skip style, layout and paint until they are near the viewport. */
+main > section:nth-of-type(n+3) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
 
 /* Premium Tactile Grain Overlay */
 .noise-bg {

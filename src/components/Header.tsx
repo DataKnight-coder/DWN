@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll } from 'framer-motion';
 import { Menu } from 'lucide-react';
 
 
@@ -10,16 +9,15 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onOpenMobileNav, onOpenQuiz }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScroll();
-
   useEffect(() => {
-    return scrollY.onChange((latest) => {
-      setIsScrolled(latest > 50);
-    });
-  }, [scrollY]);
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <motion.header
+    <header
       className={`fixed w-full z-50 top-0 transition-all duration-500 ${
         isScrolled ? 'bg-ivory/95 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'
       }`}
@@ -61,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenMobileNav, onOpenQuiz }) => {
           </button>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 };
 

@@ -1,5 +1,6 @@
+import offers from '../../content/offers.json';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 const Story: React.FC = () => {
   return (
@@ -58,6 +59,8 @@ const Story: React.FC = () => {
                 Your browser does not support video.
               </video>
               <p className="text-sm text-primary/70 mt-3">Watch Dr. Hauwa discuss why a broader plan matters for people building a life abroad. The clip includes on-screen text.</p>
+              <p className="text-sm text-primary/80 mt-3">The video mentions commenting or sending a DM for a link. You can use the button below instead.</p>
+              <a href={offers.find(o => o.id === 'monetization-masterclass')!.url} data-offer-id="monetization-masterclass" data-cta="story_video_masterclass" target="_blank" rel="noreferrer" className="inline-block mt-3 bg-primary text-ivory font-bold text-sm py-3 px-6 rounded-full hover:bg-dark transition-colors">Secure Your Seat in the Free Masterclass</a>
             </div>
           </div>
 

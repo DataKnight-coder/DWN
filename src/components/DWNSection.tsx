@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 import TestimonialProof from './TestimonialProof';
 import { proofVariant, recordProofEvent } from '../utils/testimonialExperiments';
 
@@ -63,6 +63,7 @@ const DWNSection: React.FC = () => {
               <p className="text-sm text-ivory/70 mt-3">Inside DWN: opportunities and member wins. The clip includes on-screen text; results vary by person.</p>
             </div>
           </div>
+          <p className="text-sm sm:text-base text-ivory/80 -mt-4 mb-8 max-w-2xl mx-auto">Some clips mention commenting or sending a DM for a link. You can skip that and use the buttons below to get the free masterclass or join DWN directly.</p>
           <div className="grid gap-6 sm:grid-cols-2 text-center">
             <div>
               <TestimonialProof placement="webinar" />

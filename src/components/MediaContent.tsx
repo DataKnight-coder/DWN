@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
+import offers from '../../content/offers.json';
+
+const masterclass = offers.find(offer => offer.id === 'monetization-masterclass')!;
+const membership = offers.find(offer => offer.id === 'dwn-membership')!;
 
 const MediaContent: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -89,6 +93,13 @@ const MediaContent: React.FC = () => {
               <span className="inline-block px-3 py-1 bg-accent/20 text-accent text-[10px] font-black uppercase tracking-widest rounded-full mb-3">Now Playing</span>
               <h3 className="text-lg sm:text-2xl font-black tracking-tight mb-2">{videos[activeIdx].title}</h3>
               <p className="text-ivory/60 font-medium leading-relaxed text-sm">{videos[activeIdx].desc}</p>
+              {videos[activeIdx].src.includes('Hauwa Video') && (
+                <p className="mt-4 text-ivory/80 text-sm leading-relaxed">This is a recorded message. It refers to a class on a particular day, and that date may have passed. See the current free masterclass below for available details.</p>
+              )}
+              <div className="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
+                <a href={masterclass.url} data-offer-id={masterclass.id} data-cta="media_video_masterclass" target="_blank" rel="noreferrer" className="bg-accent text-primary font-bold text-sm py-3 px-6 rounded-full">{masterclass.cta}</a>
+                <a href={membership.url} data-offer-id={membership.id} data-cta="media_video_membership" target="_blank" rel="noreferrer" className="border border-ivory/40 text-ivory font-bold text-sm py-3 px-6 rounded-full hover:bg-ivory hover:text-primary transition-colors">{membership.cta}</a>
+              </div>
             </div>
           </div>
         </motion.div>

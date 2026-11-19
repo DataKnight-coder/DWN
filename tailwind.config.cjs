@@ -15,7 +15,7 @@ module.exports = {
         ivory: '#F4F1EA', // Warm cream/ivory
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Inter", "Inter Fallback", "system-ui", "sans-serif"],
         serif: ["Playfair Display", "Georgia", "serif"],
       },
     },

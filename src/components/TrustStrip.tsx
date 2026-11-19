@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const TrustStrip: React.FC = () => {
   // Topics, not endorsements or partner logos.
@@ -17,16 +16,7 @@ const TrustStrip: React.FC = () => {
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-primary to-transparent z-10 pointer-events-none" />
 
       {/* Infinite Marquee Track */}
-      <motion.div 
-        aria-hidden="true"
-        className="flex whitespace-nowrap items-center gap-16"
-        animate={{ x: [0, -1920] }} // Adjust depending on content width
-        transition={{ 
-          repeat: Infinity, 
-          duration: 30, 
-          ease: "linear" 
-        }}
-      >
+      <div aria-hidden="true" className="marquee-track flex whitespace-nowrap items-center gap-16">
         {logos.map((logo, index) => (
           <div key={index} className="flex items-center gap-16">
             <span className="text-xl md:text-2xl font-black text-ivory/70 uppercase tracking-widest hover:text-accent transition-colors duration-300">
@@ -36,7 +26,7 @@ const TrustStrip: React.FC = () => {
             <span className="w-2 h-2 rounded-full bg-accent/50" />
           </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 };

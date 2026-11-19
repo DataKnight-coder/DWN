@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m as motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
   { id: 1, category: "Cybersecurity", title: "Enterprise Zero Trust Implementation", desc: "Led architecture for 5,000+ endpoints.", result: "Zero breaches in 24 months", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m as motion } from 'framer-motion';
 
 const steps = [
   { num: "01", title: "POSITION", desc: "Understand exactly where you are in your career or business, and map out the strategic gap to where you want to go." },
