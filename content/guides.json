@@ -189,5 +189,37 @@
     "category": "Career development",
     "summary": "Use Canadian career guidance to map your existing experience to a practical cybersecurity learning path.",
     "published": "2026-11-19"
+  },
+  {
+    "slug": "canadian-resume-format-newcomers",
+    "title": "Canadian Resume Format for Newcomers: What to Include and Leave Out",
+    "description": "How to format a Canadian resume as a newcomer: sections, length, what to leave out and how to present overseas experience, based on Job Bank guidance.",
+    "category": "Career development",
+    "summary": "The sections, length and details Canadian employers expect, and how to present experience from abroad.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "foreign-credential-recognition-alberta",
+    "title": "Foreign Credential Recognition in Alberta: Using IQAS",
+    "description": "What the Alberta IQAS assessment does and does not do, how it differs from an immigration ECA, and how it fits with regulated professions.",
+    "category": "Career development",
+    "summary": "IQAS explained: employment, education and licensure, and why it is not an immigration document.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "tfsa-rrsp-fhsa-newcomers",
+    "title": "TFSA vs RRSP vs FHSA: A Plain Guide for Newcomers to Canada",
+    "description": "The differences between the TFSA, RRSP and FHSA, how contribution room works for newcomers, and how to start building Canadian credit, using CRA and FCAC sources.",
+    "category": "Financial education",
+    "summary": "How the three accounts compare, how room works for newcomers, and building a credit history.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "ai-interview-assessment-prep",
+    "title": "How to Prepare for an AI Training Interview or Assessment",
+    "description": "What AI-training platforms usually test in AI interviews, quizzes and written tasks, how to prepare honestly and how to stay safe.",
+    "category": "AI training",
+    "summary": "What screening looks like, what it checks and a practical preparation checklist.",
+    "published": "2026-11-20"
   }
 ]
