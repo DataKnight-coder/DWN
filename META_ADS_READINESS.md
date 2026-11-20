@@ -6,7 +6,7 @@ Prepared 19 Nov 2026. Meta's advertising rules change, so confirm the linked pol
 
 | Item | Status |
 |---|---|
-| Meta Pixel `1140755995061186` | Live, but it loads **only after a visitor clicks Allow tracking**. |
+| Meta Pixel `2617408385297481` | Live, but it loads **only after a visitor clicks Allow tracking**. |
 | Events sent | `PageView`, `Lead` (free guide, enquiries), `OfferClick` (custom), `PathFinderSelect` (custom). |
 | Privacy | Cookie banner and privacy policy mention Meta. |
 | Campaign attribution | `utm_source`, `utm_medium` and `utm_campaign` are remembered for the whole visit and saved on the CRM contact when they sign up, even if they browse several pages first. (Fixed and tested on 19 Nov.) |
