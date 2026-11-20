@@ -52,6 +52,14 @@ Job Bank's [Resume Builder](https://www.jobbank.gc.ca/findajob/resume-builder) i
 
 Applying for remote or online work? Read [remote jobs: how to find real ones](/blog/remote-jobs-guide/) and [how to spot AI training and remote job scams](/blog/ai-training-job-scams/). Dr. Hauwa's DWN community shares career and application tips. See [what DWN includes](/diaspora-wealth-network/).
 
+## How I and the DWN community can help
+
+I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). Many people ask me how to move forward in their careers in Canada, so career transitions are a regular topic in the community. This guide is free and complete on its own, and you do not need to join anything to use it.
+
+If you want company and structure, DWN is a community of people learning together. The annual membership is $147 a year and includes live training, mentorship, courses, networking events, downloadable resources and access to me inside the community. Inside DWN, we talk about AI-training work, online selling, real estate, personal branding, cybersecurity careers and entrepreneurship, and members share what they are learning and ask questions. No community can guarantee a job or income, and results vary with each person's effort, skills and circumstances.
+
+Start with the [free guide](/opportunities/), read [what DWN includes](/diaspora-wealth-network/), or explore the [AI Training page](/ai-training/).
+
 ## Frequently asked questions
 
 ### Should I put a photo on my resume in Canada?

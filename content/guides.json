@@ -221,5 +221,61 @@
     "category": "AI training",
     "summary": "What screening looks like, what it checks and a practical preparation checklist.",
     "published": "2026-11-20"
+  },
+  {
+    "slug": "mercor-ai-training-jobs-guide",
+    "title": "Mercor Review and Guide: How It Works, How to Apply and What to Watch For",
+    "description": "A plain guide to Mercor: the AI interview, how contract projects work, how payments are described in its official docs, and how to apply safely.",
+    "category": "AI training",
+    "summary": "How Mercor hires, how its projects and payments work according to its own docs, and what to check.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "outlier-ai-guide",
+    "title": "Outlier AI Guide: How to Join, What the Work Is and How Pay Is Described",
+    "description": "What Outlier is, how onboarding and skill screenings work according to its own help pages, how pay is shown, and how to stay safe.",
+    "category": "AI training",
+    "summary": "How Outlier onboarding, screenings and projects work, and what its own pages say about pay.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "handshake-ai-fellowship-guide",
+    "title": "Handshake AI Guide: What the Fellowship Is and How to Apply",
+    "description": "What Handshake AI is, how its AI trainer projects and pay are described in its help centre, and how to apply safely.",
+    "category": "AI training",
+    "summary": "What Handshake AI offers, how project pay works according to its help centre, and who it may suit.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "micro1-ai-jobs-guide",
+    "title": "micro1 Guide: The AI Interview, How It Works and How to Prepare",
+    "description": "How micro1 hires experts with its AI recruiter Zara, what the interview involves according to its own pages, and how to prepare and stay safe.",
+    "category": "AI training",
+    "summary": "What the micro1 AI interview involves, what happens afterwards and how to prepare honestly.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "mindrift-ai-trainer-guide",
+    "title": "Mindrift Guide: Freelance AI Trainer Work Explained",
+    "description": "What Mindrift is, how it works according to its own site, who can apply, and how to stay safe. Mindrift is operated by Toloka AI.",
+    "category": "AI training",
+    "summary": "How Mindrift's freelance AI trainer work and application process are described on its own site.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "telus-digital-ai-community-guide",
+    "title": "TELUS Digital AI Community Guide: How the Remote Work Works",
+    "description": "What the TELUS Digital AI Community is, the kinds of tasks it offers, how to find the official sign-up page and how to avoid fake recruiters.",
+    "category": "AI training",
+    "summary": "What TELUS Digital's AI Community is, what tasks look like and how to check you are on the official site.",
+    "published": "2026-11-20"
+  },
+  {
+    "slug": "sovrano-ai-guide",
+    "title": "Sovrano AI Guide: A New Platform, What to Know Before You Apply",
+    "description": "What is known about Sovrano AI, a new AI-training platform for European-language experts, and the checks to make before you apply.",
+    "category": "AI training",
+    "summary": "What third-party sources say about Sovrano AI, why caution is sensible for a new platform and how to verify it.",
+    "published": "2026-11-20"
   }
 ]

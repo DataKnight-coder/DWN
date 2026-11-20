@@ -37,6 +37,14 @@ The [CRA explains that income through digital platforms may create income-tax an
 
 For help deciding whether a product fits your wider goals, [compare DWN's current opportunities](/opportunities/) or explore the [DWN community and mentorship](/diaspora-wealth-network/).
 
+## How I and the DWN community can help
+
+I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). Many people ask me how to build a digital business step by step, with honest expectations, so it is a regular topic in the community. This guide is free and complete on its own, and you do not need to join anything to use it.
+
+If you want company and structure, DWN is a community of people learning together. The annual membership is $147 a year and includes live training, mentorship, courses, networking events, downloadable resources and access to me inside the community. Inside DWN, we talk about AI-training work, online selling, real estate, personal branding, cybersecurity careers and entrepreneurship, and members share what they are learning and ask questions. No community can guarantee a job or income, and results vary with each person's effort, skills and circumstances.
+
+Start with the [free guide](/opportunities/), read [what DWN includes](/diaspora-wealth-network/), or explore the [AI Training page](/ai-training/).
+
 ## Frequently asked questions
 
 ### Do I need a large audience before selling a digital product?
