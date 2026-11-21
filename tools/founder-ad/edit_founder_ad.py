@@ -61,8 +61,8 @@ def speech_segments(path, noise="-32dB", min_silence=0.7, pad=0.18):
     return merged or [(0.0, total)]
 
 
-def trim_and_scale(src, dst, w, h, trim):
-    segs = speech_segments(src) if trim else [(0.0, probe_duration(src))]
+def trim_and_scale(src, dst, w, h, trim, end=None):
+    segs = speech_segments(src) if trim else [(0.0, end or probe_duration(src))]
     parts_v, parts_a = [], []
     for i, (a, b) in enumerate(segs):
         parts_v.append(f"[0:v]trim={a:.3f}:{b:.3f},setpts=PTS-STARTPTS[v{i}]")
@@ -156,8 +156,14 @@ def end_card_png(path, w, h):
     img.save(path)
 
 
-def burn_and_finish(trimmed, cues, labels, out_path, w, h, caption_y, tmp):
+def burn_and_finish(trimmed, cues, labels, out_path, w, h, caption_y, tmp, inserts=()):
     inputs, chains, last, idx = ["-i", str(trimmed)], [], "[0:v]", 1
+    for n, item in enumerate(inserts):  # photos cover the picture; the voice keeps playing; captions and labels stay on top
+        inputs += ["-loop", "1", "-framerate", str(FPS), "-i", str(item["image"])]
+        chains.append(f"[{idx}:v]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},setsar=1,format=yuv420p[ins{n}]")
+        out = f"[i{n}]"
+        chains.append(f"{last}[ins{n}]overlay=x=0:y=0:shortest=1:enable='between(t,{item['start']:.3f},{item['end']:.3f})'{out}")
+        last, idx = out, idx + 1
     size = int(w * 0.058)
     for n, (s, e, text) in enumerate(cues):
         png = Path(tmp) / f"cap_{w}x{h}_{n}.png"
@@ -176,7 +182,7 @@ def burn_and_finish(trimmed, cues, labels, out_path, w, h, caption_y, tmp):
     body = Path(tmp) / f"body_{w}x{h}.mp4"
     graph = ";".join(chains) + f";{last}format=yuv420p[vout]" if chains else f"{last}format=yuv420p[vout]"
     run(["ffmpeg", "-y", "-hide_banner", *inputs, "-filter_complex", graph, "-map", "[vout]", "-map", "0:a",
-         "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "copy", str(body)])
+         "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "copy", "-shortest", str(body)])
     card_png, card = Path(tmp) / f"end_{w}x{h}.png", Path(tmp) / f"end_{w}x{h}.mp4"
     end_card_png(card_png, w, h)
     run(["ffmpeg", "-y", "-hide_banner", "-loop", "1", "-t", str(END_SECONDS), "-i", str(card_png), "-f", "lavfi", "-t", str(END_SECONDS),
@@ -190,13 +196,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("raw"); ap.add_argument("out")
     ap.add_argument("--vtt"); ap.add_argument("--labels"); ap.add_argument("--no-trim", action="store_true")
+    ap.add_argument("--end", type=float, help="Cut the clip here (seconds). Use with --no-trim.")
+    ap.add_argument("--inserts", help="JSON list of {start,end,image}: photos shown over the video.")
     ap.add_argument("--model", default="medium.en")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     labels = json.loads(Path(a.labels).read_text(encoding="utf-8")) if a.labels else []
+    inserts = json.loads(Path(a.inserts).read_text(encoding="utf-8")) if a.inserts else []
     with tempfile.TemporaryDirectory() as tmp:
         trimmed = Path(tmp) / "trimmed_916.mp4"
-        segs = trim_and_scale(a.raw, trimmed, 1080, 1920, not a.no_trim)
+        segs = trim_and_scale(a.raw, trimmed, 1080, 1920, not a.no_trim, a.end)
         kept = sum(b - x for x, b in segs)
         print(f"Kept {kept:.1f}s of {probe_duration(a.raw):.1f}s in {len(segs)} segments")
         if a.vtt:
@@ -208,11 +217,11 @@ def main():
         (out / "captions.vtt").write_text("WEBVTT\n\n" + "\n\n".join(
             f"{int(s // 60):02d}:{s % 60:06.3f} --> {int(e // 60):02d}:{e % 60:06.3f}\n{t}" for s, e, t in cues), encoding="utf-8")
         print(f"{len(cues)} caption cues")
-        burn_and_finish(trimmed, cues, labels, out / "founder-ad_9x16.mp4", 1080, 1920, int(1920 * .60), tmp)
+        burn_and_finish(trimmed, cues, labels, out / "founder-ad_9x16.mp4", 1080, 1920, int(1920 * .60), tmp, inserts)
         # 4:5 feed version: re-frame from the same trimmed pass
         feed = Path(tmp) / "trimmed_45.mp4"
         run(["ffmpeg", "-y", "-hide_banner", "-i", str(trimmed), "-vf", "crop=1080:1350:0:285", "-c:v", "libx264", "-crf", "18", "-c:a", "copy", str(feed)])
-        burn_and_finish(feed, cues, labels, out / "founder-ad_4x5.mp4", 1080, 1350, int(1350 * .62), tmp)
+        burn_and_finish(feed, cues, labels, out / "founder-ad_4x5.mp4", 1080, 1350, int(1350 * .62), tmp, inserts)
     for f in sorted(out.iterdir()):
         print(f.name, f"{f.stat().st_size / 1e6:.1f} MB")
 
