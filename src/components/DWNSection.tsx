@@ -40,13 +40,13 @@ const DWNSection: React.FC = () => {
               <p className="text-sm text-ivory/70 mt-3">A short introduction to DWN from Dr. Hauwa. The clip includes on-screen text.</p>
             </div>
           </div>
-          <p className="text-sm sm:text-base text-ivory/80 -mt-4 lg:mt-0 mb-8 max-w-2xl mx-auto lg:mx-0">The video may mention commenting or sending a DM for a link. You can skip that and use the buttons below to get the free masterclass or join DWN directly.</p>
           <div className="grid gap-6 sm:grid-cols-2 text-center lg:text-left">
             <div>
               <TestimonialProof placement="webinar" />
               <a href="https://selfany.com/w/DrHauwaPhD1" data-cta="dwn_webinar" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('webinar'); recordProofEvent('webinar', variant, 'click', variant === 'quote' ? 'dwn-pdf-16' : undefined); }} className="inline-block bg-accent text-primary font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-all shadow-xl">
                 Join the Free Quarterly Training
               </a>
+              <p className="text-sm text-ivory/70 mt-3">Held every quarter. Register to be told the date of the next session.</p>
             </div>
             <div>
               <TestimonialProof placement="membership" />

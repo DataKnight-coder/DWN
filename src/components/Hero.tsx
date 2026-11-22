@@ -76,10 +76,15 @@ const Hero: React.FC = () => {
 
             <p className="text-sm text-primary/70 mb-6 max-w-xl mx-auto lg:mx-0">DWN membership is $147 a year (price shown at checkout) and includes live training, mentorship, courses, networking events and downloadable resources. Results vary; nothing is guaranteed.</p>
 
+            <figure className="mb-6 max-w-xl mx-auto lg:mx-0 border-l-4 border-accent pl-4 text-left">
+              <blockquote className="text-primary/90 italic">“Wow.. since I joined DWN, it’s been new knowledge on a daily basis.”</blockquote>
+              <figcaption className="text-xs text-primary/60 mt-1">Funmilayo Sarah Sotomide, DWN member. One member’s experience; results vary.</figcaption>
+            </figure>
+
             {/* Clear paths to AI Training and one-on-one consultations */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 mb-8 font-bold text-primary">
               <a href={guide.url} data-offer-id={guide.id} data-cta="hero_free-guide" target="_blank" rel="noreferrer" className="underline underline-offset-4">Get the free guide →</a>
-              <a href={masterclass.url} data-offer-id={masterclass.id} data-cta="hero_quarterly_training" target="_blank" rel="noreferrer" className="underline underline-offset-4">Free quarterly training →</a>
+              <a href={masterclass.url} data-offer-id={masterclass.id} data-cta="hero_quarterly_training" target="_blank" rel="noreferrer" className="underline underline-offset-4">Free quarterly training: register for the next one →</a>
               <a href={session.url} data-offer-id={session.id} data-cta="hero_paid_session" target="_blank" rel="noreferrer" className="underline underline-offset-4">Paid strategy session →</a>
               <a href="/ai-training/" className="underline underline-offset-4">Explore AI Training →</a>
             </div>
