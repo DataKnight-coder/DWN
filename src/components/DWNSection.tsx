@@ -1,4 +1,4 @@
-import { NEXT_TRAINING } from '../config/training';
+import { NEXT_TRAINING, NEXT_TRAINING_TIMES } from '../config/training';
 import React from 'react';
 import { m as motion } from 'framer-motion';
 import TestimonialProof from './TestimonialProof';
@@ -47,7 +47,7 @@ const DWNSection: React.FC = () => {
               <a href="https://selfany.com/w/DrHauwaPhD1" data-cta="dwn_webinar" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('webinar'); recordProofEvent('webinar', variant, 'click', variant === 'quote' ? 'dwn-pdf-16' : undefined); }} className="inline-block bg-accent text-primary font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-all shadow-xl">
                 Join the Free Quarterly Training
               </a>
-              <p className="text-sm text-ivory/70 mt-3">Held every quarter. Next session: {NEXT_TRAINING}.</p>
+              <p className="text-sm text-ivory/70 mt-3">Held every quarter. Next session: {NEXT_TRAINING}, {NEXT_TRAINING_TIMES}.</p>
             </div>
             <div>
               <TestimonialProof placement="membership" />
