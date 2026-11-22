@@ -45,7 +45,7 @@ const DWNSection: React.FC = () => {
             <div>
               <TestimonialProof placement="webinar" />
               <a href="https://selfany.com/w/DrHauwaPhD1" data-cta="dwn_webinar" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('webinar'); recordProofEvent('webinar', variant, 'click', variant === 'quote' ? 'dwn-pdf-16' : undefined); }} className="inline-block bg-accent text-primary font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-all shadow-xl">
-                Explore the Free Webinar
+                Join the Free Quarterly Training
               </a>
             </div>
             <div>

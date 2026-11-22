@@ -12,17 +12,13 @@ Sovrano AI is a newer platform that sources describe as paying native speakers a
 | Track record | Short. The company is described as launching in 2026 |
 | Official source | Find the company's own website yourself and confirm it before you share anything |
 
-## How to apply, step by step
+## Where to start
 
-1. Search for the company's official website yourself and check the address carefully.
-2. Read its contractor terms, payment method and data-handling policy before applying.
-3. Look for independent experiences from several contributors, not only review sites that earn commissions.
-4. Apply only inside the official site and never pay anything.
-5. Start small and keep records of hours and payments.
+Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## What the screening checks
+## Going deeper
 
-Screening details vary. Expect language tests or subject tasks. Follow instructions exactly and work in your own words. The guide to [preparing for an AI training interview](/blog/ai-interview-assessment-prep/) explains the common formats.
+I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 

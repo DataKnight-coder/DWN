@@ -13,7 +13,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   { q: 'Is AI Training available yet?',
     a: <>Curriculum, dates and pricing are not published yet. You can <a href="#ai-training" className="font-bold underline underline-offset-4">register your interest</a> and Dr. Hauwa's team will follow up.</> },
   { q: 'Does Dr. Hauwa offer one-on-one sessions?',
-    a: <>Yes. You can book a strategy session on Selfany, or <a href="#contact" className="font-bold underline underline-offset-4">send an enquiry</a> first if you have questions.</> },
+    a: <>Yes. The strategy session is a paid one-on-one session with Dr. Hauwa, and you can book it on Selfany (the price is shown there before you pay). You can also or <a href="#contact" className="font-bold underline underline-offset-4">send an enquiry</a> first if you have questions.</> },
 ];
 
 const FAQ: React.FC = () => (

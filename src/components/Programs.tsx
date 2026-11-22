@@ -10,7 +10,7 @@ const Programs: React.FC = () => (
       <div className="max-w-3xl mb-6 sm:mb-8">
         <p className="text-xs font-black uppercase tracking-[.18em] text-[#45620a] mb-3">Explore your options</p>
         <h2 id="next-step-heading" className="text-4xl sm:text-5xl font-black text-primary tracking-tight leading-tight mb-4">Choose Your Next Step</h2>
-        <p className="text-lg text-primary/80">Start with a free guide, explore the DWN community, or ask for individual strategy support. Each option has a different purpose.</p>
+        <p className="text-lg text-primary/80">Start with a free guide, explore the DWN community, or book a paid one-on-one strategy session. Each option has a different purpose.</p>
       </div>
       <div className="border-t border-primary/20">
         {featured.map((offer, index) => <article key={offer.id} className="grid gap-4 lg:grid-cols-[5rem_1fr_auto] items-center py-5 border-b border-primary/20">

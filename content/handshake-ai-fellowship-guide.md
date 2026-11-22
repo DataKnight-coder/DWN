@@ -12,17 +12,13 @@ Handshake AI is the AI-training arm of Handshake, the career platform known for 
 | How pay is described | Handshake says most projects pay either hourly or per task, as set out in the Project Terms |
 | Official help | [Earning on Handshake AI](https://support.joinhandshake.com/hc/en-us/articles/33614619791767-Earning-on-Handshake-AI) and [Working as an AI trainer](https://support.joinhandshake.com/hc/en-us/articles/37576344583191-Working-as-an-AI-Trainer-with-frontier-labs-through-Handshake-AI) |
 
-## How to apply, step by step
+## Where to start
 
-1. Go to the official Handshake AI page and read who is eligible in your country.
-2. Apply with an accurate profile that shows your education and subject expertise.
-3. Complete any assessment or interview requested inside the platform.
-4. Read the Project Terms for each project before you accept. They set the rate, whether it is hourly or per task, and whether onboarding is paid.
-5. Track your hours and payments, and keep your own records.
+Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## What the screening checks
+## Going deeper
 
-Handshake looks at your education, expertise and any task-based assessments. Domain depth matters more than general enthusiasm. The guide to [preparing for an AI training interview](/blog/ai-interview-assessment-prep/) explains the common formats.
+I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 

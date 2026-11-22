@@ -12,17 +12,13 @@ Outlier is a platform where contributors help train and evaluate AI models. It d
 | How pay is shown | Outlier says the pay for a project is stated before you begin |
 | Official help | [Outlier FAQ](https://outlier.ai/faq) and [guide to working on Outlier](https://outlier.ai/blog/your-guide-to-working-on-outlier) |
 
-## How to apply, step by step
+## Where to start
 
-1. Create an account on Outlier's official website.
-2. Choose your areas of expertise and verify your identity inside the platform.
-3. Complete the short skill screenings. Outlier uses them to match you with projects.
-4. If there is no project for you yet, Outlier says qualified people may stay in its contributor pool and be contacted when projects open.
-5. Use the Help Center inside your dashboard for support. Outlier's pages say to use the "Need Help?" icon.
+Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## What the screening checks
+## Going deeper
 
-Outlier uses short skill assessments rather than a long interview. Read each instruction carefully, work in your own words and follow the style rules for the project. The guide to [preparing for an AI training interview](/blog/ai-interview-assessment-prep/) explains the common formats.
+I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 

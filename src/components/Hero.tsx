@@ -3,6 +3,9 @@ import offers from '../../content/offers.json';
 
 const membership = offers.find(offer => offer.id === 'dwn-membership')!;
 const guide = offers.find(offer => offer.id === 'free-guide')!;
+const africa = offers.find(offer => offer.id === 'africa-waiting-room')!;
+const masterclass = offers.find(offer => offer.id === 'monetization-masterclass')!;
+const session = offers.find(offer => offer.id === 'strategy-session')!;
 
 // The hero renders immediately with no entrance animation: the headline is the largest
 // contentful paint, so it must not wait for a script-driven fade-in.
@@ -60,22 +63,23 @@ const Hero: React.FC = () => {
                 Join Diaspora Wealth Network
               </a>
               <a
-                href={guide.url}
-                data-offer-id={guide.id}
-                data-cta="hero_free-guide"
+                href={africa.url}
+                data-offer-id={africa.id}
+                data-cta="hero_africa"
                 target="_blank"
                 rel="noreferrer"
                 className="bg-accent text-primary font-bold text-base py-4 px-8 rounded-full shadow-xl hover:scale-105 transition-transform text-center"
               >
-                Explore Free Resources
+                Join the Africa Waiting Room
               </a>
             </div>
 
             {/* Clear paths to AI Training and one-on-one consultations */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 mb-8 font-bold text-primary">
+              <a href={guide.url} data-offer-id={guide.id} data-cta="hero_free-guide" target="_blank" rel="noreferrer" className="underline underline-offset-4">Get the free guide →</a>
+              <a href={masterclass.url} data-offer-id={masterclass.id} data-cta="hero_quarterly_training" target="_blank" rel="noreferrer" className="underline underline-offset-4">Free quarterly training →</a>
+              <a href={session.url} data-offer-id={session.id} data-cta="hero_paid_session" target="_blank" rel="noreferrer" className="underline underline-offset-4">Paid strategy session →</a>
               <a href="/ai-training/" className="underline underline-offset-4">Explore AI Training →</a>
-              <a href="#contact" className="underline underline-offset-4">Book a consultation →</a>
-              <a href="/opportunities/" className="underline underline-offset-4">Compare all opportunities →</a>
             </div>
 
             {/* Expertise strip */}

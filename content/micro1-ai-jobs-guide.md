@@ -12,17 +12,13 @@ micro1 is a platform that vets and matches experts for AI training and evaluatio
 | Type of work | Project-based roles for many kinds of experts, not only coders |
 | Official help | [micro1 AI interview guide](https://www.micro1.ai/ai-interview-guide) and [interview questions](https://www.micro1.ai/interview-questions) |
 
-## How to apply, step by step
+## Where to start
 
-1. Create a profile on micro1's official website.
-2. Choose a role that matches your real skills.
-3. Complete the AI interview. micro1's pages describe it as open-ended questions based on your chosen role, with difficulty that depends on your field and experience.
-4. Wait for results and follow instructions on your dashboard.
-5. If you pass, you may be matched to projects as they open. Passing the interview does not always mean immediate work.
+Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## What the screening checks
+## Going deeper
 
-The interview assesses how you think, solve problems and communicate. Answer directly first, then give a short real example. If you do not know something, say how you would find out rather than guessing. Do not claim skills you do not have. The guide to [preparing for an AI training interview](/blog/ai-interview-assessment-prep/) explains the common formats.
+I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 

@@ -10,7 +10,7 @@ const choices = [
   { id: 'earn', label: 'Earn extra income', hint: 'Explore practical online income skills.',
     title: 'Start with the free guide', body: 'A free beginner resource introducing practical online income opportunities.',
     primary: { text: byId('free-guide').cta, href: byId('free-guide').url, offer: 'free-guide' },
-    secondary: { text: 'Then join the free masterclass', href: byId('monetization-masterclass').url, offer: 'monetization-masterclass' } },
+    secondary: { text: 'Then join the free quarterly training', href: byId('monetization-masterclass').url, offer: 'monetization-masterclass' } },
   { id: 'ai', label: 'Learn AI skills', hint: 'Use AI for work, learning and business.',
     title: 'Explore AI Training', body: 'Practical AI skills for work and business. Curriculum and dates are not published yet, so you can register your interest.',
     primary: { text: 'Explore AI Training', href: '/ai-training/' },
@@ -20,7 +20,7 @@ const choices = [
     primary: { text: byId('dwn-membership').cta, href: byId('dwn-membership').url, offer: 'dwn-membership' },
     secondary: { text: 'Read about DWN first', href: '/diaspora-wealth-network/' } },
   { id: 'talk', label: 'Talk to Dr. Hauwa', hint: 'Plan your next step one on one.',
-    title: 'Book a strategy session', body: 'Personalized guidance to identify opportunities and develop an actionable growth strategy.',
+    title: 'Book a paid strategy session', body: 'A paid one-on-one session with Dr. Hauwa for personalized guidance and an actionable growth strategy. The price is shown on Selfany before you pay.',
     primary: { text: byId('strategy-session').cta, href: byId('strategy-session').url, offer: 'strategy-session' },
     secondary: { text: 'Or send an enquiry', href: '#contact' } },
 ];

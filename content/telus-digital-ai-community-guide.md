@@ -12,17 +12,13 @@ The TELUS Digital AI Community is a large group of remote contributors who label
 | How you apply | Create a contributor account on TELUS Digital's official careers page |
 | Official page | [TELUS Digital AI Community](https://www.telusinternational.com/careers/ai-community) |
 
-## How to apply, step by step
+## Where to start
 
-1. Go to the official TELUS Digital AI Community page, typing or bookmarking the address yourself.
-2. Create a contributor account and complete your profile.
-3. Complete any qualification assessment and identity verification the project asks for.
-4. Read the project instructions carefully before you start.
-5. Check each project's terms for pay, hours and deadlines.
+Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## What the screening checks
+## Going deeper
 
-Listings mention attention to detail, following guidelines accurately and a reliable internet connection. Language skills can matter a lot, because the community covers many languages. The guide to [preparing for an AI training interview](/blog/ai-interview-assessment-prep/) explains the common formats.
+I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 

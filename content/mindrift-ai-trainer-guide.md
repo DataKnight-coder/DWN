@@ -12,17 +12,13 @@ Mindrift is a freelance platform where experts help train AI models. It is opera
 | Pay as stated by Mindrift | Its site lists a range depending on project and expertise; pay is shown before each task |
 | Official help | [How Mindrift works](https://mindrift.ai/how) and [freelancer tips](https://mindrift.ai/blog/freelance-tips) |
 
-## How to apply, step by step
+## Where to start
 
-1. Read the explanation on Mindrift's official site.
-2. Apply with your CV and background. Mindrift says it reviews applications and contacts people who fit.
-3. Pass the qualification assessments for the project area you want.
-4. Join a project when one opens, read the guidelines and follow them closely.
-5. Complete tasks, check the pay shown before each one, and keep your own records.
+Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## What the screening checks
+## Going deeper
 
-Qualifications test your subject knowledge and writing. Typical listings ask for strong written English, relevant education or experience and a stable internet connection. Specialist projects may ask for more. The guide to [preparing for an AI training interview](/blog/ai-interview-assessment-prep/) explains the common formats.
+I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 

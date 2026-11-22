@@ -12,17 +12,13 @@ Mercor is an online marketplace that connects experts with AI companies for cont
 | How you are paid | Described in Mercor's docs: hours are logged weekly and paid through Stripe, with Wise as a fallback where Stripe is unavailable |
 | Official help | [Mercor talent documentation](https://talent.docs.mercor.com/support/glossary) |
 
-## How to apply, step by step
+## Where to start
 
-1. Create a profile at the official Mercor site and complete your details accurately.
-2. Browse open roles and apply to the ones that fit your real experience.
-3. Take the AI interview. Mercor's glossary says assessments can include AI interviews, multiple-choice quizzes or written submissions.
-4. If you receive an offer, read the contract before you accept. Mercor publishes how contracts work on its [contracts page](https://talent.docs.mercor.com/policies/contracts).
-5. Follow the [project onboarding guide](https://talent.docs.mercor.com/working/project-onboarding) to set up payments and time tracking.
+Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## What the screening checks
+## Going deeper
 
-Screening is mostly the AI interview, quizzes or written tasks, plus a review of your profile. Be accurate about your skills and keep answers specific. See [how to prepare for an AI training interview](/blog/ai-interview-assessment-prep/). The guide to [preparing for an AI training interview](/blog/ai-interview-assessment-prep/) explains the common formats.
+I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 
