@@ -40,10 +40,10 @@ function inline(text) {
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 }
 function markdownToHtml(markdown) {
-  let html = '', paragraph = [], list = [], olist = [], table = [];
+  let html = '', paragraph = [], list = [], olist = [], olistStart = 1, table = [];
   const flushParagraph = () => { if (paragraph.length) html += `<p>${inline(paragraph.join(' '))}</p>`; paragraph = []; };
   const flushList = () => { if (list.length) html += `<ul>${list.map(line => `<li>${inline(line)}</li>`).join('')}</ul>`; list = []; };
-  const flushOrdered = () => { if (olist.length) html += `<ol>${olist.map(line => `<li>${inline(line)}</li>`).join('')}</ol>`; olist = []; };
+  const flushOrdered = () => { if (olist.length) html += `<ol${olistStart > 1 ? ` start="${olistStart}"` : ''}>${olist.map(line => `<li>${inline(line)}</li>`).join('')}</ol>`; olist = []; };
   const cells = row => row.replace(/^\|/, '').replace(/\|$/, '').split('|').map(cell => cell.trim());
   const flushTable = () => {
     if (table.length >= 2) {
@@ -65,7 +65,7 @@ function markdownToHtml(markdown) {
       continue;
     }
     if (line.startsWith('|')) { flushParagraph(); flushList(); flushOrdered(); table.push(line); continue; }
-    if (/^\d+\.\s/.test(line)) { flushParagraph(); flushList(); flushTable(); olist.push(line.replace(/^\d+\.\s+/, '')); continue; }
+    if (/^\d+\.\s/.test(line)) { flushParagraph(); flushList(); flushTable(); if (!olist.length) olistStart = Number(line.match(/^(\d+)\./)[1]); olist.push(line.replace(/^\d+\.\s+/, '')); continue; }
     if (line.startsWith('- ')) { flushParagraph(); flushOrdered(); flushTable(); list.push(line.slice(2)); continue; }
     flushList(); flushOrdered(); flushTable(); paragraph.push(line);
   }
