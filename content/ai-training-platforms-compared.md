@@ -6,31 +6,15 @@ New to the topic? Start with [AI training jobs: what they are and how to get sta
 
 ## Mercor
 
-**How it presents itself:** an AI-era talent marketplace that connects domain experts with AI labs and enterprises for recruiting, interviews and human expertise used in model training and evaluation.
-
-**How you get in:** public descriptions say applicants choose a domain and take an AI-conducted interview assessing expertise, problem solving and communication. Passing can qualify you for projects in that domain.
-
-**Work described publicly:** tasks such as preference judgments, rubric design, writing solutions and domain-specific evaluation, mostly as contract work.
-
-**Check on the official page:** eligibility by country, the contract and payment terms, and what the agreement says about intellectual property in your work and confidentiality. Start at [Mercor's expert page](https://www.mercor.com/experts/).
+Mercor is a marketplace that matches experts with AI projects, and it screens applicants mainly with an AI interview. Read its own help pages for the current terms.
 
 ## micro1
 
-**How it presents itself:** a data company that supplies domain experts for AI training and evaluation work, and uses an AI interviewer to screen applicants.
-
-**How you get in:** its own guides describe applying through its opportunities portal, completing a skill-based interview with its AI interviewer, verifying your identity and being onboarded, after which you are matched to projects. Passing the interview does not guarantee a role.
-
-**Work described publicly:** independent contractor roles such as rating outputs, writing prompts, annotating data and reviewing domain-specific results. Listings can state that there are no fixed hours and no guaranteed volume of assignments, and that contractors handle their own taxes and expenses.
-
-**Check on the official page:** pay stated on the specific listing, eligible countries, the contract terms and how payment works. Apply on the company's own site rather than through third-party links. See [micro1's guide to AI training jobs](https://www.micro1.ai/experts-guide/complete-guide-to-ai-training-jobs).
+micro1 matches experts to AI training and evaluation projects after an AI interview with its AI recruiter. Read its own pages for the current process.
 
 ## Handshake AI
 
-**How it presents itself:** Handshake's help centre describes an initiative that offers highly skilled students, graduates and researchers paid, part-time, project-based opportunities to help train and evaluate large language models.
-
-**Who it is for:** current students, graduates and professionals. Handshake's FAQ describes eligibility conditions that include location and work authorization, so check them carefully, especially if you are outside the United States.
-
-**Good to know:** Handshake states that it does not sponsor or facilitate school credit through the program, and that there is no guarantee of continuous work from week to week. Read its [overview of working as an AI trainer](https://support.joinhandshake.com/hc/en-us/articles/37576344583191-Working-as-an-AI-Trainer-with-frontier-labs-through-Handshake-AI) for the current rules.
+Handshake AI offers project-based AI-training work through the Handshake career platform. Read its help centre for current eligibility and terms.
 
 ## Other platforms exist
 
@@ -54,17 +38,6 @@ Public coverage of this sector notes that some contractors worry about unclear a
 ## Learning the landscape with others
 
 Comparing platforms, preparing for interviews and avoiding scams is easier with experienced guidance. Dr. Hauwa's Diaspora Wealth Network community shares tips and training for finding and applying for AI-training work. DWN is not affiliated with Mercor, micro1, Handshake or any other platform, and each company sets its own terms. See [AI Training with Dr. Hauwa](/ai-training/) or [what DWN includes](/diaspora-wealth-network/).
-
-## Read the platform-by-platform guides
-
-- [Mercor](/blog/mercor-ai-training-jobs-guide/)
-- [Outlier](/blog/outlier-ai-guide/)
-- [Handshake AI](/blog/handshake-ai-fellowship-guide/)
-- [micro1](/blog/micro1-ai-jobs-guide/)
-- [Mindrift](/blog/mindrift-ai-trainer-guide/)
-- [TELUS Digital AI Community](/blog/telus-digital-ai-community-guide/)
-- [Sovrano AI](/blog/sovrano-ai-guide/)
-- [How to prepare for an AI training interview](/blog/ai-interview-assessment-prep/)
 
 ## How I and the DWN community can help
 

@@ -46,17 +46,6 @@ Real AI training work exists, which is exactly why scammers copy it. A genuine p
 
 Learning the landscape alone is slow. Dr. Hauwa's Diaspora Wealth Network community shares tips and training on finding AI-training work, applying, preparing for screening and avoiding scams, alongside other income paths. DWN is not affiliated with any platform named on this site, and mentioning a platform is not an endorsement. Each company sets its own terms, availability and pay. You can read [what DWN membership includes](/diaspora-wealth-network/) or [ask about AI training](/ai-training/).
 
-## Read the platform-by-platform guides
-
-- [Mercor](/blog/mercor-ai-training-jobs-guide/)
-- [Outlier](/blog/outlier-ai-guide/)
-- [Handshake AI](/blog/handshake-ai-fellowship-guide/)
-- [micro1](/blog/micro1-ai-jobs-guide/)
-- [Mindrift](/blog/mindrift-ai-trainer-guide/)
-- [TELUS Digital AI Community](/blog/telus-digital-ai-community-guide/)
-- [Sovrano AI](/blog/sovrano-ai-guide/)
-- [How to prepare for an AI training interview](/blog/ai-interview-assessment-prep/)
-
 ## How I and the DWN community can help
 
 I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a community with live training, mentorship, courses, networking events, downloadable resources and access to me, for $147 a year. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
