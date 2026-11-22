@@ -36,16 +36,16 @@ New to the topic? Start with [AI training jobs: what they are and how to get sta
 
 Many other companies and vendors hire people for data labelling, evaluation and specialist review. The same checks below apply to any of them.
 
-## How to compare any AI training platform
+## What most beginners get wrong
 
-1. **Eligibility:** Is your country and work-authorization status accepted?
-2. **Engagement type:** Contractor or employee? Per hour or per task? Any minimum or guaranteed hours?
-3. **Pay:** Is the rate stated on the actual listing, and how and when is it paid?
-4. **Screening:** What interview, test and identity checks are required, and how long does it take?
-5. **Agreement terms:** What does it say about intellectual property, confidentiality and exclusivity? Read before you sign.
-6. **Project availability:** Is work continuous, or does it come in waves?
-7. **Reputation:** What do current contractors say, and does the company publish clear terms and support contacts?
-8. **Safety:** Does it ever ask you for money? If so, stop. See [how to spot AI training and remote job scams](/blog/ai-training-job-scams/).
+I see the same questions again and again from people who are new to AI-training work:
+
+- How do you choose projects that fit your background, so your application is not ignored?
+- What do experienced contributors do in their first week that beginners skip?
+- How do you handle the interview and assessments without panic?
+- How do you keep track of hours, payments and taxes so nothing surprises you later?
+
+I do not unpack all of this in a public article. Members get the step-by-step inside the DWN community, with live training, mentorship and a chance to ask me directly. [See what DWN includes](/diaspora-wealth-network/).
 
 ## Concerns people raise
 
@@ -68,12 +68,7 @@ Comparing platforms, preparing for interviews and avoiding scams is easier with 
 
 ## How I and the DWN community can help
 
-I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). Many people ask me how to find real AI-training work and avoid the fake offers, so it is a regular topic in the community. This guide is free and complete on its own, and you do not need to join anything to use it.
-
-If you want company and structure, DWN is a community of people learning together. The annual membership is $147 a year and includes live training, mentorship, courses, networking events, downloadable resources and access to me inside the community. Inside DWN, we talk about AI-training work, online selling, real estate, personal branding, cybersecurity careers and entrepreneurship, and members share what they are learning and ask questions. No community can guarantee a job or income, and results vary with each person's effort, skills and circumstances.
-
-Start with the [free guide](/opportunities/), read [what DWN includes](/diaspora-wealth-network/), or explore the [AI Training page](/ai-training/).
-
+I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a community with live training, mentorship, courses, networking events, downloadable resources and access to me, for $147 a year. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
 ## Frequently asked questions
 
 ### Is Mercor legit?

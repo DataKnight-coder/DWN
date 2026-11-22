@@ -27,29 +27,16 @@ Most roles are independent contractor work, paid per hour or per task, often wit
 
 Pay is set per project and varies enormously with the subject, the level of expertise required, the platform and sometimes your location. Examples in public listings range from low hourly rates for simple labelling to much higher rates for specialist experts. Treat any headline number, including numbers in videos and social posts, as an example and not a promise. Check the specific listing and the payment terms before you start, and never assume a rate will be available all year.
 
-## How screening works
+## What most beginners get wrong
 
-Platforms differ, but the common pattern is:
+I see the same questions again and again from people who are new to AI-training work:
 
-1. **Create a profile** and upload a resume or describe your expertise.
-2. **Choose a domain** such as general tasks, coding, writing, finance or a language.
-3. **Complete an interview or assessment.** Some platforms use an AI interviewer that asks spoken questions; others use resume review and human interviews or timed tests.
-4. **Verify your identity** and complete any onboarding.
-5. **Get matched to projects.** Passing screening does not guarantee work; projects open and close.
+- How do you choose projects that fit your background, so your application is not ignored?
+- What do experienced contributors do in their first week that beginners skip?
+- How do you handle the interview and assessments without panic?
+- How do you keep track of hours, payments and taxes so nothing surprises you later?
 
-## How to prepare
-
-- **Pick a domain you can defend.** Experts are valued for depth. Write down specific, verifiable experience rather than general claims.
-- **Make your profile precise.** Use plain headings, real job titles, dates and results you can explain. Keep it honest; assessments test what you claim.
-- **Practise structured answers.** For an AI or video interview, speak clearly, give examples and explain your reasoning step by step.
-- **Prepare your setup.** Quiet room, good lighting, clear audio, stable connection and a working webcam and microphone.
-- **Read the guidelines twice.** Quality scores usually depend on following the project's rules exactly. Accuracy matters more than speed.
-- **Protect confidential information.** Never paste a current or former employer's private data into tasks.
-- **Keep records.** Track hours, payments and expenses from the start for tax time.
-
-## Money, taxes and work authorization
-
-If you are in Canada, contractor income is generally reportable. The [Canada Revenue Agency explains the tax obligations of people earning through digital platforms](https://www.canada.ca/en/revenue-agency/programs/about-canada-revenue-agency-cra/compliance/platform-economy/understanding-tax-obligations.html). If you hold a work permit, check that independent work is allowed under your conditions; [IRCC explains that permits may restrict the type of work or employer](https://www.ircc.canada.ca/english/helpcentre/answer.asp?qnum=169&top=17). Rules elsewhere differ, so check your own country's authority.
+I do not unpack all of this in a public article. Members get the step-by-step inside the DWN community, with live training, mentorship and a chance to ask me directly. [See what DWN includes](/diaspora-wealth-network/).
 
 ## Protect yourself from scams
 
@@ -72,12 +59,7 @@ Learning the landscape alone is slow. Dr. Hauwa's Diaspora Wealth Network commun
 
 ## How I and the DWN community can help
 
-I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). Many people ask me how to find real AI-training work and avoid the fake offers, so it is a regular topic in the community. This guide is free and complete on its own, and you do not need to join anything to use it.
-
-If you want company and structure, DWN is a community of people learning together. The annual membership is $147 a year and includes live training, mentorship, courses, networking events, downloadable resources and access to me inside the community. Inside DWN, we talk about AI-training work, online selling, real estate, personal branding, cybersecurity careers and entrepreneurship, and members share what they are learning and ask questions. No community can guarantee a job or income, and results vary with each person's effort, skills and circumstances.
-
-Start with the [free guide](/opportunities/), read [what DWN includes](/diaspora-wealth-network/), or explore the [AI Training page](/ai-training/).
-
+I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a community with live training, mentorship, courses, networking events, downloadable resources and access to me, for $147 a year. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
 ## Frequently asked questions
 
 ### What is AI training work?

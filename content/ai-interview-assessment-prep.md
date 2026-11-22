@@ -21,18 +21,20 @@ Platforms generally look for subject knowledge, clear written communication, rel
 
 Real platforms never charge applicants for tests, training or access. Anyone who asks you to pay, buy equipment from them, or move to a private chat app is a red flag. Read [how to spot AI training and remote job scams](/blog/ai-training-job-scams/) before sharing any documents.
 
-## Going deeper
+## What most beginners get wrong
 
-I keep this guide short on purpose. How to prepare in detail, how to answer common questions and how members avoid typical mistakes is something I walk through with members inside the DWN community. Compare platforms in [AI training platforms compared](/blog/ai-training-platforms-compared/), read the [AI training jobs guide](/blog/ai-training-jobs-guide/), or see [what DWN includes](/diaspora-wealth-network/).
+I see the same questions again and again from people who are new to AI-training work:
+
+- How do you choose projects that fit your background, so your application is not ignored?
+- What do experienced contributors do in their first week that beginners skip?
+- How do you handle the interview and assessments without panic?
+- How do you keep track of hours, payments and taxes so nothing surprises you later?
+
+I do not unpack all of this in a public article. Members get the step-by-step inside the DWN community, with live training, mentorship and a chance to ask me directly. [See what DWN includes](/diaspora-wealth-network/).
 
 ## How I and the DWN community can help
 
-I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). Many people ask me how to find real AI-training work and avoid the fake offers, so it is a regular topic in the community. This guide is free and complete on its own, and you do not need to join anything to use it.
-
-If you want company and structure, DWN is a community of people learning together. The annual membership is $147 a year and includes live training, mentorship, courses, networking events, downloadable resources and access to me inside the community. Inside DWN, we talk about AI-training work, online selling, real estate, personal branding, cybersecurity careers and entrepreneurship, and members share what they are learning and ask questions. No community can guarantee a job or income, and results vary with each person's effort, skills and circumstances.
-
-Start with the [free guide](/opportunities/), read [what DWN includes](/diaspora-wealth-network/), or explore the [AI Training page](/ai-training/).
-
+I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a community with live training, mentorship, courses, networking events, downloadable resources and access to me, for $147 a year. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
 ## Frequently asked questions
 
 ### Do all AI training platforms use an AI interview?

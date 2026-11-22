@@ -105,3 +105,6 @@
   .article-content>p:first-of-type{font-size:1.15rem}
 }
 @media(prefers-reduced-motion:reduce){.pb-card,.pb-card:hover{transition:none;transform:none}.pb-progress span{transition:none}html{scroll-behavior:auto}}
+
+.callout .callout-link{display:inline-block;margin:.8rem 0 0 1rem;color:var(--ivory);font-weight:700;text-underline-offset:4px}.callout .callout-link:hover{color:var(--pb-lime)}
+@media(max-width:600px){.callout .callout-link{margin-left:0;display:block}}

@@ -16,9 +16,16 @@ The TELUS Digital AI Community is a large group of remote contributors who label
 
 Start from the official pages linked above and read the current eligibility rules for your country. Platforms change their steps often, so the platform's own site always has the final word.
 
-## Going deeper
+## What most applicants miss
 
-I keep this guide short on purpose. The detailed walk-through, such as how to prepare, how members choose projects and how to avoid common mistakes, is something I cover with members inside the DWN community. See [what DWN includes](/diaspora-wealth-network/).
+I keep this guide short on purpose. These are the questions I hear most from people applying to TELUS Digital AI Community and similar platforms:
+
+- How do you choose projects that fit your background, so your application is not ignored?
+- What do experienced contributors do in their first week that beginners skip?
+- How do you prepare for the screening without panic?
+- How do you track hours, payments and taxes so nothing surprises you later?
+
+Members get the step-by-step inside the DWN community, with live training, mentorship and a chance to ask me directly. See [what DWN includes](/diaspora-wealth-network/).
 
 ## Pay and payment
 
@@ -44,11 +51,7 @@ Detail-oriented people, including multilingual speakers, who want flexible annot
 
 ## How I and the DWN community can help
 
-I am Dr. Hauwa, and I built the Diaspora Wealth Network (DWN) because many people I meet are capable and motivated but have no one to talk to about the practical details: how to apply, how to stay safe, how to organise their time and how to use one skill to build more options. This guide is free, and you can use it without joining anything.
-
-If you want company and structure, DWN is a community of people learning together. The annual membership is $147 a year and includes live training, mentorship, courses, networking events, downloadable resources and access to me inside the community. Inside DWN, we talk about AI-training work, online selling, real estate, personal branding, cybersecurity careers and entrepreneurship, and members share what they are learning and ask questions. No community can guarantee a job or income, and results vary with each person's effort, skills and circumstances.
-
-You can start with the [free guide](/opportunities/), read [what DWN includes](/diaspora-wealth-network/), or explore the [AI Training page](/ai-training/).
+I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a community with live training, mentorship, courses, networking events, downloadable resources and access to me, for $147 a year. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
 
 ## Frequently asked questions
 
@@ -63,10 +66,6 @@ Yes. A legitimate platform does not charge applicants. If you are asked to pay, 
 ### Is the work guaranteed once I am accepted?
 
 No. Projects open and close, and being accepted does not promise a steady supply of tasks. Plan for uneven work.
-
-### Do I need to pay tax on this income?
-
-In Canada, income from contract work is generally taxable and you may need to report it yourself. Ask the Canada Revenue Agency or a tax professional about your situation.
 
 ### Can I do TELUS Digital AI Community work alongside another job?
 
