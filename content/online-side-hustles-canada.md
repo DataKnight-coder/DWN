@@ -1,4 +1,6 @@
-# Online Side Hustles in Canada: A Practical Starting Guide
+# How to Make Money Online in Canada: Legitimate Options for Newcomers and Professionals
+
+If you want to make money online in Canada, start with options you can test cheaply and report honestly. This guide compares legitimate paths, shows a four-week test, and lists the Canadian checks to make before you earn. No income is guaranteed.
 
 A side hustle is an additional way to earn outside your main job. The most useful question is not “Which idea makes the most money?” It is “Which problem can I solve with skills, time and resources I actually have?” For immigrants and diaspora professionals in Canada, that question also includes work authorization, taxes and the time needed to establish a new life.
 
