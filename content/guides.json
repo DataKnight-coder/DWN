@@ -294,5 +294,29 @@
     "category": "Entrepreneurship",
     "summary": "The basic steps to start a business in Canada, with CRA sources for registration and tax.",
     "published": "2026-11-23"
+  },
+  {
+    "slug": "network-as-a-newcomer-canada",
+    "title": "How to Build a Professional Network as a Newcomer in Canada",
+    "description": "A simple plan to build a professional network in Canada from scratch: who to contact, where to meet people, and how to ask for help politely.",
+    "category": "Career development",
+    "summary": "Start from zero and build real professional relationships in Canada.",
+    "published": "2026-11-23"
+  },
+  {
+    "slug": "monetize-your-skills-online",
+    "title": "How to Turn Your Professional Skills Into Online Income",
+    "description": "The main ways to turn professional skills into online income, how to test an idea before investing, and the Canadian tax and status checks to make first.",
+    "category": "Online income",
+    "summary": "Match a skill to a customer, test cheaply and check the Canadian basics before you earn.",
+    "published": "2026-11-23"
+  },
+  {
+    "slug": "personal-brand-immigrant-professional",
+    "title": "How to Build a Personal Brand as an Immigrant Professional",
+    "description": "What a personal brand is, how to decide what to be known for, and how to show it on your resume, LinkedIn and in public, honestly.",
+    "category": "Career development",
+    "summary": "A clear, honest personal brand helps employers and clients understand your value.",
+    "published": "2026-11-23"
   }
 ]
