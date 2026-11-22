@@ -1,20 +1,20 @@
-# Mercor, micro1 and Handshake AI: How AI Training Platforms Compare
+# How AI Training Platforms Compare
 
-Several companies connect experts and skilled generalists with AI labs and businesses that need people to evaluate and improve AI systems. Mercor, micro1 and Handshake AI are three names people ask about often. This page describes how each presents itself, what to check before you apply, and how to compare any platform. It is an educational comparison, not an endorsement, and it does not list pay rates because rates change by project and are set by each company. Last reviewed: 19 November 2026. Terms change, so treat each platform's own pages as the source of truth.
+Several companies connect experts and skilled generalists with AI labs and businesses that need people to evaluate and improve AI systems. This overview explains the main types and what to check before you apply.
 
 New to the topic? Start with [AI training jobs: what they are and how to get started](/blog/ai-training-jobs-guide/).
 
-## Mercor
+## Talent marketplaces
 
-Mercor is a marketplace that matches experts with AI projects, and it screens applicants mainly with an AI interview. Read its own help pages for the current terms.
+Some platforms work as marketplaces that match experts with AI projects and screen applicants mainly with an AI interview. Read each company's own help pages for the current terms.
 
-## micro1
+## AI-interview platforms
 
-micro1 matches experts to AI training and evaluation projects after an AI interview with its AI recruiter. Read its own pages for the current process.
+Others vet experts through an AI interview, then match them to projects as they open. Read the company's own pages for the current process.
 
-## Handshake AI
+## Career-network programmes
 
-Handshake AI offers project-based AI-training work through the Handshake career platform. Read its help centre for current eligibility and terms.
+Some programmes run through existing career platforms and offer project-based AI evaluation work. Read their help centre for current eligibility and terms.
 
 ## Other platforms exist
 
@@ -37,24 +37,16 @@ Public coverage of this sector notes that some contractors worry about unclear a
 
 ## Learning the landscape with others
 
-Comparing platforms, preparing for interviews and avoiding scams is easier with experienced guidance. Dr. Hauwa's Diaspora Wealth Network community shares tips and training for finding and applying for AI-training work. DWN is not affiliated with Mercor, micro1, Handshake or any other platform, and each company sets its own terms. See [AI Training with Dr. Hauwa](/ai-training/) or [what DWN includes](/diaspora-wealth-network/).
+Comparing platforms, preparing for interviews and avoiding scams is easier with experienced guidance. Dr. Hauwa's Diaspora Wealth Network community shares tips and training for finding and applying for AI-training work. DWN is not affiliated with any AI-training platform, and each company sets its own terms. See [AI Training with Dr. Hauwa](/ai-training/) or [what DWN includes](/diaspora-wealth-network/).
 
 ## How I and the DWN community can help
 
 I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a community with live training, mentorship, courses, networking events, downloadable resources and access to me, for $147 a year. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
 ## Frequently asked questions
 
-### Is Mercor legit?
+### Is an AI-training platform legit?
 
-Mercor is a real company that connects experts with AI companies, according to public coverage. As with any platform, read its current terms, apply only through its official site and never pay to apply or get paid.
-
-### Is micro1 legit?
-
-micro1 publishes its own guides and a jobs site describing AI training and evaluation roles. Apply only on its official site, check the pay and terms on each listing, and never pay a fee.
-
-### What is Handshake AI?
-
-It is Handshake's program for students, graduates and professionals who do paid, part-time, remote work training and evaluating AI models. Check its current eligibility rules for your country and status.
+I cannot vouch for any company. Use the official pages, read independent experiences, never pay to join, and judge a platform by whether its terms are clear and its payments are documented.
 
 ### Which platform pays the most?
 

@@ -17,7 +17,7 @@ Large language models learn partly from human judgment. In a common method calle
 
 Entry-level projects often ask mainly for careful reading, attention to detail and the ability to follow precise written instructions. Expert projects ask for demonstrable experience or qualifications in a field, and some require tools or prior annotation experience. Most work is done on your own computer with a reliable internet connection, in English or sometimes other languages.
 
-Eligibility differs by platform, country and project. For example, Handshake's help centre describes its AI fellowship as open to students, graduates and professionals with specific location and work-authorization conditions, so always read the current terms. See our comparison of [AI training platforms](/blog/ai-training-platforms-compared/) for what to check on each one.
+Eligibility differs by platform, country and project. Some programmes are open only to students, graduates or professionals in certain locations, with work-authorization conditions, so always read the current terms. See our comparison of [AI training platforms](/blog/ai-training-platforms-compared/) for what to check on each one.
 
 ## How you are usually engaged
 

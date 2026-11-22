@@ -1,7 +1,7 @@
 import React from 'react';
 
 const topics = [
-  ['Find AI-training work', 'Tips and training on finding and applying for AI-training gigs on platforms such as Mercor, micro1 and Handshake AI, and on avoiding scams.'],
+  ['Find AI-training work', 'Tips and training on finding and applying for AI-training gigs on AI-training platforms, and on avoiding scams.'],
   ['Use AI with judgement', 'Frame useful prompts, check outputs, protect sensitive information and apply AI to research, writing and business tasks.'],
   ['Build other online income', 'Learn how eBay, Amazon and Shopify selling, dropshipping and affiliate marketing work, with the rules for each.'],
 ];

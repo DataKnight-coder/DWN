@@ -16,18 +16,11 @@
   },
   {
     "slug": "ai-training-platforms-compared",
-    "title": "Mercor, micro1 and Handshake AI: How AI Training Platforms Compare",
-    "description": "How Mercor, micro1 and Handshake AI describe themselves, how you get in, and a checklist for comparing any AI training platform before you apply.",
+    "title": "How AI Training Platforms Compare",
+    "description": "The main types of AI training platforms, how you get in, and a short list of what to check before you apply.",
     "category": "AI training",
-    "summary": "What each platform says publicly and what to check on eligibility, pay terms and agreements.",
-    "published": "2026-11-19",
-    "callout": {
-      "eyebrow": "Go deeper",
-      "heading": "Learn AI-training work with a community.",
-      "text": "Dr. Hauwa's DWN community shares tips and training on finding and applying for AI-training work. Explore AI Training or ask a question.",
-      "href": "/ai-training/",
-      "label": "Explore AI Training"
-    }
+    "summary": "What to expect from AI training platforms and what to check before you apply.",
+    "published": "2026-11-19"
   },
   {
     "slug": "ai-training-job-scams",

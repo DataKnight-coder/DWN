@@ -6,7 +6,7 @@ Many AI-training and data-evaluation platforms screen applicants with an automat
 
 Platform documentation and applicant write-ups describe a mix of the following. Not every platform uses all of them:
 
-- **An AI-led interview.** You answer questions on video or by voice while software scores your answers. Mercor's own help pages list AI interviews among its assessment types, and micro1 describes an AI interview as its main screening step.
+- **An AI-led interview.** You answer questions on video or by voice while software scores your answers. Some platforms list AI interviews among their assessment types, and others describe an AI interview as their main screening step.
 - **Quizzes.** Multiple-choice questions on your subject area or reasoning.
 - **Written tasks.** You evaluate AI answers or explain your reasoning in plain language.
 - **Profile review.** Your resume, education and experience, checked against open projects.
