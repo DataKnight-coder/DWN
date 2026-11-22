@@ -35,7 +35,7 @@ const YourPath: React.FC = () => (
         <li className="rounded-3xl bg-primary text-ivory p-6 flex flex-col">
           <span aria-hidden="true" className="text-accent font-serif italic text-4xl">2</span>
           <h3 className="text-2xl font-black mt-1">Go deeper in the community</h3>
-          <p className="text-ivory/80 mt-2 flex-1">DWN is $147 a year (price shown at checkout) and includes live training, mentorship, courses, networking events and downloadable resources. In Africa? The African Wealth Network is Dr. Hauwa&rsquo;s classroom for you.</p>
+          <p className="text-ivory/80 mt-2 flex-1">DWN is a paid, private community (see the price at checkout). It includes live training, mentorship, courses, networking events and downloadable resources. In Africa? The African Wealth Network is Dr. Hauwa&rsquo;s classroom for you.</p>
           <div className="flex flex-col gap-3 mt-5">
             <a href={dwn.url} data-offer-id={dwn.id} data-cta="path_join_dwn" target="_blank" rel="noreferrer" className={`${btn} bg-accent text-primary hover:bg-white`}>Join Diaspora Wealth Network ↗</a>
             <a href={awn.url} data-offer-id={awn.id} data-cta="path_join_awn" target="_blank" rel="noreferrer" className={`${btn} border-2 border-accent text-accent hover:bg-accent hover:text-primary`}>Join the African Wealth Network ↗</a>

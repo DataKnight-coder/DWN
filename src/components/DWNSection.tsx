@@ -54,7 +54,7 @@ const DWNSection: React.FC = () => {
               <a href="https://selfany.com/thedwn" data-cta="dwn_membership" target="_blank" rel="noreferrer" onClick={() => { const variant = proofVariant('membership'); recordProofEvent('membership', variant, 'click', variant === 'quote' ? 'dwn-pdf-13' : undefined); }} className="inline-block bg-transparent border-2 border-ivory text-ivory font-bold tracking-widest uppercase text-sm py-4 px-8 sm:px-10 rounded-full hover:bg-ivory hover:text-primary transition-all">
                 View DWN Membership
               </a>
-              <p className="text-sm text-ivory/70 mt-3">Annual membership: $147/year (current Selfany price; confirm at checkout).</p>
+              <p className="text-sm text-ivory/70 mt-3">DWN is a paid, private community. See the price at checkout.</p>
             </div>
           </div>
         </div>

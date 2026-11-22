@@ -61,7 +61,7 @@ For a free introduction to online income options, [download the How to Make Mone
 
 ## How I and the DWN community can help
 
-I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a community with live training, mentorship, courses, networking events, downloadable resources and access to me, for $147 a year. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
+I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a paid, private community (see the price at checkout). It includes live training, mentorship, courses, networking events, downloadable resources and access to me. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
 ## Frequently asked questions
 
 ### What is the best affiliate program in Canada?

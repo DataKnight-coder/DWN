@@ -83,7 +83,7 @@ const Hero: React.FC = () => {
               </a>
             </div>
 
-            <p className="text-sm text-primary/70 mb-6 max-w-xl mx-auto lg:mx-0">DWN membership is $147 a year (price shown at checkout) and includes live training, mentorship, courses, networking events and downloadable resources. Results vary; nothing is guaranteed.</p>
+            <p className="text-sm text-primary/70 mb-6 max-w-xl mx-auto lg:mx-0">DWN is a paid, private community. See the price at checkout. It includes live training, mentorship, courses, networking events and downloadable resources. Results vary; nothing is guaranteed.</p>
 
             {/* Quick-start cards: each says what it is, whether it is free or paid, and where it goes. */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7 max-w-xl mx-auto lg:mx-0">

@@ -16,7 +16,7 @@ const choices = [
     primary: { text: 'Explore AI Training', href: '/ai-training/' },
     secondary: { text: 'Register your interest', href: '#ai-training' } },
   { id: 'community', label: 'Join a community', hint: 'Learn with others and get mentorship.',
-    title: 'See what DWN includes', body: 'Community education, mentorship and exploration of 18 income pathways.',
+    title: 'See what DWN includes', body: 'A paid, private community with live training, mentorship, courses and networking events. See the price at checkout.',
     primary: { text: byId('dwn-membership').cta, href: byId('dwn-membership').url, offer: 'dwn-membership' },
     secondary: { text: 'Read about DWN first', href: '/diaspora-wealth-network/' } },
   { id: 'talk', label: 'Talk to Dr. Hauwa', hint: 'Plan your next step one on one.',
