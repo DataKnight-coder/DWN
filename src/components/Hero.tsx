@@ -3,7 +3,7 @@ import offers from '../../content/offers.json';
 
 const membership = offers.find(offer => offer.id === 'dwn-membership')!;
 const guide = offers.find(offer => offer.id === 'free-guide')!;
-const africa = offers.find(offer => offer.id === 'africa-waiting-room')!;
+const africa = offers.find(offer => offer.id === 'african-wealth-network')!;
 const masterclass = offers.find(offer => offer.id === 'monetization-masterclass')!;
 const session = offers.find(offer => offer.id === 'strategy-session')!;
 
@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
                 rel="noreferrer"
                 className="bg-accent text-primary font-bold text-base py-4 px-8 rounded-full shadow-xl hover:scale-105 transition-transform text-center"
               >
-                Join the Africa Waiting Room
+                {africa.cta}
               </a>
             </div>
 

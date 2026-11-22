@@ -1,6 +1,6 @@
 import { json, limitRequest } from '../../server/crm.mjs';
 
-const offers = new Set(['free-guide','dwn-membership','strategy-session','africa-waiting-room',
+const offers = new Set(['free-guide','dwn-membership','strategy-session','africa-waiting-room','african-wealth-network',
   'rent-free-blueprint','monetization-masterclass']);
 const legacy = new Set(['webinar','membership','whatsapp']);
 
