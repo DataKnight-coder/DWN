@@ -1,5 +1,6 @@
 import React from 'react';
 import offers from '../../content/offers.json';
+import { NEXT_TRAINING } from '../config/training';
 
 const membership = offers.find(offer => offer.id === 'dwn-membership')!;
 const guide = offers.find(offer => offer.id === 'free-guide')!;
@@ -84,7 +85,7 @@ const Hero: React.FC = () => {
             {/* Clear paths to AI Training and one-on-one consultations */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 mb-8 font-bold text-primary">
               <a href={guide.url} data-offer-id={guide.id} data-cta="hero_free-guide" target="_blank" rel="noreferrer" className="underline underline-offset-4">Get the free guide →</a>
-              <a href={masterclass.url} data-offer-id={masterclass.id} data-cta="hero_quarterly_training" target="_blank" rel="noreferrer" className="underline underline-offset-4">Free quarterly training: register for the next one →</a>
+              <a href={masterclass.url} data-offer-id={masterclass.id} data-cta="hero_quarterly_training" target="_blank" rel="noreferrer" className="underline underline-offset-4">Free training, next session {NEXT_TRAINING} →</a>
               <a href={session.url} data-offer-id={session.id} data-cta="hero_paid_session" target="_blank" rel="noreferrer" className="underline underline-offset-4">Paid strategy session →</a>
               <a href="/ai-training/" className="underline underline-offset-4">Explore AI Training →</a>
             </div>

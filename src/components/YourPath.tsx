@@ -1,5 +1,6 @@
 import React from 'react';
 import offers from '../../content/offers.json';
+import { NEXT_TRAINING } from '../config/training';
 
 const byId = (id: string) => offers.find(offer => offer.id === id)!;
 const guide = byId('free-guide');
@@ -25,7 +26,7 @@ const YourPath: React.FC = () => (
         <li className="rounded-3xl bg-white border border-primary/15 p-6 flex flex-col">
           <span aria-hidden="true" className="text-[#45620a] font-serif italic text-4xl">1</span>
           <h3 className="text-2xl font-black text-primary mt-1">Start free</h3>
-          <p className="text-primary/75 mt-2 flex-1">Get the beginner guide, and join the free online monetization training that is held every quarter.</p>
+          <p className="text-primary/75 mt-2 flex-1">Get the beginner guide, and join the free online monetization training, held every quarter. Next session: {NEXT_TRAINING}.</p>
           <div className="flex flex-col gap-3 mt-5">
             <a href={guide.url} data-offer-id={guide.id} data-cta="path_free_guide" target="_blank" rel="noreferrer" className={`${btn} bg-primary text-ivory hover:bg-dark`}>Get the free guide ↗</a>
             <a href={training.url} data-offer-id={training.id} data-cta="path_quarterly_training" target="_blank" rel="noreferrer" className={`${btn} border-2 border-primary text-primary hover:bg-primary hover:text-ivory`}>Join the free training ↗</a>
