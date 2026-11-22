@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
 
           {/* Text content */}
           <div className="w-full text-center lg:text-left">
-            <p className="text-xs font-black uppercase tracking-[.16em] text-[#45620a] mb-4">Dr. Hauwa · Founder, Diaspora Wealth Network</p>
+            <p className="text-xs font-black uppercase tracking-[.16em] text-[#45620a] mb-4">Dr. Hauwa, PhD · Realtor · Cybersecurity analyst · Founder, Diaspora Wealth Network</p>
             <h1 className="text-[2.15rem] sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[4.4rem] font-black leading-[1.02] tracking-tighter mb-6 sm:mb-8 text-primary">
               Earn More.<br />
               Build Valuable Skills.<br />

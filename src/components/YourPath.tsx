@@ -50,7 +50,7 @@ const YourPath: React.FC = () => (
           </div>
         </li>
       </ol>
-      <p className="text-sm text-primary/60 mt-6">Educational content. Results vary and nothing is guaranteed.</p>
+      <p className="text-sm text-primary/60 mt-6">Educational content. Results vary and nothing is guaranteed. <a href="/opportunities/" className="inline-block py-2 font-bold text-primary underline underline-offset-4">Compare all options →</a></p>
     </div>
   </section>
 );

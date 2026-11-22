@@ -62,13 +62,13 @@ const Footer: React.FC = () => {
           <div className="col-span-1 lg:col-span-2">
             <p className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Explore</p>
             <ul className="space-y-3 font-medium text-ivory/70 text-sm">
-              <li><a href="#about" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">About</a></li>
-              <li><a href="#expertise" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Expertise</a></li>
-              <li><a href="#cybersecurity" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Cybersecurity</a></li>
-              <li><a href="#real-estate" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Real Estate</a></li>
-              <li><a href="/blog/" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Blog</a></li>
-              <li><a href="/opportunities/" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Opportunities</a></li>
-              <li><a href="/ai-training/" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">AI Training</a></li>
+              <li><a href="#about" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">About</a></li>
+              <li><a href="#expertise" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Expertise</a></li>
+              <li><a href="#cybersecurity" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Cybersecurity</a></li>
+              <li><a href="#real-estate" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Real Estate</a></li>
+              <li><a href="/blog/" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Blog</a></li>
+              <li><a href="/opportunities/" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Opportunities</a></li>
+              <li><a href="/ai-training/" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">AI Training</a></li>
             </ul>
           </div>
 
@@ -76,9 +76,9 @@ const Footer: React.FC = () => {
           <div className="col-span-1 lg:col-span-3">
             <p className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Business</p>
             <ul className="space-y-3 font-medium text-ivory/70 text-sm">
-              <li><a href="https://selfany.com/thedwn" target="_blank" rel="noreferrer" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">DWN Membership on Selfany</a></li>
-              <li><a href="#join-dwn" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Ask About DWN</a></li>
-              <li><a href="#contact" className="hover:text-ivory hover:translate-x-1 inline-block transition-transform">Consulting Enquiry</a></li>
+              <li><a href="https://selfany.com/thedwn" target="_blank" rel="noreferrer" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">DWN Membership on Selfany</a></li>
+              <li><a href="#join-dwn" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Ask About DWN</a></li>
+              <li><a href="#contact" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Consulting Enquiry</a></li>
             </ul>
           </div>
 
@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-ivory/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ivory/30">
           <div>&copy; {new Date().getFullYear()} DR. HAUWA. ALL RIGHTS RESERVED.</div>
-          <div className="flex items-center gap-3"><a href="#unsubscribe" className="hover:text-accent transition-colors">Stop DWN emails</a><a href="/privacy-policy/" className="hover:text-accent transition-colors">Privacy</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
+          <div className="flex items-center gap-3"><a href="#unsubscribe" className="inline-block py-2 hover:text-accent transition-colors">Stop DWN emails</a><a href="/privacy-policy/" className="inline-block py-2 hover:text-accent transition-colors">Privacy</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
         </div>
       </div>
     </footer>

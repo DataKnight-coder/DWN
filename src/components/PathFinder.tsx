@@ -81,7 +81,7 @@ const PathFinder: React.FC = () => {
         </div>
 
         <p className="mt-2 text-sm text-primary/70">
-          Prefer to see everything? <a href="#all-programs" className="font-bold text-primary underline underline-offset-4">Compare all opportunities</a>
+          Prefer to see everything? <a href="/opportunities/" className="inline-block py-2 font-bold text-primary underline underline-offset-4">Compare all opportunities</a>
         </p>
       </div>
     </section>

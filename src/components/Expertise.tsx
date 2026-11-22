@@ -38,13 +38,13 @@ const Expertise: React.FC = () => (
               <h3 className="text-2xl font-black text-primary tracking-tight">{area.title}</h3>
               <p className="text-primary/75 mt-1 max-w-2xl">{area.desc}</p>
             </div>
-            <a href={area.href} className="font-bold text-primary underline underline-offset-4 hover:no-underline focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-primary">
+            <a href={area.href} className="inline-block py-2 font-bold text-primary underline underline-offset-4 hover:no-underline focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-primary">
               Read: {area.guide} <span aria-hidden="true">→</span>
             </a>
           </article>
         ))}
       </div>
-      <a href="/blog/" className="inline-flex mt-8 font-bold text-primary underline underline-offset-4">See all guides →</a>
+      <a href="/blog/" className="inline-flex mt-6 py-3 font-bold text-primary underline underline-offset-4">See all guides →</a>
     </div>
   </section>
 );

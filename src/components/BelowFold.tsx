@@ -2,7 +2,7 @@ import React, { startTransition, useEffect, useState } from 'react';
 import StoryStrip from './StoryStrip';
 import YourPath from './YourPath';
 import PathFinder from './PathFinder';
-import Programs from './Programs';
+import ClosingBand from './ClosingBand';
 import Testimonials from './Testimonials';
 import Story from './Story';
 import AITraining from './AITraining';
@@ -12,7 +12,7 @@ import RealEstate from './RealEstate';
 import FAQ from './FAQ';
 import EmailCTA from './EmailCTA';
 
-const sections: React.FC[] = [StoryStrip, PathFinder, Testimonials, YourPath, Story, AITraining, DWNSection, Programs, Expertise, RealEstate, FAQ, EmailCTA];
+const sections: React.FC[] = [StoryStrip, PathFinder, Testimonials, YourPath, Story, AITraining, DWNSection, Expertise, RealEstate, FAQ, ClosingBand, EmailCTA];
 
 // Hash links that open the enquiry drawer are handled by ConversionDrawer, not by scrolling.
 const drawerHashes = new Set(['#contact', '#join-dwn', '#ai-training']);
