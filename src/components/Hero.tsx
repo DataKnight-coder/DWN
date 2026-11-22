@@ -8,6 +8,14 @@ const africa = offers.find(offer => offer.id === 'african-wealth-network')!;
 const masterclass = offers.find(offer => offer.id === 'monetization-masterclass')!;
 const session = offers.find(offer => offer.id === 'strategy-session')!;
 
+
+const quickStart = [
+  { cta: 'hero_free-guide', href: guide.url, offer: guide.id, badge: 'Free', title: 'Get the free guide', sub: 'A beginner guide to online income', paid: false, icon: 'M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z' },
+  { cta: 'hero_quarterly_training', href: masterclass.url, offer: masterclass.id, badge: `Free · ${NEXT_TRAINING}`, title: 'Join the free training', sub: 'Held every quarter, online', paid: false, icon: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z' },
+  { cta: 'hero_paid_session', href: session.url, offer: session.id, badge: 'Paid', title: 'Book a strategy session', sub: 'One-on-one with Dr. Hauwa', paid: true, icon: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z' },
+  { cta: 'hero_ai_training', href: '/ai-training/', offer: '', badge: 'Learn', title: 'Explore AI Training', sub: 'Practical AI skills, the safe way', paid: false, icon: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z' },
+];
+
 // The hero renders immediately with no entrance animation: the headline is the largest
 // contentful paint, so it must not wait for a script-driven fade-in.
 const Hero: React.FC = () => {
@@ -77,18 +85,33 @@ const Hero: React.FC = () => {
 
             <p className="text-sm text-primary/70 mb-6 max-w-xl mx-auto lg:mx-0">DWN membership is $147 a year (price shown at checkout) and includes live training, mentorship, courses, networking events and downloadable resources. Results vary; nothing is guaranteed.</p>
 
-            <figure className="mb-6 max-w-xl mx-auto lg:mx-0 border-l-4 border-accent pl-4 text-left">
+            {/* Quick-start cards: each says what it is, whether it is free or paid, and where it goes. */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-7 max-w-xl mx-auto lg:mx-0">
+              {quickStart.map(card => (
+                <a
+                  key={card.cta}
+                  href={card.href}
+                  {...(card.offer ? { 'data-offer-id': card.offer, target: '_blank', rel: 'noreferrer' } : {})}
+                  data-cta={card.cta}
+                  className="group flex items-start gap-3 text-left rounded-2xl bg-white border-2 border-primary/15 p-4 shadow-sm hover:border-primary hover:-translate-y-0.5 hover:shadow-lg transition focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  <span aria-hidden="true" className={`flex-none w-11 h-11 rounded-xl flex items-center justify-center ${card.paid ? 'bg-primary text-accent' : 'bg-accent text-primary'}`}>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={card.icon} /></svg>
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className={`inline-block text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full mb-1 ${card.paid ? 'bg-primary text-ivory' : 'bg-accent text-primary'}`}>{card.badge}</span>
+                    <span className="block font-black text-primary leading-snug">{card.title}</span>
+                    <span className="block text-sm text-primary/70 leading-snug mt-0.5">{card.sub}</span>
+                  </span>
+                  <span aria-hidden="true" className="flex-none self-center text-primary text-xl group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              ))}
+            </div>
+
+                        <figure className="mb-6 max-w-xl mx-auto lg:mx-0 border-l-4 border-accent pl-4 text-left">
               <blockquote className="text-primary/90 italic">“Wow.. since I joined DWN, it’s been new knowledge on a daily basis.”</blockquote>
               <figcaption className="text-xs text-primary/60 mt-1">Funmilayo Sarah Sotomide, DWN member. One member’s experience; results vary.</figcaption>
             </figure>
-
-            {/* Clear paths to AI Training and one-on-one consultations */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 mb-8 font-bold text-primary">
-              <a href={guide.url} data-offer-id={guide.id} data-cta="hero_free-guide" target="_blank" rel="noreferrer" className="underline underline-offset-4">Get the free guide →</a>
-              <a href={masterclass.url} data-offer-id={masterclass.id} data-cta="hero_quarterly_training" target="_blank" rel="noreferrer" className="underline underline-offset-4">Free training, next session {NEXT_TRAINING} →</a>
-              <a href={session.url} data-offer-id={session.id} data-cta="hero_paid_session" target="_blank" rel="noreferrer" className="underline underline-offset-4">Paid strategy session →</a>
-              <a href="/ai-training/" className="underline underline-offset-4">Explore AI Training →</a>
-            </div>
 
             {/* Expertise strip */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-3 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-primary/80">
