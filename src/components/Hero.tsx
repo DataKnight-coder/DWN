@@ -74,6 +74,8 @@ const Hero: React.FC = () => {
               </a>
             </div>
 
+            <p className="text-sm text-primary/70 mb-6 max-w-xl mx-auto lg:mx-0">DWN membership is $147 a year (price shown at checkout) and includes live training, mentorship, courses, networking events and downloadable resources. Results vary; nothing is guaranteed.</p>
+
             {/* Clear paths to AI Training and one-on-one consultations */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 mb-8 font-bold text-primary">
               <a href={guide.url} data-offer-id={guide.id} data-cta="hero_free-guide" target="_blank" rel="noreferrer" className="underline underline-offset-4">Get the free guide →</a>

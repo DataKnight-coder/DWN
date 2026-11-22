@@ -108,3 +108,7 @@
 
 .callout .callout-link{display:inline-block;margin:.8rem 0 0 1rem;color:var(--ivory);font-weight:700;text-underline-offset:4px}.callout .callout-link:hover{color:var(--pb-lime)}
 @media(max-width:600px){.callout .callout-link{margin-left:0;display:block}}
+
+.button.alt{background:transparent;color:var(--ivory);border:2px solid var(--pb-lime);margin-left:.6rem}.button.alt:hover{background:var(--pb-lime);color:var(--primary)}
+.pb-community .button{margin-top:.4rem}
+@media(max-width:600px){.button.alt{margin-left:0;margin-top:.7rem;display:block}.callout .button{display:block}}

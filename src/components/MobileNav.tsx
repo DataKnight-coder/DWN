@@ -68,11 +68,11 @@ const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, onOpenQuiz }) =>
               Find Your Pathway
             </button>
             <a 
-              href="#join-dwn" 
+              href="https://selfany.com/thedwn" data-offer-id="dwn-membership" data-cta="mobilenav_join_dwn" target="_blank" rel="noreferrer" 
               onClick={onClose}
               className="w-full bg-accent text-dark py-4 rounded-full font-bold text-lg uppercase tracking-widest text-center"
             >
-              Ask About DWN
+              Join DWN
             </a>
           </div>
         </motion.div>

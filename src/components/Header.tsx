@@ -42,10 +42,10 @@ const Header: React.FC<HeaderProps> = ({ onOpenMobileNav, onOpenQuiz }) => {
         <div className="flex items-center gap-4 flex-shrink-0">
           <div className="hidden md:block">
             <a 
-              href="#join-dwn" 
+              href="https://selfany.com/thedwn" data-offer-id="dwn-membership" data-cta="header_join_dwn" target="_blank" rel="noreferrer"
               className="bg-accent text-primary font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform text-sm shadow-lg block"
             >
-              Ask About DWN
+              Join DWN
             </a>
           </div>
           
