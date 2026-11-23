@@ -18,6 +18,9 @@ const areas = [
   { id: 'ai-online-income', no: '05', title: 'AI Training & Online Selling',
     desc: 'Finding and preparing for AI-training work, plus eBay, Amazon and Shopify selling, dropshipping and affiliate marketing, with the rules for each.',
     guide: 'AI training jobs, and how to get started', href: '/blog/ai-training-jobs-guide/' },
+  { id: 'credit-money', no: '06', title: 'Credit & Money Basics',
+    desc: 'How credit works, why it opens doors for renting, jobs, loans and a mortgage, and how to build it as a newcomer.',
+    guide: 'How to build credit in Canada as a newcomer', href: '/blog/build-credit-canada-newcomers/' },
 ];
 
 const Expertise: React.FC = () => (

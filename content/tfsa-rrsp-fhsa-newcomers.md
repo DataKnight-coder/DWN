@@ -51,7 +51,7 @@ A fee-only financial planner, or the free tools from the Financial Consumer Agen
 
 ## Building a credit history as a newcomer
 
-Canadian credit bureaus record your activity in Canada, so credit history from another country generally does not appear on your Canadian credit report. Canada.ca suggests newcomers without a credit history consider a secured credit card, where a deposit acts as your limit. Paying bills on time and in full is the habit that matters most. Read the FCAC's [credit report and score basics](https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/credit-report-score-basics.html) and [how to improve your credit score](https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/improve-credit-score.html).
+Canadian credit bureaus record your activity in Canada, so credit history from another country generally does not appear on your Canadian credit report. Canada.ca suggests newcomers without a credit history consider a secured credit card, where a deposit acts as your limit. Paying bills on time and in full is the habit that matters most. Read the FCAC's [credit report and score basics](https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/credit-report-score-basics.html) and [how to improve your credit score](https://www.canada.ca/en/financial-consumer-agency/services/credit-reports-score/improve-credit-score.html). For a fuller plan, read [how to build credit in Canada as a newcomer](/blog/build-credit-canada-newcomers/).
 
 ## Protect yourself
 

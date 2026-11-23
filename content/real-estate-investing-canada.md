@@ -68,6 +68,8 @@ Some people look at ways to reduce or offset their own housing costs, such as re
 
 Dr. Hauwa's Diaspora Wealth Network community shares education on real estate and investing awareness alongside other income paths. Read our broader guide on [building wealth as an immigrant in Canada](/blog/build-wealth-as-an-immigrant-in-canada/), see [what DWN includes](/diaspora-wealth-network/), or compare [other online income paths](/blog/side-hustles-canada/).
 
+**Related:** Lenders look closely at your credit history before they approve a mortgage. Read [how to build credit in Canada as a newcomer](/blog/build-credit-canada-newcomers/).
+
 ## How I and the DWN community can help
 
 I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a paid, private community (see the price at checkout). It includes live training, mentorship, courses, networking events, downloadable resources and access to me. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).
