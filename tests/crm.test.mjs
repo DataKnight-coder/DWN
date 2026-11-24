@@ -406,7 +406,7 @@ test('welcome sequence sends approved copy only to consented, unsuppressed conta
   assert.deepEqual(sent.map(m => m.to[0]).sort(), ['ai@example.com', 'house@example.com']);
   const ai = sent.find(m => m.to[0] === 'ai@example.com'), house = sent.find(m => m.to[0] === 'house@example.com');
   assert.equal(ai.subject, 'A practical next step after the guide');
-  assert.match(ai.html, /drhauwaphd\.ca\/ai-training/); assert.match(house.html, /stan\.store\/DrHauwaPhD/);
+  assert.match(ai.html, /drhauwaphd\.ca\/ai-training/); assert.match(house.html, /selfany\.com\/rentfree/);
   assert.match(ai.html, /1 Main St, City, ON A1A 1A1/); assert.match(ai.html, /#unsubscribe/);
   assert.match(ai.headers['List-Unsubscribe'], /mailto:hello@drhauwaphd\.ca/);
   assert.equal(ai.from, 'Dr. Hauwa | Diaspora Wealth Network <hello@mail.drhauwaphd.ca>');
