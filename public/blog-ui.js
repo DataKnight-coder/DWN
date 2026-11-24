@@ -1,5 +1,11 @@
 // Progressive enhancement for the blog: search and topic filter on the index, reading progress and contents highlighting on guides.
 (() => {
+  const banner = document.getElementById('dwn-top-banner');
+  if (banner) {
+    const key = banner.dataset.key;
+    try { if (localStorage.getItem(key) === '1') banner.remove(); } catch { /* Storage is optional. */ }
+    banner.querySelector('button')?.addEventListener('click', () => { try { localStorage.setItem(key, '1'); } catch { /* Optional. */ } banner.remove(); });
+  }
   const bar = document.querySelector('.pb-progress span');
   if (bar) {
     const article = document.querySelector('.article-content');

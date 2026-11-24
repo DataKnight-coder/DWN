@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-ivory/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ivory/30">
           <div>&copy; {new Date().getFullYear()} DR. HAUWA. ALL RIGHTS RESERVED.</div>
-          <div className="flex items-center gap-3"><a href="#unsubscribe" className="inline-block py-2 hover:text-accent transition-colors">Stop DWN emails</a><a href="/privacy-policy/" className="inline-block py-2 hover:text-accent transition-colors">Privacy</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
+          <div className="flex items-center gap-3"><a href="#unsubscribe" className="inline-block py-2 hover:text-accent transition-colors">Stop DWN emails</a><a href="/privacy-policy/" className="inline-block py-2 hover:text-accent transition-colors">Privacy</a><a href="/disclaimer/" className="inline-block py-2 hover:text-accent transition-colors">Disclaimer</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
         </div>
       </div>
     </footer>

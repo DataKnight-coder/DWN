@@ -18,6 +18,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenMobileNav, onOpenQuiz }) => {
 
   return (
     <header
+      style={{ top: 'var(--banner-h, 40px)' }}
       className={`fixed w-full z-50 top-0 transition-all duration-500 ${
         isScrolled ? 'bg-ivory/95 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'
       }`}
