@@ -70,6 +70,8 @@ Dr. Hauwa's Diaspora Wealth Network community shares education on real estate an
 
 **Related:** Lenders look closely at your credit history before they approve a mortgage. Read [how to build credit in Canada as a newcomer](/blog/build-credit-canada-newcomers/).
 
+**Next:** Dr. Hauwa explains the three kinds of buyers in [how to start real estate investing in Canada with no experience](/blog/start-real-estate-investing-canada/).
+
 ## How I and the DWN community can help
 
 I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free and stands on its own. If you want to go further with others, DWN is a paid, private community (see the price at checkout). It includes live training, mentorship, courses, networking events, downloadable resources and access to me. Results vary and nothing is guaranteed. [See what DWN includes](/diaspora-wealth-network/).

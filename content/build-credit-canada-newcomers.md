@@ -48,7 +48,7 @@ I am Dr. Hauwa, founder of the Diaspora Wealth Network (DWN). This guide is free
 
 ## Related guides
 
-Next, read [do landlords and employers check your credit in Canada?](/blog/do-landlords-employers-check-credit-canada/) and [TFSA vs RRSP vs FHSA for newcomers](/blog/tfsa-rrsp-fhsa-newcomers/).
+Next, read [do landlords and employers check your credit in Canada?](/blog/do-landlords-employers-check-credit-canada/), [how to start real estate investing in Canada](/blog/start-real-estate-investing-canada/) and [TFSA vs RRSP vs FHSA for newcomers](/blog/tfsa-rrsp-fhsa-newcomers/).
 
 ## Frequently asked questions
 
