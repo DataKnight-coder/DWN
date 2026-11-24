@@ -30,6 +30,7 @@ const YourPath: React.FC = () => (
           <div className="flex flex-col gap-3 mt-5">
             <a href={guide.url} data-offer-id={guide.id} data-cta="path_free_guide" target="_blank" rel="noreferrer" className={`${btn} bg-primary text-ivory hover:bg-dark`}>Get the free guide ↗</a>
             <a href={training.url} data-offer-id={training.id} data-cta="path_quarterly_training" target="_blank" rel="noreferrer" className={`${btn} border-2 border-primary text-primary hover:bg-primary hover:text-ivory`}>Join the free training ↗</a>
+            <a href="/ai-training/" data-cta="path_ai_training" className={`${btn} border-2 border-primary/40 text-primary hover:bg-primary hover:text-ivory`}>Explore AI Training →</a>
           </div>
         </li>
         <li className="rounded-3xl bg-primary text-ivory p-6 flex flex-col">

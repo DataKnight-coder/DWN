@@ -7,13 +7,14 @@ const guide = offers.find(offer => offer.id === 'free-guide')!;
 const africa = offers.find(offer => offer.id === 'african-wealth-network')!;
 const masterclass = offers.find(offer => offer.id === 'monetization-masterclass')!;
 const session = offers.find(offer => offer.id === 'strategy-session')!;
+const rentFree = offers.find(offer => offer.id === 'rent-free-blueprint')!;
 
 
 const quickStart = [
   { cta: 'hero_free-guide', href: guide.url, offer: guide.id, badge: 'Free', title: 'Get the free guide', sub: 'A beginner guide to online income', paid: false, icon: 'M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z' },
   { cta: 'hero_quarterly_training', href: masterclass.url, offer: masterclass.id, badge: `Free · ${NEXT_TRAINING}`, title: 'Join the free training', sub: 'Held every quarter, online', paid: false, icon: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z' },
   { cta: 'hero_paid_session', href: session.url, offer: session.id, badge: 'Paid', title: 'Book a strategy session', sub: 'One-on-one with Dr. Hauwa', paid: true, icon: 'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z' },
-  { cta: 'hero_ai_training', href: '/ai-training/', offer: '', badge: 'Learn', title: 'Explore AI Training', sub: 'Practical AI skills, the safe way', paid: false, icon: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z' },
+  { cta: 'hero_rent_free', href: rentFree.url, offer: rentFree.id, badge: 'Paid course', title: 'Live rent-free in the diaspora', sub: 'Self-paced course on cutting housing costs', paid: true, icon: 'M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zM9 22V12h6v10' },
 ];
 
 // The hero renders immediately with no entrance animation: the headline is the largest
