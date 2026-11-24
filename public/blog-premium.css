@@ -112,3 +112,9 @@
 .button.alt{background:transparent;color:var(--ivory);border:2px solid var(--pb-lime);margin-left:.6rem}.button.alt:hover{background:var(--pb-lime);color:var(--primary)}
 .pb-community .button{margin-top:.4rem}
 @media(max-width:600px){.button.alt{margin-left:0;margin-top:.7rem;display:block}.callout .button{display:block}}
+
+.inline-cta{font-family:Inter,system-ui,sans-serif;background:#e9f2cf;border:1px solid #c9dc94;border-radius:1.1rem;padding:1.3rem 1.4rem;margin:2.4rem 0}
+.inline-cta .eyebrow{margin:0;color:#2f5a34}.inline-cta-title{font-size:1.35rem!important;margin:.2rem 0 .4rem!important;border:0!important;padding:0!important}
+.inline-cta p{font-size:1rem;line-height:1.6;margin:.3rem 0 .8rem;color:#254a33}
+.inline-cta .callout-link{color:#0e3328;margin-left:.8rem}
+@media(max-width:600px){.inline-cta .callout-link{display:block;margin:.8rem 0 0}}

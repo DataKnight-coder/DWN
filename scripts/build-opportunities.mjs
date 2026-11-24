@@ -113,13 +113,23 @@ function guideToc(current) {
   return [...groups.entries()].map(([category, items]) => `<h3>${esc(category)}</h3><ol>${items.map(item => item.slug === current ? `<li><span aria-current="page">${esc(item.title)}</span></li>` : `<li><a href="/blog/${item.slug}/">${esc(item.title)}</a></li>`).join('')}</ol>`).join('');
 }
 
+
+// A short opt-in box after the second section of each guide: seen by readers who are engaged, before the end of the page.
+function withInlineCta(html, guide) {
+  if (guide.slug === 'ai-training-job-scams') return html;
+  const parts = html.split('<h2');
+  if (parts.length < 4) return html;
+  const box = `<aside class="inline-cta"><p class="eyebrow">Free</p><h2 class="inline-cta-title">Get the free beginner guide</h2><p>A plain-language guide to practical online income options. No cost, and no promise of results.</p>${offerLink(offer('free-guide'), `inline_${guide.slug}`)} <a class="callout-link" href="${offer('monetization-masterclass').url}" data-offer-id="monetization-masterclass" data-cta="inline_training_${guide.slug}" target="_blank" rel="noreferrer">or join the free quarterly training</a></aside>`;
+  return parts.slice(0, 3).join('<h2') + box + '<h2' + parts.slice(3).join('<h2');
+}
+
 for (const guide of guides) {
   const url = `${site}/blog/${guide.slug}/`;
   const source = await readFile(join(root, 'content', `${guide.slug}.md`), 'utf8');
   const heads = source.replaceAll('\r\n', '\n').split('\n').filter(line => line.startsWith('## ')).map(line => line.slice(3).trim());
   const tocHtml = heads.map(label => `<li><a href="#${slugId(label)}">${esc(label)}</a></li>`).join('');
   const relatedHtml = relatedFor(guide).map(cardHtml).join('');
-  const body = `<div class="pb-progress" aria-hidden="true"><span></span></div><div class="article-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Guides</a><span>/</span><span aria-current="page">${esc(guide.category)}</span></nav><article><header class="article-header"><span class="pb-pill">${esc(guide.category)}</span><h1>${esc(guide.title)}</h1><p class="dek">${esc(guide.summary)}</p><div class="byline"><img src="/dr-hauwa.jpg" alt="Diaspora Wealth Network" width="48" height="48"><div><strong>Diaspora Wealth Network</strong><span class="pb-byline-meta"><time datetime="${guide.published}">${longDate(guide.published)}</time><span>${minsBySlug.get(guide.slug)} min read</span><span>Educational guide</span></span></div></div></header><div class="article-grid"><aside class="toc" aria-label="On this page"><details class="pb-toc"><summary>On this page</summary><ol>${tocHtml}</ol></details></aside><div class="article-content">${markdownToHtml(source)}${calloutHtml(guide)}</div></div></article></div><section class="pb-related" aria-labelledby="keep-reading"><h2 id="keep-reading">Keep reading</h2><div class="pb-grid">${relatedHtml}</div></section><details class="pb-all"><summary>Browse all guides</summary>${guideToc(guide.slug)}</details>`;
+  const body = `<div class="pb-progress" aria-hidden="true"><span></span></div><div class="article-shell"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Guides</a><span>/</span><span aria-current="page">${esc(guide.category)}</span></nav><article><header class="article-header"><span class="pb-pill">${esc(guide.category)}</span><h1>${esc(guide.title)}</h1><p class="dek">${esc(guide.summary)}</p><div class="byline"><img src="/dr-hauwa.jpg" alt="Diaspora Wealth Network" width="48" height="48"><div><strong>Diaspora Wealth Network</strong><span class="pb-byline-meta"><time datetime="${guide.published}">${longDate(guide.published)}</time><span>${minsBySlug.get(guide.slug)} min read</span><span>Educational guide</span></span></div></div></header><div class="article-grid"><aside class="toc" aria-label="On this page"><details class="pb-toc"><summary>On this page</summary><ol>${tocHtml}</ol></details></aside><div class="article-content">${withInlineCta(markdownToHtml(source), guide)}${calloutHtml(guide)}</div></div></article></div><section class="pb-related" aria-labelledby="keep-reading"><h2 id="keep-reading">Keep reading</h2><div class="pb-grid">${relatedHtml}</div></section><details class="pb-all"><summary>Browse all guides</summary>${guideToc(guide.slug)}</details>`;
   const schema = { '@context': 'https://schema.org', '@graph': [
     { '@type': 'Organization', '@id': `${site}/#dwn-organization`, name: 'Diaspora Wealth Network', url: `${site}/` },
     { '@type': 'BlogPosting', '@id': `${url}#article`, headline: guide.title, description: guide.description,

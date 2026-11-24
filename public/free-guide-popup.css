@@ -22,3 +22,24 @@
 }
 @keyframes dwn-guide-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.dwn-guide-panel{animation:none}}
+
+.dwn-guide-alt{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid #0e332822;font-size:.8rem}
+.dwn-guide-alt span{color:#355446;font-weight:700;flex:0 0 100%}
+.dwn-guide-alt a{display:inline-block;padding:7px 12px;border:1.5px solid #0e3328;border-radius:100px;color:#0e3328;font-weight:700;text-decoration:none;background:#fff}
+.dwn-guide-alt a:hover{background:#0e3328;color:#f4f1ea}
+
+/* Fewer fields, more sign-ups: the country question is optional, so it is not asked here. */
+.dwn-guide-form label:has(input[name="country"]){display:none}
+
+/* Desktop card: compact, and never tall enough to cover the site header. */
+@media(min-width:768px){
+.dwn-guide-panel{max-height:calc(100dvh - 110px);padding:18px 20px}
+.dwn-guide-panel>p:not(.dwn-guide-kicker){display:none}
+.dwn-guide-kicker{margin:0 0 4px}
+.dwn-guide-panel h2{font-size:1.35rem;margin:0 0 .5rem}
+.dwn-guide-form{gap:7px}
+.dwn-guide-form label{font-size:.82rem}
+.dwn-guide-form input:not([type=checkbox]),.dwn-guide-form select{padding:8px 10px;margin-top:2px}
+.dwn-guide-fine{font-size:.7rem}
+.dwn-guide-alt{margin-top:10px;padding-top:9px}
+}
