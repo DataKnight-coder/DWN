@@ -18,7 +18,7 @@ const interestBlocks = {
   'Digital Income': { text: 'The free Online Monetization Masterclass looks at practical ways to monetize skills online for diaspora professionals.', label: 'Secure Your Seat', url: 'https://selfany.com/w/DrHauwaPhD1' },
   'DWN Membership': { text: 'DWN is a community with mentorship and exploration of 18 income pathways.', label: 'Learn about DWN', url: 'https://selfany.com/thedwn' },
   'Cybersecurity': { text: 'Read our guide on getting into cybersecurity in Canada.', label: 'Read the article', url: 'https://drhauwaphd.ca/blog/cybersecurity-career-canada/' },
-  'Real Estate': { text: 'An educational blueprint on strategies for reducing or offsetting housing costs.', label: 'Explore the Blueprint', url: 'https://stan.store/DrHauwaPhD/p/how-to-live-rentfree-in-canada' },
+  'Real Estate': { text: 'A self-paced paid course on strategically reducing your housing costs. Educational only: the rules differ by country, and results vary.', label: 'Explore the Course', url: 'https://selfany.com/rentfree' },
   'Personal Mentorship': { text: 'A one-on-one session gives personalized guidance on opportunities and a growth strategy.', label: 'Book a Strategy Session', url: 'https://selfany.com/oneononewithdrhauwa' },
 };
 const fallbackBlock = interestBlocks['Digital Income'];

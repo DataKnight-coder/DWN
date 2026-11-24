@@ -54,7 +54,7 @@ Residential tenancy rules are set by each province or territory and cover things
 
 ## Housing costs and creative strategies
 
-Some people look at ways to reduce or offset their own housing costs, such as renting out part of a home. These strategies depend on local rules, your lender's terms, your insurance and zoning, and they do not suit everyone. Dr. Hauwa's educational blueprint, [How to Live Rent-Free in Canada](https://stan.store/DrHauwaPhD/p/how-to-live-rentfree-in-canada), explores strategies for reducing or offsetting housing costs. It is educational and does not guarantee any result.
+Some people look at ways to reduce or offset their own housing costs, such as renting out part of a home. These strategies depend on local rules, your lender's terms, your insurance and zoning, and they do not suit everyone. Dr. Hauwa's paid, self-paced course, [How to Live Rent-Free in the Diaspora](https://selfany.com/rentfree), explores strategies for reducing your housing costs. It is educational, the rules differ by country, and it does not guarantee any result.
 
 ## A sensible way to learn
 

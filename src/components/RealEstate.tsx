@@ -16,10 +16,10 @@ const RealEstate: React.FC = () => (
       </div>
       <div className="grid gap-4 md:grid-cols-3">
         <a href={blueprint.url} data-offer-id={blueprint.id} data-cta="home_real_estate_blueprint" target="_blank" rel="noreferrer" className="block rounded-2xl border border-ivory/20 p-6 hover:bg-white/5 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-accent">
-          <p className="text-xs font-black uppercase tracking-widest text-accent mb-2">Housing blueprint</p>
+          <p className="text-xs font-black uppercase tracking-widest text-accent mb-2">Paid course</p>
           <h3 className="text-xl font-black mb-2">{blueprint.title}</h3>
           <p className="text-ivory/75 text-sm">{blueprint.description}</p>
-          <span className="inline-block mt-4 font-bold text-accent">Explore the blueprint ↗</span>
+          <span className="inline-block mt-4 font-bold text-accent">Explore the course ↗</span>
         </a>
         <a href="/blog/real-estate-investing-canada/" className="block rounded-2xl border border-ivory/20 p-6 hover:bg-white/5 focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-accent">
           <p className="text-xs font-black uppercase tracking-widest text-accent mb-2">Free guide</p>
