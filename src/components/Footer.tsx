@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1 lg:col-span-2">
             <p className="font-bold uppercase tracking-widest text-[10px] text-accent mb-5">Explore</p>
             <ul className="space-y-3 font-medium text-ivory/70 text-sm">
-              <li><a href="#about" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">About</a></li>
+              <li><a href="/about/" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">About Dr. Hauwa</a></li>
               <li><a href="#expertise" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Expertise</a></li>
               <li><a href="#cybersecurity" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Cybersecurity</a></li>
               <li><a href="#real-estate" className="hover:text-ivory hover:translate-x-1 inline-block py-2 transition-transform">Real Estate</a></li>
@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-6 border-t border-ivory/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ivory/30">
           <div>&copy; {new Date().getFullYear()} DR. HAUWA. ALL RIGHTS RESERVED.</div>
-          <div className="flex items-center gap-3"><a href="#unsubscribe" className="inline-block py-2 hover:text-accent transition-colors">Stop DWN emails</a><a href="/privacy-policy/" className="inline-block py-2 hover:text-accent transition-colors">Privacy</a><a href="/disclaimer/" className="inline-block py-2 hover:text-accent transition-colors">Disclaimer</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
+          <div className="flex items-center gap-3"><a href="#unsubscribe" className="inline-block py-2 hover:text-accent transition-colors">Stop DWN emails</a><a href="/privacy-policy/" className="inline-block py-2 hover:text-accent transition-colors">Privacy</a><a href="/disclaimer/" className="inline-block py-2 hover:text-accent transition-colors">Disclaimer</a><a href="/terms/" className="inline-block py-2 hover:text-accent transition-colors">Terms</a><button type="button" onClick={() => window.dispatchEvent(new Event('dwn-open-tracking-choices'))} className="hover:text-accent transition-colors underline">Tracking choices</button></div>
         </div>
       </div>
     </footer>

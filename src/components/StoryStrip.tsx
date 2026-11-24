@@ -11,7 +11,7 @@ const StoryStrip: React.FC = () => (
       <p className="text-lg sm:text-xl text-primary/80 leading-relaxed">
         I thought a job was the whole plan. It wasn&rsquo;t. I became a cybersecurity analyst, then a realtor, and I kept learning new skills on the side. What helped most was learning how things really work, step by step. That is why I built the Diaspora Wealth Network, so nobody has to figure it out the hard way. No hype, and no promises of results.
       </p>
-      <p className="mt-4 font-bold text-primary">Dr. Hauwa</p>
+      <p className="mt-4 font-bold text-primary">Dr. Hauwa <a href="/about/" className="ml-3 inline-block py-2 underline underline-offset-4">Read my full story →</a></p>
     </div>
   </section>
 );

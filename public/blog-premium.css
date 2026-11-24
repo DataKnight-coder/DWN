@@ -123,3 +123,8 @@
 .top-banner p{margin:0}.top-banner a{color:#d4f670;font-weight:700;text-underline-offset:4px;white-space:nowrap}.top-banner .tb-times{color:#cfdad2}
 .top-banner button{position:absolute;right:.4rem;top:50%;transform:translateY(-50%);width:40px;height:40px;background:transparent;border:0;color:#f4f1ea;font-size:1rem;cursor:pointer}
 @media(max-width:700px){.top-banner .tb-times{display:none}}
+
+.about-hero{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;align-items:center;max-width:none}
+.about-photo{width:100%;height:auto;max-width:420px;justify-self:end;border-radius:1.5rem;object-fit:cover;box-shadow:0 18px 50px rgba(14,51,40,.18)}
+.editorial-shell h2+ul{margin-top:.6rem}
+@media(max-width:800px){.about-hero{grid-template-columns:1fr}.about-photo{justify-self:start;max-width:320px}}
