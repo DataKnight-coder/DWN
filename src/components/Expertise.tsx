@@ -21,6 +21,9 @@ const areas = [
   { id: 'credit-money', no: '06', title: 'Credit & Money Basics',
     desc: 'How credit works, why it opens doors for renting, jobs, loans and a mortgage, and how to build it as a newcomer.',
     guide: 'How to build credit in Canada as a newcomer', href: '/blog/build-credit-canada-newcomers/' },
+  { id: 'ai-video', no: '07', title: 'AI Video & YouTube',
+    desc: 'Using AI tools to edit and animate video, and what YouTube allows, so you can create original content the right way.',
+    guide: 'AI video editing and animation for beginners', href: '/blog/ai-video-editing-animation-beginners/' },
 ];
 
 const Expertise: React.FC = () => (
